@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Zu7XuhCzqSV9nb1YBtXWBjGv8h" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store" />
+      <recent name="$PROJECT_DIR$/src/config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store" />
+      <recent name="$PROJECT_DIR$/src/config" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="" />
+      <created>1585677167315</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585677167315</updated>
+      <workItem from="1585677169068" duration="8072000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585726102541">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726102541" />
+    <state width="3732" height="612" key="GridCell.Tab.0.bottom" timestamp="1585726599605">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599605" />
+    <state width="3732" height="612" key="GridCell.Tab.0.center" timestamp="1585726599604">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599604" />
+    <state width="3732" height="612" key="GridCell.Tab.0.left" timestamp="1585726599603">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599603" />
+    <state width="3732" height="612" key="GridCell.Tab.0.right" timestamp="1585726599605">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599605" />
+    <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585727976514">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585727976514" />
+    <state x="-2302" y="-318" width="818" height="658" key="find.popup" timestamp="1585680882531">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-2302" y="-318" width="818" height="658" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585680882531" />
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup" timestamp="1585678285061">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585678285061" />
+  </component>
+</project>
