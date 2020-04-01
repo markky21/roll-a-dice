@@ -3,9 +3,11 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { getFirebase } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 
-import { makeRootReducer } from '../store/reducers';
+import { makeRootReducer } from '../store/reducers/main';
 
-const initialState = {};
+const initialState = (window as any).___INITIAL_STATE__ || {
+  firebase: { authError: null },
+};
 
 export const store = configureStore(initialState);
 
@@ -41,8 +43,8 @@ function configureStore(initialState: any): any {
 
   if ((module as any).hot) {
     // Enable Webpack hot module replacement for reducers
-    (module as any).hot.accept('../store/reducer', () => {
-      const nextRootReducer = require('../store/reducer'); // eslint-disable-line global-require, @typescript-eslint/no-var-requires
+    (module as any).hot.accept('../store/reducers/main', () => {
+      const nextRootReducer = require('../store/reducers/todo.reducer'); // eslint-disable-line global-require, @typescript-eslint/no-var-requires
       store.replaceReducer(nextRootReducer);
     });
   }

@@ -1,10 +1,10 @@
 import React from 'react';
-import Todos from './Todos';
-import AddTodo from './AddTodo';
-import './App.css';
+import Todos from '../containers/Todos';
+import AddTodo from '../components/AddTodo';
+import '../App.css';
 import { useFirebase } from 'react-redux-firebase';
 
-export function Home() {
+export function HomeC() {
   const firebase = useFirebase();
 
   const googleLogin = () =>
@@ -28,3 +28,7 @@ export function Home() {
   );
 }
 
+export const Home = {
+  path: '/',
+  component: HomeC,
+};

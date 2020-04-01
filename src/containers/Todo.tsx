@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, TodoValue } from './store/reducer';
+import { AppState, TodoValue } from '../store/reducers/todo.reducer';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 

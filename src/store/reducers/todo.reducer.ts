@@ -16,7 +16,13 @@ interface DBSchema {
   [name: string]: any;
 }
 interface RootState {
-  firebase: FirebaseReducer.Reducer<UserProfile>;
+  firebase: FirebaseReducer.Reducer<UserProfile> & {
+    profile: {
+      avatarUrl: string;
+      displayName: string;
+      email: string;
+    };
+  };
   // firestore: FirestoreReducer.Reducer;
 }
 
@@ -25,4 +31,3 @@ export const rootReducer = combineReducers<RootState>({
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
-

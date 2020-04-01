@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="" />
+    <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.enhancer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/main.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/paths.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/CoreLayout/CoreLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/CoreLayout/NavBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/Navigator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoom.enhancer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoom.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/CreateRoom/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomList.enhancer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/RoomList/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/selectors/auth.selectors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/selectors/profile.selectors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/theme.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/initail.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddTodo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTodo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Todo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Todo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Todos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Todos.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/store.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/store.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/todo.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +56,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Zu7XuhCzqSV9nb1YBtXWBjGv8h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,8 +70,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -32,17 +81,22 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/store" />
-      <recent name="$PROJECT_DIR$/src/config" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes" />
+      <recent name="$PROJECT_DIR$/src/routes/CreateRoom" />
+      <recent name="$PROJECT_DIR$/src/store/selectors" />
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/constants" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage" />
+      <recent name="$PROJECT_DIR$/src/routes/CreateRoom" />
+      <recent name="$PROJECT_DIR$/src/store/reducers" />
+      <recent name="$PROJECT_DIR$/src/store/selectors" />
       <recent name="$PROJECT_DIR$/src/store" />
-      <recent name="$PROJECT_DIR$/src/config" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -72,7 +126,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585677167315</updated>
-      <workItem from="1585677169068" duration="8072000" />
+      <workItem from="1585677169068" duration="9957000" />
+      <workItem from="1585730877496" duration="14081000" />
     </task>
     <servers />
   </component>
@@ -84,33 +139,41 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726102541" />
-    <state width="3732" height="612" key="GridCell.Tab.0.bottom" timestamp="1585726599605">
+    <state x="-2384" y="-482" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1585731233029">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="612" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599605" />
-    <state width="3732" height="612" key="GridCell.Tab.0.center" timestamp="1585726599604">
+    <state x="-2384" y="-482" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585731233029" />
+    <state x="-2205" y="-265" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1585731206196">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="612" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599604" />
-    <state width="3732" height="612" key="GridCell.Tab.0.left" timestamp="1585726599603">
+    <state x="-2205" y="-265" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585731206196" />
+    <state width="3732" height="612" key="GridCell.Tab.0.bottom" timestamp="1585745571215">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="612" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599603" />
-    <state width="3732" height="612" key="GridCell.Tab.0.right" timestamp="1585726599605">
+    <state width="3732" height="612" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585745571215" />
+    <state width="3732" height="612" key="GridCell.Tab.0.center" timestamp="1585745571214">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="612" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585726599605" />
+    <state width="3732" height="612" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585745571214" />
+    <state width="3732" height="612" key="GridCell.Tab.0.left" timestamp="1585745571213">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585745571213" />
+    <state width="3732" height="612" key="GridCell.Tab.0.right" timestamp="1585745571215">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state width="3732" height="612" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585745571215" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585727976514">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585727976514" />
-    <state x="-2302" y="-318" width="818" height="658" key="find.popup" timestamp="1585680882531">
+    <state x="-2302" y="-318" width="818" height="658" key="find.popup" timestamp="1585745532420">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2302" y="-318" width="818" height="658" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585680882531" />
-    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup" timestamp="1585678285061">
+    <state x="-2302" y="-318" width="818" height="658" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585745532420" />
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup" timestamp="1585746027694">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585678285061" />
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585746027694" />
   </component>
 </project>

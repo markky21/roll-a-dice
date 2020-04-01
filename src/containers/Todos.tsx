@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoaded, isEmpty, useFirebaseConnect } from 'react-redux-firebase';
-import { AppState } from './store/reducer';
+import { AppState } from '../store/reducers/todo.reducer';
 import Todo from './Todo';
 import { useSelector } from 'react-redux';
 
