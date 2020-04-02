@@ -1,4 +1,4 @@
-import { RouterPath } from '../../constants/paths';
+import { RouterPath } from '../../models/paths';
 import { CreatRoomPage } from './CreateRoomPage';
 import React from 'react';
 import { RouteProps } from 'react-router';

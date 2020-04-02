@@ -83,9 +83,7 @@ export function RoomListsC(props: RoomListProps) {
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        <Typography color="textSecondary" align="center">
-          No users for this project yet
-        </Typography>
+        <Typography color="textSecondary" align="center"></Typography>
       </div>
     </Paper>
   );

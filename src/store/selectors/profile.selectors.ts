@@ -1,8 +1,3 @@
 import { AppState } from '../reducers/main';
 
-export const profileSelector = (state: AppState) => {
-  const {
-    firebase: { profile },
-  } = state;
-  return profile;
-};
+export const profileSelector = (state: AppState) => state.firebase.profile;

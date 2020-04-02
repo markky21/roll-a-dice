@@ -1,5 +1,7 @@
-import { Data, Dictionary, FirebaseReducer } from 'react-redux-firebase';
+import { Dictionary } from 'react-redux-firebase';
+
 import { Profile, Room } from '../../models/rooms.model';
+import { Chat } from '../../models/chats.model';
 
 export interface TodoValue {
   text: string;
@@ -7,8 +9,17 @@ export interface TodoValue {
 }
 
 interface FirebaseSchema {
-  rooms: Room[];
   todos: TodoValue[];
+}
+
+export interface FirestoreSchema {
+  chats: Dictionary<Chat>;
+  rooms: Dictionary<Room>;
+  users: Dictionary<Profile>;
+}
+
+export interface FirestoreQuerySchema {
+  userChats?: Dictionary<Chat>;
 }
 
 export interface FirebaseUserProfile {

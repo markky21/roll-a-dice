@@ -14,7 +14,7 @@ import { Menu, MenuItem } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { profileSelector } from '../store/selectors/profile.selectors';
 import { authenticatedSelector } from '../store/selectors/auth.selectors';
-import { RouterPath } from '../constants/paths';
+import { RouterPath } from '../models/paths';
 
 const styles = (theme: Theme) =>
   createStyles({

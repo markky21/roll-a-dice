@@ -7,7 +7,7 @@ import {
 // @ts-ignore
 import firestore from 'redux-firestore/lib/reducer';
 
-import { FirebaseUserProfile } from './firebase.reducer';
+import {FirebaseUserProfile, FirestoreQuerySchema, FirestoreSchema} from './firebase.reducer';
 import { Profile } from '../../models/rooms.model';
 
 /**********************************************************
@@ -15,7 +15,7 @@ import { Profile } from '../../models/rooms.model';
  **********************************************************/
 
 interface RootState {
-  firestore: FirestoreReducer.Reducer;
+  firestore: FirestoreReducer.Reducer & { data: FirestoreSchema & FirestoreQuerySchema };
   firebase: FirebaseReducer.Reducer<FirebaseUserProfile> & {
     profile: Profile;
   };

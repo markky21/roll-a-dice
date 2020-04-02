@@ -5,6 +5,7 @@ import { CoreLayout } from '../layouts/CoreLayout/CoreLayout';
 import { Home } from './Home';
 import { CreatRoom } from './CreateRoom';
 import { RoomList } from './RoomList';
+import { ChatList } from './ChatList';
 
 export function createRoutes() {
   return (
@@ -12,11 +13,11 @@ export function createRoutes() {
       <Switch>
         <Route exact path={Home.path} component={Home.component} />
 
-        {[CreatRoom, RoomList].map((settings, index) => (
+        {[CreatRoom, RoomList, ChatList].map((settings, index) => (
           <Route key={`Route-${index}`} {...settings} />
         ))}
 
-        {/*<Route component={NotFoundRoute.component} />*/}
+        {/*<Route component={NotFoundRoute.component} />* // TODO to implement */}
       </Switch>
     </CoreLayout>
   );

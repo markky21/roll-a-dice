@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteProps } from 'react-router';
 
-import { RouterPath } from '../../constants/paths';
+import { RouterPath } from '../../models/paths';
 import { RoomListPage } from './RoomListPage';
 
 export const RoomList: RouteProps = {

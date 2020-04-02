@@ -2,7 +2,7 @@ import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { createBrowserHistory } from 'history';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { RouterPath } from '../constants/paths';
+import { RouterPath } from '../models/paths';
 import {
   authenticatedSelector,
   authenticatingSelector,

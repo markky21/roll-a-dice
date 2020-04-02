@@ -17,6 +17,7 @@
     "@types/recompose": "^0.30.7",
     "@types/redux-auth-wrapper": "^2.0.9",
     "@types/redux-form": "^8.2.3",
+    "dayjs": "^1.8.23",
     "firebase": "^7.13.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",

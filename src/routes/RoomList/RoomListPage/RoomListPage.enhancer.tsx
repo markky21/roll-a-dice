@@ -1,7 +1,7 @@
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { setDisplayName } from 'recompose';
-import { UserIsAuthenticated } from '../../../utils/router';
+import { UserIsAuthenticated } from '../../../utils/router.utils';
 
 export const enhancedRoomList = compose(
   // Set component display name (more clear in dev/error tools)

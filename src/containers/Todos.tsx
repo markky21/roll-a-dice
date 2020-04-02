@@ -13,11 +13,6 @@ function Todos() {
   useFirestoreConnect(() => [
     { collection: 'rooms' }, // or `todos/${props.todoId}`
   ]);
-  // @ts-ignore
-  const rooms = useSelector(({ firestore }) => {
-    console.log(firestore);
-    return firestore;
-  });
 
   useFirebaseConnect([{ path: 'todos', queryParams: ['limitToLast=10'] }]);
   const todos = useSelector((state: AppState) => {
