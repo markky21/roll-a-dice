@@ -1,4 +1,4 @@
-import { AppState } from '../reducers/todo.reducer';
+import { AppState } from '../reducers/main';
 
 export const profileSelector = (state: AppState) => {
   const {

@@ -1,7 +1,8 @@
 import React from 'react';
-import { AppState, TodoValue } from '../store/reducers/todo.reducer';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
+import { TodoValue } from '../store/reducers/firebase.reducer';
+import { AppState } from '../store/reducers/main';
 
 interface TodoProps {
   todoId: string;

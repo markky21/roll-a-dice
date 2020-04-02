@@ -3,11 +3,11 @@ import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { createBrowserHistory } from 'history';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { RouterPath } from '../constants/paths';
-import { AppState } from '../store/reducers/todo.reducer';
 import {
   authenticatedSelector,
   authenticatingSelector,
 } from '../store/selectors/auth.selectors';
+import {AppState} from "../store/reducers/main";
 
 const locationHelper = locationHelperBuilder({});
 const history = createBrowserHistory();

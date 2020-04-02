@@ -11030,6 +11030,11 @@ react-redux-firebase@next:
     lodash "^4.17.15"
     prop-types "^15.7.2"
 
+react-redux-firestore@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-redux-firestore/-/react-redux-firestore-0.0.1.tgz#06b0c16a2748dfdebee2f3691c1b618b84d51667"
+  integrity sha1-BrDBaidI396+4vNpHBthi4TVFmc=
+
 react-redux@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.1.0.tgz#72af7cf490a74acdc516ea9c1dd80e25af9ea0b2"

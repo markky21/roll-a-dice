@@ -17,25 +17,18 @@ export const firebaseConfig = {
   measurementId: 'G-J2M3QQ0M89',
 };
 
-export const reduxFirebase = {
-  userProfile: 'users',
-  useFirestoreForProfile: true,
-  enableLogging: false,
-};
-
 export const reactReduxFirebaseConfig = {
   userProfile: 'users',
-  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+  useFirestoreForProfile: true
 };
 
 export const reactReduxFirebaseProps = {
   firebase: firebaseApp,
   config: reactReduxFirebaseConfig,
   dispatch: store.dispatch,
-  createFirestoreInstance, // <- needed if using firestore
+  createFirestoreInstance,
 };
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
-export default { firebase: firebaseConfig, reduxFirebase };

@@ -1,21 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { reactReduxFirebaseProps } from './config/firebase.config';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+
+import { reactReduxFirebaseProps } from './config/firebase.config';
 import { store } from './config/store.config';
 import { BrowserRouter } from 'react-router-dom';
+import { createRoutes } from './routes';
 
-export interface AppProps {
-  routes: any;
-  store: any;
-}
+export interface AppProps {}
 
 export default function App(props: AppProps) {
-  const { routes } = props;
   return (
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
-        <BrowserRouter>{routes}</BrowserRouter>
+        <BrowserRouter>{createRoutes()}</BrowserRouter>
         {/*<CoreLayout />*/}
       </ReactReduxFirebaseProvider>
     </Provider>
