@@ -1,9 +1,4 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import React from 'react';
@@ -12,8 +7,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { Menu, MenuItem } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
-import { profileSelector } from '../store/selectors/profile.selectors';
-import { authenticatedSelector } from '../store/selectors/auth.selectors';
+import { authenticatedSelector, profileSelector } from '../store/firebase/firebase.selectors';
 import { RouterPath } from '../models/paths';
 
 const styles = (theme: Theme) =>
@@ -57,21 +51,11 @@ function ProfileAvatarC(props: ProfileAvatarProps) {
 
   return (
     <React.Fragment>
-      <IconButton
-        color="inherit"
-        className={classes.iconButtonAvatar}
-        onClick={handleClick}
-      >
+      <IconButton color="inherit" className={classes.iconButtonAvatar} onClick={handleClick}>
         <Avatar src={profile.avatarUrl} alt={profile.displayName} />
       </IconButton>
 
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={() => setAnchorEl(null)}
-      >
+      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
         {isAuthenticated ? (
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         ) : (

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {version} from '../package.json';
-import {env} from './config/main.config';
-import {initScripts} from './utils/initail.utils';
+import { version } from '../package.json';
+import { env } from './config/main.config';
+import { initScripts } from './utils/initail.utils';
 
 // Window Variables
 // ------------------------------------
@@ -15,8 +15,6 @@ initScripts();
 
 // Store Initialization
 // ------------------------------------
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

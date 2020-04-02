@@ -19,7 +19,7 @@ export const firebaseConfig = {
 
 export const reactReduxFirebaseConfig = {
   userProfile: 'users',
-  useFirestoreForProfile: true
+  useFirestoreForProfile: true,
 };
 
 export const reactReduxFirebaseProps = {
@@ -31,4 +31,3 @@ export const reactReduxFirebaseProps = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
-

@@ -5,8 +5,8 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import {createStyles, Theme, withStyles, WithStyles,} from '@material-ui/core/styles';
-import {ProfileAvatar} from '../containers/ProfileAvatar';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { ProfileAvatar } from '../containers/ProfileAvatar';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -73,13 +73,7 @@ function Header(props: HeaderProps) {
           </Grid>
         </Toolbar>
       </AppBar>
-      <AppBar
-        component="div"
-        className={classes.secondaryBar}
-        color="primary"
-        position="static"
-        elevation={0}
-      >
+      <AppBar component="div" className={classes.secondaryBar} color="primary" position="static" elevation={0}>
         {/*<Toolbar>*/}
         {/*  <Grid container alignItems="center" spacing={1}>*/}
         {/*    <Grid item xs>*/}

@@ -1,4 +1,6 @@
-import {AppState} from "../reducers/main";
+import { AppState } from '../main';
+
+export const profileSelector = (state: AppState) => state.firebase.profile;
 
 export const authenticatingSelector = (state: AppState) => {
   const {

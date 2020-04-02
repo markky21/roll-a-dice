@@ -10,5 +10,6 @@
     "interface-name": false,
     "prettier": true
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "printWidth": 120
 }

@@ -3,7 +3,7 @@ export enum Log {
 }
 
 export interface Profile {
-  uid: string
+  uid: string;
   avatarUrl: string;
   displayName: string;
   email: string;

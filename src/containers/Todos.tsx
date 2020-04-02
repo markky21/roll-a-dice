@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  isLoaded,
-  isEmpty,
-  useFirebaseConnect,
-  useFirestoreConnect,
-} from 'react-redux-firebase';
+import { isLoaded, isEmpty, useFirebaseConnect, useFirestoreConnect } from 'react-redux-firebase';
 import Todo from './Todo';
 import { useSelector } from 'react-redux';
-import { AppState } from '../store/reducers/main';
+import { AppState } from '../store/main';
 
 function Todos() {
   useFirestoreConnect(() => [

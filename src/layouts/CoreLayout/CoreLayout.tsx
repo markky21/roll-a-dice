@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  ThemeProvider,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -12,7 +7,7 @@ import Header from '../Header';
 import { theme } from '../../styles/theme.styles';
 import { NavBar } from './NavBar';
 import { useSelector } from 'react-redux';
-import { authenticatedSelector } from '../../store/selectors/auth.selectors';
+import { authenticatedSelector } from '../../store/firebase/firebase.selectors';
 
 function Copyright() {
   return (
@@ -65,12 +60,7 @@ function CoreLayoutC(props: PaperbaseProps) {
       <div className={classes.root}>
         <CssBaseline />
 
-        {isAuthenticated && (
-          <NavBar
-            mobileOpen={mobileOpen}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-        )}
+        {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
 
         <div className={classes.app}>
           <Header onDrawerToggle={handleDrawerToggle} />

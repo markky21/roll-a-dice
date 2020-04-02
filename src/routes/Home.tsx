@@ -7,10 +7,7 @@ import { useFirebase } from 'react-redux-firebase';
 export function HomeC() {
   const firebase = useFirebase();
 
-  const googleLogin = () =>
-    firebase
-      .login({ provider: 'google', type: 'popup' })
-      .catch(err => alert(err.message));
+  const googleLogin = () => firebase.login({ provider: 'google', type: 'popup' }).catch(err => alert(err.message));
 
   return (
     <div className="Home">

@@ -5,12 +5,12 @@ export default () => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: '7rem',
-    height: '100%'
+    height: '100%',
   },
   progress: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50%'
-  }
-})
+    height: '50%',
+  },
+});

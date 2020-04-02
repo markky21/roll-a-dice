@@ -1,4 +1,4 @@
-export interface ChatMessages {
+export interface ChatMessage {
   content: string;
   createdAt: string;
   uid: string;
@@ -8,6 +8,6 @@ export interface Chat {
   count: number;
   gameName: string;
   createdAt: string;
-  messages: ChatMessages;
+  messages: ChatMessage[];
   uid: string;
 }
