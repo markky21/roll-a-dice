@@ -1,5 +1,5 @@
 export enum ChatsAction {
-  SELECTED = '@@heroes/SELECTED',
+  SELECTED = '@@chats/SELECTED',
 }
 
 export interface ChatsState {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
-import { Chat } from '../../../models/chats.model';
+import { IChat } from '../../../models/chats.model';
 import { Dictionary } from 'react-redux-firebase';
 import { Profile } from '../../../models/rooms.model';
 
@@ -17,15 +17,17 @@ const styles = (theme: Theme) =>
   });
 
 interface ChatListElementProps extends WithStyles<typeof styles> {
-  chat: Chat | null;
+  chat: IChat | null;
   usersProfiles: Dictionary<Profile>;
 }
 
 function ChatListElementC(props: ChatListElementProps) {
   const { classes, chat, usersProfiles } = props;
 
-  const renderElement = () =>
-    chat?.messages.map((message, id) => {
+  const renderElement = () => {
+    if (!chat || !chat.messages.length) return '';
+
+    return chat?.messages.map((message, id) => {
       const { displayName, avatarUrl } = usersProfiles[message.uid] || {};
       return (
         <React.Fragment key={message.createdAt}>
@@ -39,6 +41,7 @@ function ChatListElementC(props: ChatListElementProps) {
         </React.Fragment>
       );
     });
+  };
 
   return <List className={classes.root}>{renderElement()}</List>;
 }

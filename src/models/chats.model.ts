@@ -1,13 +1,13 @@
-export interface ChatMessage {
+export interface IChatMessage {
   content: string;
   createdAt: string;
   uid: string;
 }
 
-export interface Chat {
+export interface IChat {
   count: number;
   gameName: string;
   createdAt: string;
-  messages: ChatMessage[];
+  messages: IChatMessage[];
   uid: string;
 }

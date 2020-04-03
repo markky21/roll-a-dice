@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 
-import { Chat } from '../../models/chats.model';
+import { IChat } from '../../models/chats.model';
 import { ChatListElements } from './components/ChatListElements';
 import { chatsActions } from '../../store/chats/chats.actions';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
@@ -48,7 +48,7 @@ export interface ChatListProps extends WithStyles<typeof styles> {
 function ChatListC(props: ChatListProps) {
   const { classes, showSearchBar = true } = props;
   const profile = useSelector(profileSelector);
-  const userChats: Dictionary<Chat> = useSelector(firestoreSelectors.userChats) || {};
+  const userChats: Dictionary<IChat> = useSelector(firestoreSelectors.userChats) || {};
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const dispatch = useDispatch();
   useFirestoreConnect([userChatsQuery(profile.uid || '')]);

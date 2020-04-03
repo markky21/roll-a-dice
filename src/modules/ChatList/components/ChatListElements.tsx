@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
-import { Chat } from '../../../models/chats.model';
+import { IChat } from '../../../models/chats.model';
 import { timeStampToFormattedDate } from '../../../utils/date.utils';
 import { firstLettersJoined } from '../../../utils/text.utils';
 import { Dictionary } from 'react-redux-firebase';
@@ -18,7 +18,7 @@ const styles = (theme: Theme) =>
   });
 
 interface ChatListElementProps extends WithStyles<typeof styles> {
-  chats: Dictionary<Chat>;
+  chats: Dictionary<IChat>;
   selectedChat: string | null;
   onChatClick: (chatId: string) => void;
 }

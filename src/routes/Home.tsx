@@ -1,26 +1,29 @@
-import React from 'react';
-import Todos from '../containers/Todos';
-import AddTodo from '../components/AddTodo';
+import React, { useEffect } from 'react';
+
 import '../App.css';
-import { useFirebase } from 'react-redux-firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { locationSelectors } from '../store/location/location.selectors';
+import { locationActions } from '../store/location/location.actions';
+import { LocationMatch } from '../store/location/location.model';
 
-export function HomeC() {
-  const firebase = useFirebase();
+export interface HomeProps {
+  match: LocationMatch;
+}
 
-  const googleLogin = () => firebase.login({ provider: 'google', type: 'popup' }).catch(err => alert(err.message));
+export function HomeC(props: HomeProps) {
+  const { match } = props;
+  const dispatch = useDispatch();
+  const storeLocationMatch = useSelector(locationSelectors.match);
+
+  useEffect(() => {
+    if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {
+      dispatch(locationActions.matchChange(match));
+    }
+  });
 
   return (
     <div className="Home">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          <button onClick={googleLogin}>Google</button>
-        </p>
-        <div>
-          <Todos />
-          <AddTodo />
-        </div>
-      </header>
+      <header className="App-header">Hello!</header>
     </div>
   );
 }

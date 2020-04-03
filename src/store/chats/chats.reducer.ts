@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { ChatsAction, ChatsState } from './chats.types';
+import { ChatsAction, ChatsState } from './chats.model';
 
 export const initialState: ChatsState = {
   selectedChat: null,

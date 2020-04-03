@@ -5,6 +5,6 @@ import { RouterPath } from '../../models/paths';
 import { ChatListPage } from './ChatListPage';
 
 export const ChatList: RouteProps = {
-  path: RouterPath.CHATS_PATH,
+  path: [RouterPath.CHATS_PATH_ID, RouterPath.CHATS_PATH],
   component: ChatListPage as React.ComponentClass,
 };

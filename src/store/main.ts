@@ -6,7 +6,9 @@ import firestore from 'redux-firestore/lib/reducer';
 import { FirebaseUserProfile, FirestoreQuerySchema, FirestoreSchema } from './firebase/firebase.types';
 import { Profile } from '../models/rooms.model';
 import { chatsReducer } from './chats/chats.reducer';
-import { ChatsState } from './chats/chats.types';
+import { ChatsState } from './chats/chats.model';
+import { locationReducer } from './location/location.reducer';
+import { LocationState } from './location/location.model';
 
 /**********************************************************
  * Interfaces
@@ -29,6 +31,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     firebase: firebaseReducer,
     firestore,
     chats: chatsReducer,
+    location: locationReducer,
     // form,
     ...asyncReducers,
   });
@@ -41,4 +44,5 @@ const rootReducer = combineReducers<RootState>({
 
 export interface AppState extends ReturnType<typeof rootReducer> {
   chats: ChatsState;
+  location: LocationState;
 }

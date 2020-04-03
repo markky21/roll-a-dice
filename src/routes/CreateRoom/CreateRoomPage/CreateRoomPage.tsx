@@ -1,16 +1,21 @@
-import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+import Paper from '@material-ui/core/Paper';
+import React, { useEffect } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { locationSelectors } from '../../../store/location/location.selectors';
+import { locationActions } from '../../../store/location/location.actions';
+import { LocationMatch } from '../../../store/location/location.model';
 
 const styles = (theme: Theme) => ({
   paper: {
@@ -37,10 +42,22 @@ const styles = (theme: Theme) => ({
 
 const useStyles = makeStyles(styles);
 
-export interface CreatRoomProps {}
+export interface CreatRoomProps {
+  match: LocationMatch;
+}
 
 export function CreatRoomC(props: CreatRoomProps) {
   const classes = useStyles();
+
+  const { match } = props;
+  const dispatch = useDispatch();
+  const storeLocationMatch = useSelector(locationSelectors.match);
+
+  useEffect(() => {
+    if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {
+      dispatch(locationActions.matchChange(match));
+    }
+  });
 
   return (
     <Paper className={classes.paper}>

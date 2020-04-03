@@ -1,7 +1,7 @@
 import { Dictionary } from 'react-redux-firebase';
 
 import { Profile, Room } from '../../models/rooms.model';
-import { Chat } from '../../models/chats.model';
+import { IChat } from '../../models/chats.model';
 
 // TODO: to remove
 export interface TodoValue {
@@ -10,13 +10,13 @@ export interface TodoValue {
 }
 
 export interface FirestoreSchema {
-  readonly chats: Dictionary<Chat>;
+  readonly chats: Dictionary<IChat>;
   readonly rooms: Dictionary<Room>;
   readonly users: Dictionary<Profile>;
 }
 
 export interface FirestoreQuerySchema {
-  readonly userChats?: Dictionary<Chat>;
+  readonly userChats?: Dictionary<IChat>;
   readonly usersProfiles?: Dictionary<Profile>;
 }
 
