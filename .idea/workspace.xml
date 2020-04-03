@@ -2,53 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modules/Chat/Chatter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Chat/components/ChatMessage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/queries/profile.query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/chats/chats.actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/chats/chats.reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/chats/chats.selectors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/chats/chats.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/firebase/firebase.selectors.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.enhancer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.enhancer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/firebase.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/firebase.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/store.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/store.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Todo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Todo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Todos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Todos.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/CoreLayout/CoreLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/CoreLayout/CoreLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Navigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Navigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/chats.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/chats.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/rooms.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Chat/Chat.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/chat.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/chat.query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/rooms.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/rooms.query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoomPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serviceWorker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/serviceWorker.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/firebase.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firebase.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/selectors/auth.selectors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/selectors/chats.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/selectors/profile.selectors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/date.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/date.utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/router.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/router.utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +93,7 @@
       <workItem from="1585677169068" duration="9957000" />
       <workItem from="1585730877496" duration="32916000" />
       <workItem from="1585828600766" duration="4475000" />
-      <workItem from="1585833132020" duration="8782000" />
+      <workItem from="1585833132020" duration="9430000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -146,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585813204255</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[WIP] Chatter">
+      <created>1585847825069</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585847825069</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,7 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix firestore reducer settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix firestore reducer settings" />
+    <MESSAGE value="[WIP] Chatter" />
+    <option name="LAST_COMMIT_MESSAGE" value="[WIP] Chatter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585831248210">
@@ -173,34 +137,38 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585830612278" />
-    <state x="-2381" y="-566" key="CommitChangelistDialog2" timestamp="1585813203455">
+    <state x="-2381" y="-566" key="CommitChangelistDialog2" timestamp="1585847824090">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2381" y="-566" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585813203455" />
-    <state width="3732" height="331" key="GridCell.Tab.0.bottom" timestamp="1585847774940">
+    <state x="-2381" y="-566" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847824090" />
+    <state width="3732" height="331" key="GridCell.Tab.0.bottom" timestamp="1585894533019">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="331" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847774940" />
+    <state width="3732" height="331" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585894533019" />
     <state width="1386" height="151" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
-    <state width="3732" height="331" key="GridCell.Tab.0.center" timestamp="1585847774939">
+    <state width="3732" height="331" key="GridCell.Tab.0.center" timestamp="1585894533018">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="331" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847774939" />
+    <state width="3732" height="331" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585894533018" />
     <state width="1386" height="151" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
-    <state width="3732" height="331" key="GridCell.Tab.0.left" timestamp="1585847774938">
+    <state width="3732" height="331" key="GridCell.Tab.0.left" timestamp="1585894533017">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="331" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847774938" />
+    <state width="3732" height="331" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585894533017" />
     <state width="1386" height="151" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737032" />
-    <state width="3732" height="331" key="GridCell.Tab.0.right" timestamp="1585847774939">
+    <state width="3732" height="331" key="GridCell.Tab.0.right" timestamp="1585894533019">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="331" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847774939" />
+    <state width="3732" height="331" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585894533019" />
     <state width="1386" height="151" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
     <state x="-2508" y="-437" key="SettingsEditor" timestamp="1585830794394">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585830794394" />
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1585847827292">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585847827292" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585762403340">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>

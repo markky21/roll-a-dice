@@ -41,10 +41,12 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface ChatListProps extends WithStyles<typeof styles> {}
+export interface ChatListProps extends WithStyles<typeof styles> {
+  showSearchBar?: boolean;
+}
 
 function ChatListC(props: ChatListProps) {
-  const { classes } = props;
+  const { classes, showSearchBar = true } = props;
   const profile = useSelector(profileSelector);
   const userChats: Dictionary<Chat> = useSelector(firestoreSelectors.userChats) || {};
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
@@ -63,25 +65,27 @@ function ChatListC(props: ChatListProps) {
 
   return (
     <Paper className={classes.paper}>
-      <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
-        <Toolbar>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item>
-              <SearchIcon className={classes.block} color="inherit" />
+      {showSearchBar && (
+        <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+          <Toolbar>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item>
+                <SearchIcon className={classes.block} color="inherit" />
+              </Grid>
+              <Grid item xs>
+                <TextField
+                  fullWidth
+                  placeholder="Search by room name or players"
+                  InputProps={{
+                    disableUnderline: true,
+                    className: classes.searchInput,
+                  }}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <TextField
-                fullWidth
-                placeholder="Search by room name or players"
-                InputProps={{
-                  disableUnderline: true,
-                  className: classes.searchInput,
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      )}
       <div className={classes.contentWrapper}>
         <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
       </div>
