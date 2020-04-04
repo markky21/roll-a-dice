@@ -8,6 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
+import ChatIcon from '@material-ui/icons/Chat';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PeopleIcon from '@material-ui/icons/People';
 import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
 import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
@@ -18,6 +20,10 @@ import TimerIcon from '@material-ui/icons/Timer';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { Omit } from '@material-ui/types';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from '@material-ui/core';
+import { RouterPath } from '../models/paths';
+import { NavLink } from 'react-router-dom';
+import { ChatList, ChatListType } from '../modules/ChatList/ChatList';
 
 const categories = [
   {
@@ -81,6 +87,17 @@ const styles = (theme: Theme) =>
     divider: {
       marginTop: theme.spacing(2),
     },
+    expansionPanel: {
+      borderRadius: '0 !important',
+      padding: '0 !important',
+    },
+    expansionPanelSummary: {
+      padding: '0 16px 0px 0 !important',
+    },
+    expansionPanelSummaryContainer: {
+      padding: '0 !important',
+      margin: '0 !important',
+    },
   });
 
 export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles<typeof styles> {}
@@ -131,6 +148,28 @@ function Navigator(props: NavigatorProps) {
           </React.Fragment>
         ))}
       </List>
+      <ExpansionPanel className={classes.expansionPanel}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand"
+          aria-controls="additional-actions1-content"
+          id="additional-actions1-header"
+          className={classes.expansionPanelSummary}
+          classes={{ content: classes.expansionPanelSummaryContainer }}
+        >
+          <NavLink to={RouterPath.CHATS_PATH}>
+            <ListItem className={clsx(classes.item, classes.itemCategory)}>
+              <ListItemIcon className={classes.itemIcon}>
+                <ChatIcon />
+              </ListItemIcon>
+              <ListItemText classes={{ primary: classes.itemPrimary }}> Chats </ListItemText>
+            </ListItem>
+          </NavLink>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          {/*<ChatList showSearchBar={false} viewType={ChatListType.EMBEDDED} />*/}
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </Drawer>
   );
 }

@@ -33,6 +33,9 @@ function ChatListElementC(props: ChatListElementProps) {
         onClick={() => onChatClick(chatId)}
         selected={chatId === selectedChat}
         className={classes.item}
+        button
+        dense
+        alignItems="flex-start"
       >
         <ListItemAvatar>
           <Avatar>{firstLettersJoined(chats[chatId].gameName || 'No name')}</Avatar>

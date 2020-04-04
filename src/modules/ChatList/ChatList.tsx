@@ -17,6 +17,11 @@ import { profileSelector } from '../../store/firebase/firebase.selectors';
 import { userChatsQuery } from '../../queries/chat.query';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 
+export enum ChatListType {
+  EMBEDDED = 'EMBEDDED',
+  CARD = 'CARD',
+}
+
 const styles = (theme: Theme) =>
   createStyles({
     paper: {
@@ -43,10 +48,11 @@ const styles = (theme: Theme) =>
 
 export interface ChatListProps extends WithStyles<typeof styles> {
   showSearchBar?: boolean;
+  viewType?: ChatListType;
 }
 
 function ChatListC(props: ChatListProps) {
-  const { classes, showSearchBar = true } = props;
+  const { classes, showSearchBar = true, viewType = ChatListType.CARD } = props;
   const profile = useSelector(profileSelector);
   const userChats: Dictionary<IChat> = useSelector(firestoreSelectors.userChats) || {};
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
@@ -63,7 +69,7 @@ function ChatListC(props: ChatListProps) {
     dispatch(chatsActions.setSelectedChat(chatId));
   };
 
-  return (
+  return viewType === ChatListType.CARD ? (
     <Paper className={classes.paper}>
       {showSearchBar && (
         <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
@@ -90,6 +96,8 @@ function ChatListC(props: ChatListProps) {
         <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
       </div>
     </Paper>
+  ) : (
+    <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
   );
 }
 

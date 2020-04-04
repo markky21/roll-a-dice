@@ -447,6 +447,7 @@
     this.dice_box.prototype.reinit = function(container, dimentions) {
         this.cw = container.clientWidth / 2;
         this.ch = container.clientHeight / 2;
+        this.ch = container.clientHeight / 2;
         if (dimentions) {
             this.w = dimentions.w;
             this.h = dimentions.h;

@@ -11,3 +11,7 @@ export interface IChat {
   messages: IChatMessage[];
   uid: string;
 }
+
+export interface IChatToArray extends IChat {
+  id: string;
+}
