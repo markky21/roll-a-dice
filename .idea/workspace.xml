@@ -2,18 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/roll-a-dice-ts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/roll-a-dice-ts.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/generator_config.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/hobbitonbrushhandhobbitonbrush-wyga-demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/hobbitonbrushhandhobbitonbrush-wyga-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/hobbitonbrushhandhobbitonbrush-wyga-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/specimen_files/grid_12-825-55-15.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/specimen_files/specimen_stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/hobbiton-brushhand/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/mairon-font/Mairon-KYre.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/mairon-font/Mairon-xggO.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/mairon-font/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/generator_config.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/ringbearermedium-w173-demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/ringbearermedium-w173-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/ringbearermedium-w173-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/specimen_files/grid_12-825-55-15.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/specimen_files/specimen_stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/ring-bearer/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/spinner.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dice/dice.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dice/dice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dice/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dice/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoadingSpinner/LoadingSpinner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/CoreLayout/CoreLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/CoreLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/CoreLayout/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/Navigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Navigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/chats.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/chats.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/theme.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/theme.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +78,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -78,18 +92,18 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/dice" />
-      <recent name="$PROJECT_DIR$/src/libs" />
-      <recent name="$PROJECT_DIR$/src/store/chats" />
-      <recent name="$PROJECT_DIR$/src/store" />
-      <recent name="$PROJECT_DIR$/src/store/firebase" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets" />
+      <recent name="$PROJECT_DIR$/public/assets/mairon-font" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/store/location" />
       <recent name="$PROJECT_DIR$/src/store/routing" />
-      <recent name="$PROJECT_DIR$/src/routes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/layouts" />
+      <recent name="$PROJECT_DIR$/public/assets/fonts" />
+      <recent name="$PROJECT_DIR$/public/dice" />
+      <recent name="$PROJECT_DIR$/src/libs" />
       <recent name="$PROJECT_DIR$/src/store/chats" />
     </key>
   </component>
@@ -149,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585912500025</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="WIP Chatter implementation in Navbar">
+      <created>1585990352148</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585990352148</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +180,8 @@
     <MESSAGE value="Fix firestore reducer settings" />
     <MESSAGE value="[WIP] Chatter" />
     <MESSAGE value="Implement basic Chatter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement basic Chatter" />
+    <MESSAGE value="WIP Chatter implementation in Navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP Chatter implementation in Navbar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585831248210">
@@ -182,29 +204,29 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585904119699" />
-    <state x="-2381" y="-566" key="CommitChangelistDialog2" timestamp="1585912499469">
+    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2" timestamp="1585990351643">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2381" y="-566" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585912499469" />
-    <state width="3732" height="381" key="GridCell.Tab.0.bottom" timestamp="1585989637115">
+    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585990351643" />
+    <state width="3732" height="381" key="GridCell.Tab.0.bottom" timestamp="1585997985549">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585989637115" />
+    <state width="3732" height="381" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585997985549" />
     <state width="1386" height="151" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
-    <state width="3732" height="381" key="GridCell.Tab.0.center" timestamp="1585989637114">
+    <state width="3732" height="381" key="GridCell.Tab.0.center" timestamp="1585997985548">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585989637114" />
+    <state width="3732" height="381" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585997985548" />
     <state width="1386" height="151" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
-    <state width="3732" height="381" key="GridCell.Tab.0.left" timestamp="1585989637113">
+    <state width="3732" height="381" key="GridCell.Tab.0.left" timestamp="1585997985547">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585989637113" />
+    <state width="3732" height="381" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585997985547" />
     <state width="1386" height="151" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737032" />
-    <state width="3732" height="381" key="GridCell.Tab.0.right" timestamp="1585989637115">
+    <state width="3732" height="381" key="GridCell.Tab.0.right" timestamp="1585997985548">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585989637115" />
+    <state width="3732" height="381" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585997985548" />
     <state width="1386" height="151" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
     <state x="-2998" y="-701" width="2749" height="1667" key="MergeDialog" timestamp="1585990003089">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
@@ -218,22 +240,22 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585830794394" />
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1585912501935">
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1585990353980">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585912501935" />
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585990353980" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585762403340">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585762403340" />
-    <state x="-2302" y="-318" width="995" height="746" key="find.popup" timestamp="1585912545992">
+    <state x="-2302" y="-318" width="995" height="746" key="find.popup" timestamp="1586001269114">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2302" y="-318" width="995" height="746" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585912545992" />
-    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup" timestamp="1585912461961">
+    <state x="-2302" y="-318" width="995" height="746" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586001269114" />
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup" timestamp="1586001956146">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585912461961" />
+    <state x="-2312" y="-559" width="838" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586001956146" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819421253" />
   </component>
 </project>

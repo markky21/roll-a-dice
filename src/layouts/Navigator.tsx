@@ -65,7 +65,7 @@ const styles = (theme: Theme) =>
       },
     },
     itemCategory: {
-      backgroundColor: '#232f3e',
+      backgroundColor: (theme.palette.background as any).secondary,
       boxShadow: '0 -1px 0 #404854 inset',
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(2),
@@ -75,7 +75,7 @@ const styles = (theme: Theme) =>
       color: theme.palette.common.white,
     },
     itemActiveItem: {
-      color: '#4fc3f7',
+      color: theme.palette.secondary.main,
     },
     itemPrimary: {
       fontSize: 'inherit',

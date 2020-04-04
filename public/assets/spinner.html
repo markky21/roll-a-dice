@@ -1,20 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import styles from './LoadingSpinner.styles';
-
-const useStyles = makeStyles(styles);
-
-function LoadingSpinner({ size }) {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <div className={classes.progress}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block;" width="80" height="80" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block;" width="80px" height="80" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
     <g transform="translate(50 42)">
         <g transform="scale(0.8)">
             <g transform="translate(-50 -50)">
@@ -31,16 +15,3 @@ function LoadingSpinner({ size }) {
         </g>
     </g>
 </svg>
-`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-LoadingSpinner.propTypes = {
-  size: PropTypes.number,
-};
-
-export default LoadingSpinner;

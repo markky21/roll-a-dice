@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { CoreLayout } from '../layouts/CoreLayout/CoreLayout';
+import { CoreLayout } from '../layouts/CoreLayout';
 import { Home } from './Home';
 import { CreatRoom } from './CreateRoom';
 import { RoomList } from './RoomList';

@@ -3,11 +3,11 @@ import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-u
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Header from '../Header';
-import { theme } from '../../styles/theme.styles';
+import Header from './Header';
+import { theme } from '../styles/theme.styles';
 import { NavBar } from './NavBar';
 import { useSelector } from 'react-redux';
-import { authenticatedSelector } from '../../store/firebase/firebase.selectors';
+import { authenticatedSelector } from '../store/firebase/firebase.selectors';
 
 function Copyright() {
   return (
@@ -35,11 +35,11 @@ const styles = createStyles({
   main: {
     flex: 1,
     padding: theme.spacing(6, 4),
-    background: '#eaeff1',
+    background: theme.palette.background.default,
   },
   footer: {
     padding: theme.spacing(2),
-    background: '#eaeff1',
+    background: theme.palette.background.default,
   },
 });
 

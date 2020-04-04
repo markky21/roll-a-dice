@@ -4,12 +4,36 @@ function themeFn() {
   let theme = createMuiTheme({
     palette: {
       primary: {
-        light: '#63ccff',
-        main: '#009be5',
-        dark: '#006db3',
+        light: '#afaf4c',
+        main: '#9b9c20',
+        dark: '#6c6d16',
+      },
+      secondary: {
+        light: '#cba234',
+        main: '#be8b02',
+        dark: '#856101',
+      },
+      background: {
+        default: '#e0e0d3',
+        paper: '#f4f4f2',
+        // @ts-ignore
+        secondary: '#111b0e',
       },
     },
     typography: {
+      fontFamily: [
+        'ringbearermedium',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
       h5: {
         fontWeight: 500,
         fontSize: 26,
@@ -36,7 +60,7 @@ function themeFn() {
     overrides: {
       MuiDrawer: {
         paper: {
-          backgroundColor: '#18202c',
+          backgroundColor: '#121b0f',
         },
       },
       MuiButton: {
