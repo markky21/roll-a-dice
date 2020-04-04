@@ -15,6 +15,11 @@ const styles = (theme: Theme) =>
     iconButtonAvatar: {
       padding: 4,
     },
+    avatarSize: {
+      border: `4px solid ${theme.palette.primary.main}`,
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+    },
   });
 
 interface ProfileAvatarProps extends WithStyles<typeof styles> {}
@@ -52,7 +57,7 @@ function ProfileAvatarC(props: ProfileAvatarProps) {
   return (
     <React.Fragment>
       <IconButton color="inherit" className={classes.iconButtonAvatar} onClick={handleClick}>
-        <Avatar src={profile.avatarUrl} alt={profile.displayName} />
+        <Avatar src={profile.avatarUrl} alt={profile.displayName} className={classes.avatarSize} />
       </IconButton>
 
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>

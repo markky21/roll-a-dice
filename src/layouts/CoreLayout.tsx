@@ -3,7 +3,7 @@ import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-u
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Header from './Header';
+import Header from './Header/Header';
 import { theme } from '../styles/theme.styles';
 import { NavBar } from './NavBar';
 import { useSelector } from 'react-redux';

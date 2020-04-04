@@ -2,7 +2,7 @@ import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import React from 'react';
 
-import Navigator from './Navigator';
+import Navigator from './Navigator/Navigator';
 import { theme } from '../styles/theme.styles';
 
 const drawerWidth = 256;

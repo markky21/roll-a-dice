@@ -1,3 +1,5 @@
+import { RouterPath } from '../../models/paths';
+
 export enum LocationAction {
   MATCH_CHANGE = '@@location/MATCH_CHANGE',
 }
@@ -5,7 +7,7 @@ export enum LocationAction {
 export interface LocationMatch<Params extends { [K in keyof Params]?: string } = {}> {
   params: Params;
   isExact: boolean;
-  path: string;
+  path: RouterPath | string;
   url: string;
 }
 
