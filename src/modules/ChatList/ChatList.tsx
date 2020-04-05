@@ -14,6 +14,7 @@ import { ChatListElements } from './components/ChatListElements';
 import { chatsActions } from '../../store/chats/chats.actions';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
+import { Grow, Zoom } from '@material-ui/core';
 
 export enum ChatListType {
   EMBEDDED = 'EMBEDDED',
@@ -65,35 +66,39 @@ function ChatListC(props: ChatListProps) {
     dispatch(chatsActions.setSelectedChat(chatId));
   };
 
-  return viewType === ChatListType.CARD ? (
-    <Paper className={classes.paper}>
-      {showSearchBar && (
-        <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
-          <Toolbar>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item>
-                <SearchIcon className={classes.block} color="inherit" />
-              </Grid>
-              <Grid item xs>
-                <TextField
-                  fullWidth
-                  placeholder="Search by room name or players"
-                  InputProps={{
-                    disableUnderline: true,
-                    className: classes.searchInput,
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-      )}
-      <div className={classes.contentWrapper}>
+  return (
+    <Grow in>
+      {viewType === ChatListType.CARD ? (
+        <Paper className={classes.paper}>
+          {showSearchBar && (
+            <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+              <Toolbar>
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item>
+                    <SearchIcon className={classes.block} color="inherit" />
+                  </Grid>
+                  <Grid item xs>
+                    <TextField
+                      fullWidth
+                      placeholder="Search by room name or players"
+                      InputProps={{
+                        disableUnderline: true,
+                        className: classes.searchInput,
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </Toolbar>
+            </AppBar>
+          )}
+          <div className={classes.contentWrapper}>
+            <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
+          </div>
+        </Paper>
+      ) : (
         <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
-      </div>
-    </Paper>
-  ) : (
-    <ChatListElements chats={userChats} onChatClick={onChatClick} selectedChat={selectedChat} />
+      )}
+    </Grow>
   );
 }
 

@@ -8,6 +8,7 @@ import { chatsSelectors } from '../../../store/chats/chats.selectors';
 import { locationSelectors } from '../../../store/location/location.selectors';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
+import { Grow, Zoom } from '@material-ui/core';
 
 const styles = (theme: Theme) => ({
   cards: {
@@ -36,9 +37,11 @@ export function ChatListPageC(props: ChatListProps) {
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   return (
     <React.Fragment>
-      <section className={classes.cards}>
-        <ChatList />
-      </section>
+      <Grow in={true}>
+        <section className={classes.cards}>
+          <ChatList />
+        </section>
+      </Grow>
       {!!selectedChat && (
         <section className={classes.cards}>
           <Chatter />

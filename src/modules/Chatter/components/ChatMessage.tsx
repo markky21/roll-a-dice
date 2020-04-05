@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { IChat } from '../../../models/chats.model';
@@ -10,6 +10,7 @@ const styles = (theme: Theme) =>
     root: {
       width: '100%',
       backgroundColor: theme.palette.background.paper,
+      overflowY: 'scroll',
     },
     inline: {
       display: 'inline',
@@ -19,10 +20,23 @@ const styles = (theme: Theme) =>
 interface ChatListElementProps extends WithStyles<typeof styles> {
   chat: IChat | null;
   usersProfiles: Dictionary<Profile>;
+  listStyles?: Object;
 }
 
 function ChatListElementC(props: ChatListElementProps) {
-  const { classes, chat, usersProfiles } = props;
+  const { classes, chat, usersProfiles, listStyles } = props;
+
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    if (listRef && listRef.current) {
+      (listRef.current as any).scrollTop = (listRef.current as any).scrollHeight;
+    }
+  });
+
+  if (listRef && listRef.current) {
+    (listRef.current as any).scrollTop = (listRef.current as any).scrollHeight;
+  }
 
   const renderElement = () => {
     if (!chat || !chat.messages.length) return '';
@@ -43,7 +57,11 @@ function ChatListElementC(props: ChatListElementProps) {
     });
   };
 
-  return <List className={classes.root}>{renderElement()}</List>;
+  return (
+    <List ref={listRef} style={listStyles} className={classes.root}>
+      {renderElement()}
+    </List>
+  );
 }
 
 export const ChatMessage = withStyles(styles)(ChatListElementC);

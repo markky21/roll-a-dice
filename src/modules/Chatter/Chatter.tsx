@@ -12,7 +12,7 @@ import { ChatMessage } from './components/ChatMessage';
 import { Profile } from '../../models/rooms.model';
 import { ChatInputBox } from './components/ChatInputBox';
 import { profileSelector } from '../../store/firebase/firebase.selectors';
-import {Grid} from "@material-ui/core";
+import { Grid, Slide } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -26,7 +26,8 @@ const styles = (theme: Theme) =>
     },
 
     contentWrapper: {
-      margin: '16px 16px',
+      padding: '16px 16px',
+      width: '100%',
     },
   });
 
@@ -67,16 +68,18 @@ function ChatC(props: ChatProps) {
   };
 
   return (
-    <Paper className={classes.paper}>
-      {/*<Grid container direction="column" justify="space-between" alignItems="flex-end">*/}
-        <div className={classes.contentWrapper}>
-          <ChatMessage chat={chat} usersProfiles={usersProfiles} />
-        </div>
-        <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
-          <ChatInputBox onNewMessage={message => onNewMessage(message)} />
-        </AppBar>
-      {/*</Grid>*/}
-    </Paper>
+    <Slide direction="up" in>
+      <Paper className={classes.paper}>
+        <Grid container direction="column" justify="space-between" alignItems="flex-end">
+          <div className={classes.contentWrapper}>
+            <ChatMessage chat={chat} usersProfiles={usersProfiles} listStyles={{ height }} />
+          </div>
+          <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+            <ChatInputBox onNewMessage={message => onNewMessage(message)} />
+          </AppBar>
+        </Grid>
+      </Paper>
+    </Slide>
   );
 }
 
