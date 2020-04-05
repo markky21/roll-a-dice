@@ -38,13 +38,16 @@ const styles = (theme: Theme) =>
       zIndex: -1,
       width: ' 100%',
     },
+    avatar: {
+      marginBottom: '-16px',
+    },
   });
 
 interface HeaderProps extends WithStyles<typeof styles> {
   onDrawerToggle: () => void;
 }
 
-function Header(props: HeaderProps) {
+function HeaderC(props: HeaderProps) {
   const { classes, onDrawerToggle } = props;
 
   return (
@@ -65,20 +68,10 @@ function Header(props: HeaderProps) {
               </Grid>
             </Hidden>
             <Grid item xs />
-            {/*<Grid item>*/}
-            {/*  <Link className={classes.link} href="#" variant="body2">*/}
-            {/*    Go to docs*/}
-            {/*  </Link>*/}
-            {/*</Grid>*/}
-            {/*<Grid item>*/}
-            {/*  <Tooltip title="Alerts • No alerts">*/}
-            {/*    <IconButton color="inherit">*/}
-            {/*      <NotificationsIcon />*/}
-            {/*    </IconButton>*/}
-            {/*  </Tooltip>*/}
-            {/*</Grid>*/}
             <Grid item>
-              <ProfileAvatar />
+              <div className={classes.avatar}>
+                <ProfileAvatar />
+              </div>
             </Grid>
           </Grid>
         </Toolbar>
@@ -86,50 +79,8 @@ function Header(props: HeaderProps) {
           <Ornament />
         </div>
       </AppBar>
-      {/*<AppBar component="div" className={classes.secondaryBar} color="primary" position="static" elevation={0}>
-        <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
-                Authentication
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Button
-                className={classes.button}
-                variant="outlined"
-                color="inherit"
-                size="small"
-              >
-                Web setup
-              </Button>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>*/}
-      {/*<AppBar*/}
-      {/*  component="div"*/}
-      {/*  className={classes.secondaryBar}*/}
-      {/*  color="primary"*/}
-      {/*  position="static"*/}
-      {/*  elevation={0}*/}
-      {/*>*/}
-      {/*  <Tabs value={0} textColor="inherit">*/}
-      {/*    <Tab textColor="inherit" label="Users" />*/}
-      {/*    <Tab textColor="inherit" label="Sign-in method" />*/}
-      {/*    <Tab textColor="inherit" label="Templates" />*/}
-      {/*    <Tab textColor="inherit" label="Usage" />*/}
-      {/*  </Tabs>*/}
-      {/*</AppBar>*/}
     </React.Fragment>
   );
 }
 
-export default withStyles(styles)(Header);
+export const Header = withStyles(styles)(HeaderC);

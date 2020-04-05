@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Chatter } from '../../../modules/Chat/Chatter';
+import { Chatter } from '../../../modules/Chatter/Chatter';
 import { ChatList } from '../../../modules/ChatList/ChatList';
 import { chatsSelectors } from '../../../store/chats/chats.selectors';
 import { locationSelectors } from '../../../store/location/location.selectors';

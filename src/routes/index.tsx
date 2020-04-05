@@ -8,6 +8,7 @@ import { RoomList } from './RoomList';
 import { ChatList } from './ChatList';
 
 export function createRoutes() {
+
   return (
     <CoreLayout>
       <Switch>

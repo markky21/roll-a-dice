@@ -10,6 +10,7 @@ import { RouterPath } from '../../models/paths';
 import { NavigatorItem } from './components/NavigatorItem';
 import { useSelector } from 'react-redux';
 import { locationSelectors } from '../../store/location/location.selectors';
+import { ChatListType, ChatList } from '../../modules/ChatList/ChatList';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,7 +29,7 @@ const styles = (theme: Theme) =>
 
 export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles<typeof styles> {}
 
-function Navigator(props: NavigatorProps) {
+function NavigatorC(props: NavigatorProps) {
   const { classes, ...other } = props;
 
   const { path: locationPath } = useSelector(locationSelectors.match);
@@ -49,162 +50,13 @@ function Navigator(props: NavigatorProps) {
         navLink={RouterPath.CHATS_PATH}
         icon={<ChatIcon />}
         text="Chats"
-        expandable
+        expandable={locationPath.indexOf(RouterPath.CHATS_PATH) === -1}
         active={locationPath.indexOf(RouterPath.CHATS_PATH) > -1}
-      />
+      >
+        <ChatList viewType={ChatListType.EMBEDDED} />
+      </NavigatorItem>
     </Drawer>
   );
 }
 
-export default withStyles(styles)(Navigator);
-
-{
-  /*  </ListItem>*/
-}
-{
-  /*  {categories.map(({ id, children }) => (*/
-}
-{
-  /*    <React.Fragment key={id}>*/
-}
-{
-  /*      <ListItem className={classes.categoryHeader}>*/
-}
-{
-  /*        <ListItemText*/
-}
-{
-  /*          classes={{*/
-}
-{
-  /*            primary: classes.categoryHeaderPrimary,*/
-}
-{
-  /*          }}*/
-}
-{
-  /*        >*/
-}
-{
-  /*          {id}*/
-}
-{
-  /*        </ListItemText>*/
-}
-{
-  /*      </ListItem>*/
-}
-{
-  /*      {children.map(({ id: childId, icon, active }) => (*/
-}
-{
-  /*        <ListItem key={childId} button className={clsx(classes.item, active && classes.itemActiveItem)}>*/
-}
-{
-  /*          <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>*/
-}
-{
-  /*          <ListItemText*/
-}
-{
-  /*            classes={{*/
-}
-{
-  /*              primary: classes.itemPrimary,*/
-}
-{
-  /*            }}*/
-}
-{
-  /*          >*/
-}
-{
-  /*            {childId}*/
-}
-{
-  /*          </ListItemText>*/
-}
-{
-  /*        </ListItem>*/
-}
-{
-  /*      ))}*/
-}
-{
-  /*      <Divider className={classes.divider} />*/
-}
-{
-  /*    </React.Fragment>*/
-}
-{
-  /*  ))}*/
-}
-{
-  /*</List>*/
-}
-{
-  /*<ExpansionPanel className={classes.expansionPanel}>*/
-}
-{
-  /*  <ExpansionPanelSummary*/
-}
-{
-  /*    expandIcon={<ExpandMoreIcon />}*/
-}
-{
-  /*    aria-label="Expand"*/
-}
-{
-  /*    aria-controls="additional-actions1-content"*/
-}
-{
-  /*    id="additional-actions1-header"*/
-}
-{
-  /*    className={classes.expansionPanelSummary}*/
-}
-{
-  /*    classes={{ content: classes.expansionPanelSummaryContainer }}*/
-}
-{
-  /*  >*/
-}
-{
-  /*    <NavLink to={RouterPath.CHATS_PATH}>*/
-}
-{
-  /*      <ListItem className={clsx(classes.item, classes.itemCategory)}>*/
-}
-{
-  /*        <ListItemIcon className={classes.itemIcon}>*/
-}
-{
-  /*          <ChatIcon />*/
-}
-{
-  /*        </ListItemIcon>*/
-}
-{
-  /*        <ListItemText classes={{ primary: classes.itemPrimary }}> Chats </ListItemText>*/
-}
-{
-  /*      </ListItem>*/
-}
-{
-  /*    </NavLink>*/
-}
-{
-  /*  </ExpansionPanelSummary>*/
-}
-{
-  /*  <ExpansionPanelDetails>*/
-}
-{
-  /*    /!*<ChatList showSearchBar={false} viewType={ChatListType.EMBEDDED} />*!/*/
-}
-{
-  /*  </ExpansionPanelDetails>*/
-}
-{
-  /*</ExpansionPanel>*/
-}
+export const Navigator = withStyles(styles)(NavigatorC);

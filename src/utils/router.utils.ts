@@ -1,11 +1,11 @@
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { createBrowserHistory } from 'history';
-import LoadingSpinner from '../components/LoadingSpinner';
 import { RouterPath } from '../models/paths';
 
 import { AppState } from '../store/main';
 import { authenticatedSelector, authenticatingSelector } from '../store/firebase/firebase.selectors';
+import { Loader } from '../components/Loader';
 
 const locationHelper = locationHelperBuilder({});
 const history = createBrowserHistory();
@@ -21,7 +21,7 @@ const UNAUTHED_REDIRECT = 'UNAUTHED_REDIRECT';
  */
 export const UserIsAuthenticated = connectedRouterRedirect({
   redirectPath: RouterPath.HOME_PATH,
-  AuthenticatingComponent: LoadingSpinner,
+  AuthenticatingComponent: Loader,
   wrapperDisplayName: 'UserIsAuthenticated',
   // Want to redirect the user when they are done loading and authenticated
   authenticatedSelector,
@@ -45,7 +45,7 @@ export const UserIsAuthenticated = connectedRouterRedirect({
  * @return {Component} wrappedComponent
  */
 export const UserIsNotAuthenticated = connectedRouterRedirect({
-  AuthenticatingComponent: LoadingSpinner,
+  AuthenticatingComponent: Loader,
   wrapperDisplayName: 'UserIsNotAuthenticated',
   allowRedirectBack: false,
   // Want to redirect the user when they are done loading and authenticated

@@ -15,3 +15,5 @@ export const authenticatedSelector = (state: AppState) => {
   } = state;
   return !auth.isEmpty && !!auth.uid;
 };
+
+export const isInitializing = (state: AppState) => (state.firebase.isInitializing) ;

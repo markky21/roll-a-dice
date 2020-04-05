@@ -1,11 +1,11 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import React from 'react';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 
-import Navigator from './Navigator/Navigator';
+import { Navigator } from './Navigator/Navigator';
 import { theme } from '../styles/theme.styles';
 
-const drawerWidth = 256;
+const drawerWidth = 320;
 
 const styles = createStyles({
   drawer: {
@@ -16,7 +16,7 @@ const styles = createStyles({
   },
 });
 
-export interface NavBarProps extends WithStyles<typeof styles> {
+interface NavBarProps extends WithStyles<typeof styles> {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
 }

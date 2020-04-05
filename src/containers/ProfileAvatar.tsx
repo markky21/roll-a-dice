@@ -17,8 +17,8 @@ const styles = (theme: Theme) =>
     },
     avatarSize: {
       border: `4px solid ${theme.palette.primary.main}`,
-      width: theme.spacing(5),
-      height: theme.spacing(5),
+      width: theme.spacing(6),
+      height: theme.spacing(6),
     },
   });
 

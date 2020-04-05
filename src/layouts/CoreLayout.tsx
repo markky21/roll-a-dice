@@ -3,11 +3,13 @@ import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-u
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Header from './Header/Header';
+
+import { Header } from './Header/Header';
 import { theme } from '../styles/theme.styles';
 import { NavBar } from './NavBar';
 import { useSelector } from 'react-redux';
-import { authenticatedSelector } from '../store/firebase/firebase.selectors';
+import { authenticatedSelector, authenticatingSelector } from '../store/firebase/firebase.selectors';
+import { LoaderScreen } from '../components/LoaderScreen';
 
 function Copyright() {
   return (
@@ -50,6 +52,7 @@ function CoreLayoutC(props: PaperbaseProps) {
   const { classes, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isAuthenticated = useSelector(authenticatedSelector);
+  const isAuthenticating = useSelector(authenticatingSelector);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -57,19 +60,21 @@ function CoreLayoutC(props: PaperbaseProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <CssBaseline />
+      <LoaderScreen isAuthenticating={isAuthenticating}>
+        <div className={classes.root}>
+          <CssBaseline />
 
-        {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
+          {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
 
-        <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.main}>{children}</main>
-          <footer className={classes.footer}>
-            <Copyright />
-          </footer>
+          <div className={classes.app}>
+            <Header onDrawerToggle={handleDrawerToggle} />
+            <main className={classes.main}>{children}</main>
+            <footer className={classes.footer}>
+              <Copyright />
+            </footer>
+          </div>
         </div>
-      </div>
+      </LoaderScreen>
     </ThemeProvider>
   );
 }

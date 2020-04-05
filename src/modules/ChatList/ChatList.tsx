@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Dictionary, useFirestoreConnect } from 'react-redux-firebase';
+import { Dictionary } from 'react-redux-firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,8 +13,6 @@ import { IChat } from '../../models/chats.model';
 import { ChatListElements } from './components/ChatListElements';
 import { chatsActions } from '../../store/chats/chats.actions';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
-import { profileSelector } from '../../store/firebase/firebase.selectors';
-import { userChatsQuery } from '../../queries/chat.query';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 
 export enum ChatListType {
@@ -53,11 +51,9 @@ export interface ChatListProps extends WithStyles<typeof styles> {
 
 function ChatListC(props: ChatListProps) {
   const { classes, showSearchBar = true, viewType = ChatListType.CARD } = props;
-  const profile = useSelector(profileSelector);
   const userChats: Dictionary<IChat> = useSelector(firestoreSelectors.userChats) || {};
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const dispatch = useDispatch();
-  useFirestoreConnect([userChatsQuery(profile.uid || '')]);
 
   useEffect(() => {
     return () => {

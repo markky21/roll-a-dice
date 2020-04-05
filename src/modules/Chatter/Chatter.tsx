@@ -2,17 +2,17 @@ import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
-import { Dictionary, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
+import { Dictionary, useFirestore } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 
 import { IChat, IChatMessage } from '../../models/chats.model';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
 import { ChatMessage } from './components/ChatMessage';
-import { profileQuery } from '../../queries/profile.query';
 import { Profile } from '../../models/rooms.model';
 import { ChatInputBox } from './components/ChatInputBox';
 import { profileSelector } from '../../store/firebase/firebase.selectors';
+import {Grid} from "@material-ui/core";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -30,17 +30,17 @@ const styles = (theme: Theme) =>
     },
   });
 
-interface ChatProps extends WithStyles<typeof styles> {}
+interface ChatProps extends WithStyles<typeof styles> {
+  height?: string;
+}
 
 function ChatC(props: ChatProps) {
-  const { classes } = props;
+  const { classes, height = '40vh' } = props;
   const firestore = useFirestore();
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const chat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChat)) || null;
-  const uniqProfilesUid: string[] = useSelector(chatsSelectors.uniqProfilesUid(selectedChat));
   const userProfile: Profile = useSelector(profileSelector);
   const usersProfiles: Dictionary<Profile> = useSelector(firestoreSelectors.usersProfiles);
-  useFirestoreConnect(profileQuery.getProfilesByUid(uniqProfilesUid));
 
   const onNewMessage = (message: string) => {
     let documentRef = firestore.doc(`chats/${selectedChat}`);
@@ -68,12 +68,14 @@ function ChatC(props: ChatProps) {
 
   return (
     <Paper className={classes.paper}>
-      <div className={classes.contentWrapper}>
-        <ChatMessage chat={chat} usersProfiles={usersProfiles} />
-      </div>
-      <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
-        <ChatInputBox onNewMessage={message => onNewMessage(message)} />
-      </AppBar>
+      {/*<Grid container direction="column" justify="space-between" alignItems="flex-end">*/}
+        <div className={classes.contentWrapper}>
+          <ChatMessage chat={chat} usersProfiles={usersProfiles} />
+        </div>
+        <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+          <ChatInputBox onNewMessage={message => onNewMessage(message)} />
+        </AppBar>
+      {/*</Grid>*/}
     </Paper>
   );
 }
