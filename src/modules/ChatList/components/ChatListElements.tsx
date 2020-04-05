@@ -1,10 +1,11 @@
 import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Avatar, Grow, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Dictionary } from 'react-redux-firebase';
+
+import { firstLettersJoined } from '../../../utils/text.utils';
 import { IChat } from '../../../models/chats.model';
 import { timeStampToFormattedDate } from '../../../utils/date.utils';
-import { firstLettersJoined } from '../../../utils/text.utils';
-import { Dictionary } from 'react-redux-firebase';
 
 const styles = (theme: Theme) =>
   createStyles({

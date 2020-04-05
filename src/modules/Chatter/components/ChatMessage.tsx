@@ -3,7 +3,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { IChat } from '../../../models/chats.model';
 import { Dictionary } from 'react-redux-firebase';
-import { Profile } from '../../../models/rooms.model';
+import { IProfile } from '../../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -19,7 +19,7 @@ const styles = (theme: Theme) =>
 
 interface ChatListElementProps extends WithStyles<typeof styles> {
   chat: IChat | null;
-  usersProfiles: Dictionary<Profile>;
+  usersProfiles: Dictionary<IProfile>;
   listStyles?: Object;
 }
 

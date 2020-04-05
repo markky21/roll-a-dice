@@ -1,6 +1,7 @@
 import ChatIcon from '@material-ui/icons/Chat';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
 import HomeIcon from '@material-ui/icons/Home';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { List, ListItem } from '@material-ui/core';
@@ -46,6 +47,15 @@ function NavigatorC(props: NavigatorProps) {
         text="Home Page"
         active={RouterPath.HOME_PATH === locationPath}
       />
+      <NavigatorItem
+        navLink={RouterPath.ROOMS_PATH}
+        icon={<MeetingRoomIcon />}
+        text="Rooms"
+        expandable={locationPath.indexOf(RouterPath.ROOMS_PATH) === -1}
+        active={locationPath.indexOf(RouterPath.ROOMS_PATH) > -1}
+      >
+        <ChatList viewType={ChatListType.EMBEDDED} />
+      </NavigatorItem>
       <NavigatorItem
         navLink={RouterPath.CHATS_PATH}
         icon={<ChatIcon />}

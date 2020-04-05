@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Dictionary } from 'react-redux-firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import React, { useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Dictionary } from 'react-redux-firebase';
+import { Grow } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IChat } from '../../models/chats.model';
 import { ChatListElements } from './components/ChatListElements';
 import { chatsActions } from '../../store/chats/chats.actions';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
-import { Grow, Zoom } from '@material-ui/core';
 
 export enum ChatListType {
   EMBEDDED = 'EMBEDDED',

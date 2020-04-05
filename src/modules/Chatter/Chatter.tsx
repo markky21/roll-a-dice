@@ -9,7 +9,7 @@ import { IChat, IChatMessage } from '../../models/chats.model';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { chatsSelectors } from '../../store/chats/chats.selectors';
 import { ChatMessage } from './components/ChatMessage';
-import { Profile } from '../../models/rooms.model';
+import { IProfile } from '../../models/rooms.model';
 import { ChatInputBox } from './components/ChatInputBox';
 import { profileSelector } from '../../store/firebase/firebase.selectors';
 import { Grid, Slide } from '@material-ui/core';
@@ -40,8 +40,8 @@ function ChatC(props: ChatProps) {
   const firestore = useFirestore();
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const chat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChat)) || null;
-  const userProfile: Profile = useSelector(profileSelector);
-  const usersProfiles: Dictionary<Profile> = useSelector(firestoreSelectors.usersProfiles);
+  const userProfile: IProfile = useSelector(profileSelector);
+  const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
 
   const onNewMessage = (message: string) => {
     let documentRef = firestore.doc(`chats/${selectedChat}`);

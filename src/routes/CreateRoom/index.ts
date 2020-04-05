@@ -4,6 +4,6 @@ import React from 'react';
 import { RouteProps } from 'react-router';
 
 export const CreatRoom: RouteProps = {
-  path: RouterPath.CREATE_ROOM_PATH,
+  path: RouterPath.ROOM_CREATE_PATH,
   component: CreatRoomPage as React.ComponentClass,
 };

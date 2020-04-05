@@ -1,6 +1,6 @@
 import { Dictionary } from 'react-redux-firebase';
 
-import { Profile, Room } from '../../models/rooms.model';
+import { IProfile, IRoom } from '../../models/rooms.model';
 import { IChat } from '../../models/chats.model';
 
 // TODO: to remove
@@ -11,13 +11,13 @@ export interface TodoValue {
 
 export interface FirestoreSchema {
   readonly chats: Dictionary<IChat>;
-  readonly rooms: Dictionary<Room>;
-  readonly users: Dictionary<Profile>;
+  readonly rooms: Dictionary<IRoom>;
+  readonly users: Dictionary<IProfile>;
 }
 
 export interface FirestoreQuerySchema {
   readonly userChats?: Dictionary<IChat>;
-  readonly usersProfiles?: Dictionary<Profile>;
+  readonly usersProfiles?: Dictionary<IProfile>;
 }
 
 export interface FirebaseUserProfile {

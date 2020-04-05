@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
+import { Grow } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Chatter } from '../../../modules/Chatter/Chatter';
 import { ChatList } from '../../../modules/ChatList/ChatList';
 import { chatsSelectors } from '../../../store/chats/chats.selectors';
-import { locationSelectors } from '../../../store/location/location.selectors';
+import { Chatter } from '../../../modules/Chatter/Chatter';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
-import { Grow, Zoom } from '@material-ui/core';
+import { locationSelectors } from '../../../store/location/location.selectors';
 
 const styles = (theme: Theme) => ({
   cards: {

@@ -1,10 +1,11 @@
 import { Action, combineReducers, Reducer } from 'redux';
 import { firebaseReducer, FirebaseReducer, FirestoreReducer } from 'react-redux-firebase';
+import { reducer as formReducer } from 'redux-form';
 // @ts-ignore
 import firestore from 'redux-firestore/lib/reducer';
 
 import { FirebaseUserProfile, FirestoreQuerySchema, FirestoreSchema } from './firebase/firebase.types';
-import { Profile } from '../models/rooms.model';
+import { IProfile } from '../models/rooms.model';
 import { chatsReducer } from './chats/chats.reducer';
 import { ChatsState } from './chats/chats.model';
 import { locationReducer } from './location/location.reducer';
@@ -19,7 +20,7 @@ interface RootState {
     data: FirestoreSchema & FirestoreQuerySchema;
   };
   firebase: FirebaseReducer.Reducer<FirebaseUserProfile> & {
-    profile: Profile;
+    profile: IProfile;
   };
 }
 
@@ -32,7 +33,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     firestore,
     chats: chatsReducer,
     location: locationReducer,
-    // form,
+    form: formReducer,
     ...asyncReducers,
   });
 }

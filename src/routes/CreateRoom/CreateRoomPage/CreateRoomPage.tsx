@@ -47,6 +47,7 @@ export interface CreatRoomProps {
 }
 
 export function CreatRoomC(props: CreatRoomProps) {
+  debugger;
   const classes = useStyles();
 
   const { match } = props;
