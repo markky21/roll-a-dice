@@ -5,10 +5,10 @@ import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Button, Grow } from '@material-ui/core';
+import { Grow } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Dictionary } from 'react-redux-firebase';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { RouterPath } from '../../models/paths';
 import { IRoom } from '../../models/rooms.model';
@@ -17,7 +17,6 @@ import { RoomListElements } from './components/RoomListElements';
 const styles = (theme: Theme) =>
   createStyles({
     paper: {
-      maxWidth: 936,
       margin: 'auto',
       overflow: 'hidden',
     },
@@ -30,9 +29,6 @@ const styles = (theme: Theme) =>
     block: {
       display: 'block',
     },
-    addUser: {
-      marginRight: theme.spacing(1),
-    },
     contentWrapper: {
       margin: '16px 16px',
     },
@@ -40,14 +36,13 @@ const styles = (theme: Theme) =>
 
 export interface RoomListProps extends WithStyles<typeof styles> {
   showSearchBar?: boolean;
+  rooms: Dictionary<IRoom>;
+  selectedRoom: string | null;
+  label: string;
 }
 
 function RoomListC(props: RoomListProps) {
-  const { classes, showSearchBar = true } = props;
-
-  const userRooms: Dictionary<IRoom> = {};
-  const roomId: Dictionary<IRoom> = {};
-  const selectedRoom: string | null = null;
+  const { classes, rooms, showSearchBar, selectedRoom, label } = props;
 
   const onRoomClick = (roomId: string) => {
     return <Redirect to={`${RouterPath.CHATS_PATH}/${roomId}`} />;
@@ -66,26 +61,19 @@ function RoomListC(props: RoomListProps) {
                 <Grid item xs>
                   <TextField
                     fullWidth
-                    placeholder="Search by room name or players"
+                    placeholder={label}
                     InputProps={{
                       disableUnderline: true,
                       className: classes.searchInput,
                     }}
                   />
                 </Grid>
-                <Grid item>
-                  <NavLink to={RouterPath.ROOM_CREATE_PATH}>
-                    <Button variant="contained" color="primary" className={classes.addUser}>
-                      Create new Room
-                    </Button>
-                  </NavLink>
-                </Grid>
               </Grid>
             </Toolbar>
           </AppBar>
         )}
         <div className={classes.contentWrapper}>
-          <RoomListElements rooms={userRooms} onRoomClick={onRoomClick} selectedRoom={selectedRoom} />
+          <RoomListElements rooms={rooms} onRoomClick={onRoomClick} selectedRoom={selectedRoom} />
         </div>
       </Paper>
     </Grow>

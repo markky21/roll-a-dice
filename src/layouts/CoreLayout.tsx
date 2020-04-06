@@ -1,15 +1,16 @@
-import React from 'react';
-import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-
-import { Header } from './Header/Header';
-import { theme } from '../styles/theme.styles';
-import { NavBar } from './NavBar';
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { createStyles, ThemeProvider, withStyles, WithStyles } from '@material-ui/core/styles';
+import { LinearProgress, Slide } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { authenticatedSelector, authenticatingSelector } from '../store/firebase/firebase.selectors';
+
+import { firebaseSelectors } from '../store/firebase/firebase.selectors';
+import { Header } from './Header/Header';
 import { LoaderScreen } from '../components/LoaderScreen';
+import { NavBar } from './NavBar';
+import { theme } from '../styles/theme.styles';
 
 function Copyright() {
   return (
@@ -28,6 +29,15 @@ const styles = createStyles({
   root: {
     display: 'flex',
     minHeight: '100vh',
+  },
+  lineLoader: {
+    position: 'fixed',
+    height: '4px',
+    top: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 10000,
+    transition: 'max-height 0.2s ease;',
   },
   app: {
     flex: 1,
@@ -51,8 +61,9 @@ export interface PaperbaseProps extends WithStyles<typeof styles> {
 function CoreLayoutC(props: PaperbaseProps) {
   const { classes, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const isAuthenticated = useSelector(authenticatedSelector);
-  const isAuthenticating = useSelector(authenticatingSelector);
+  const isAuthenticated = useSelector(firebaseSelectors.authenticatedSelector);
+  const isAuthenticating = useSelector(firebaseSelectors.authenticatingSelector);
+  const isRequesting = useSelector(firebaseSelectors.isRequesting);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -63,7 +74,9 @@ function CoreLayoutC(props: PaperbaseProps) {
       <LoaderScreen isAuthenticating={isAuthenticating}>
         <div className={classes.root}>
           <CssBaseline />
-
+          <Slide in={isRequesting} direction={'down'}>
+            <LinearProgress className={classes.lineLoader} />
+          </Slide>
           {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
 
           <div className={classes.app}>

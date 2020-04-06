@@ -7,37 +7,45 @@ import {
   FormHelperText,
   FormLabel,
   InputLabel,
-  Radio,
-  RadioGroup,
   Select,
   TextField,
 } from '@material-ui/core';
-import { Field, WrappedFieldProps } from 'redux-form';
-import { StandardTextFieldProps } from '@material-ui/core/TextField/TextField';
-import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const renderTextField = ({ label, input, meta: { touched, invalid, error }, ...custom }: any) => (
-  <TextField
-    label={label}
-    placeholder={label}
-    error={touched && invalid}
-    helperText={touched && error}
-    {...input}
-    {...custom}
-  />
-);
+/*
+ * Model
+ */
+interface FormFieldGenericProps<T = any> {
+  name: string;
+  label: string;
+  value?: T;
+  [key: string]: any;
+}
+export interface IGroupOption {
+  label: string;
+  value: string | number;
+}
 
-export const radioButton = ({ input, ...rest }: any) => (
-  <FormControl>
-    <RadioGroup {...input} {...rest}>
-      <FormControlLabel value="female" control={<Radio />} label="Female" />
-      <FormControlLabel value="male" control={<Radio />} label="Male" />
-      <FormControlLabel value="other" control={<Radio />} label="Other" />
-    </RadioGroup>
-  </FormControl>
-);
+interface FormFieldWithOptionsProps extends FormFieldGenericProps {
+  options: IGroupOption[];
+}
 
-export const renderFromHelper = ({ touched, error }: any) => {
+/*
+ * Styles
+ */
+
+const styles = (theme: Theme) => ({
+  formField: { marginBottom: '16px' },
+});
+
+const useStyles = makeStyles(styles);
+
+/*
+ * Components
+ */
+
+export const FormFieldHelperText = ({ touched, error }: any) => {
   if (!(touched && error)) {
     return;
   } else {
@@ -45,96 +53,70 @@ export const renderFromHelper = ({ touched, error }: any) => {
   }
 };
 
-export const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any) => (
-  <FormControl error={touched && error}>
-    <InputLabel htmlFor="age-native-simple">Age</InputLabel>
-    <Select
-      native
+export const FormFieldText = (props: FormFieldGenericProps) => {
+  const classes = useStyles();
+
+  const formField = ({ label, input, meta: { touched, invalid, error }, ...custom }: any) => (
+    <TextField
+      variant="outlined"
+      label={label}
+      placeholder={label}
+      error={touched && invalid}
+      helperText={touched && error}
       {...input}
       {...custom}
-      inputProps={{
-        name: 'age',
-        id: 'age-native-simple',
-      }}
-    >
-      {children}
-    </Select>
-    {renderFromHelper({ touched, error })}
-  </FormControl>
-);
-
-export const renderCheckbox = ({ input, label }: any) => (
-  <FormControlLabel
-    control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />}
-    label={label}
-  />
-);
-
-const onChangeCheckBoxGroup = (input: any, option: any) => (event: any) => {
-  const newValue = [...input.value];
-  if (event.target.checked) {
-    newValue.push(option.name);
-  } else {
-    newValue.splice(newValue.indexOf(option.name), 1);
-  }
-
-  return input.onChange(newValue);
-};
-
-export interface IGroupOption {
-  name: string;
-  value: string | number;
-}
-
-export const renderCheckboxGroup = (
-  props: WrappedFieldProps & StandardTextFieldProps & { options: IGroupOption[] }
-) => {
-  const {
-    label,
-    required,
-    name,
-    options,
-    input,
-    meta: { touched, error },
-  } = props;
-  return (
-    <FormControl required={required} error={error} component="fieldset">
-      <FormLabel component="legend">{label}</FormLabel>
-      <FormGroup>
-        {options.map((option: any, index: number) => (
-          <FormControlLabel
-            label="Gilad Gray"
-            control={
-              <Checkbox
-                checked={input.value.indexOf(option.name) !== -1}
-                onChange={onChangeCheckBoxGroup(input, option)}
-                name={`${name}[${index}]`}
-              />
-            }
-          />
-        ))}
-      </FormGroup>
-      {renderFromHelper({ touched, error })}
-    </FormControl>
+    />
   );
+
+  return <Field {...props} component={formField} className={classes.formField} />;
 };
 
-export default class CheckboxGroup extends React.Component<any, any> {
-  static propTypes = {
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-      })
-    ).isRequired,
+export const FormFieldSelect = (props: FormFieldGenericProps) => {
+  const classes = useStyles();
+
+  const field = ({ input, label, meta: { touched, error }, children, ...custom }: FormFieldGenericProps) => {
+    return (
+      <FormControl error={touched && error}>
+        <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+        <Select
+          variant="outlined"
+          native
+          {...input}
+          {...custom}
+          inputProps={{
+            name: 'age',
+            id: 'age-native-simple',
+          }}
+        >
+          {children}
+        </Select>
+        {FormFieldHelperText({ touched, error })}
+      </FormControl>
+    );
   };
 
-  field = ({ input, meta, options }: any) => {
+  return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
+};
+
+export const FormFieldCheckbox = (props: FormFieldGenericProps) => {
+  const classes = useStyles();
+
+  const field = ({ input, label }: FormFieldGenericProps) => {
+    return <FormControlLabel control={<Checkbox checked={!!input.value} onChange={input.onChange} />} label={label} />;
+  };
+
+  return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
+};
+
+export const FormFieldCheckboxGroup = (props: FormFieldWithOptionsProps) => {
+  const classes = useStyles();
+
+  const field = ({ input, meta, options, label }: FormFieldWithOptionsProps) => {
     const { name, onChange } = input;
     const { touched, error } = meta;
     const inputValue = input.value;
 
-    const checkboxes = options.map(({ label, value }: any, index: number) => {
+    const checkboxesFormControls = options.map(({ label, value }: any, index: number) => {
       const handleChange = (event: any) => {
         const arr = [...inputValue];
         if (event.target.checked) {
@@ -154,16 +136,16 @@ export default class CheckboxGroup extends React.Component<any, any> {
       );
     });
 
+    // console.log({ touched, error });
+
     return (
-      <FormControl error={error} component="fieldset">
-        <FormLabel component="legend">Here text</FormLabel>
-        <FormGroup>{checkboxes}</FormGroup>
-        {renderFromHelper({ touched, error })}
+      <FormControl error={touched && !!error} component="fieldset">
+        <FormLabel component="legend">{label}</FormLabel>
+        <FormGroup row>{checkboxesFormControls}</FormGroup>
+        {FormFieldHelperText({ touched, error })}
       </FormControl>
     );
   };
 
-  render() {
-    return <Field {...this.props} type="checkbox" component={this.field} />;
-  }
-}
+  return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
+};

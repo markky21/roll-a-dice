@@ -1,18 +1,18 @@
+import AppBar from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import AppBar from '@material-ui/core/AppBar';
 import { Dictionary, useFirestore } from 'react-redux-firebase';
+import { Grid, Slide } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
-import { IChat, IChatMessage } from '../../models/chats.model';
-import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
-import { chatsSelectors } from '../../store/chats/chats.selectors';
-import { ChatMessage } from './components/ChatMessage';
-import { IProfile } from '../../models/rooms.model';
 import { ChatInputBox } from './components/ChatInputBox';
-import { profileSelector } from '../../store/firebase/firebase.selectors';
-import { Grid, Slide } from '@material-ui/core';
+import { ChatMessage } from './components/ChatMessage';
+import { chatsSelectors } from '../../store/chats/chats.selectors';
+import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
+import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
+import { IChat, IChatMessage } from '../../models/chats.model';
+import { IProfile } from '../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -40,7 +40,7 @@ function ChatC(props: ChatProps) {
   const firestore = useFirestore();
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const chat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChat)) || null;
-  const userProfile: IProfile = useSelector(profileSelector);
+  const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
   const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
 
   const onNewMessage = (message: string) => {

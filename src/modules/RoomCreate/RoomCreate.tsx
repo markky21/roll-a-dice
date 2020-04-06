@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react';
 import { createStyles, Theme, useTheme, withStyles, WithStyles } from '@material-ui/core/styles';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  useMediaQuery,
-} from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { Dialog, DialogTitle, useMediaQuery } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { RouterPath } from '../../models/paths';
 import { locationSelectors } from '../../store/location/location.selectors';
 import { RoomCreateForm } from './components/RoomCreateForm';
-import {IRoomCreateForm} from "../../models/rooms.model";
+import { RouterPath } from '../../models/paths';
+import { IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
+import { IChatMessage } from '../../models/chats.model';
+import { useFirestore } from 'react-redux-firebase';
+import { FirestoreCollection } from '../../models/firestore.model';
+import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
 
 const styles = (theme: Theme) => createStyles({});
 
 export interface RoomCreateProps extends WithStyles<typeof styles> {}
 
 function RoomCreateC(props: RoomCreateProps) {
-  const { classes } = props;
+  // const { classes } = props;
 
   const { path: locationPath } = useSelector(locationSelectors.match);
 
@@ -30,15 +26,37 @@ function RoomCreateC(props: RoomCreateProps) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const history = useHistory();
+  const firestore = useFirestore();
+  const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
 
   const handleClose = () => {
     setOpen(false);
     history.push(RouterPath.ROOMS_PATH);
   };
 
-  const submit = (values: IRoomCreateForm) => {
-    // print the form values to the console
-    console.log(values);
+  const createNewRoom = (formValues: IRoomCreateForm) => {
+    const newRoom: IRoom = {
+      createdAt: Date.now().toString(),
+      gameMaster: {
+        uid: userProfile.uid,
+        avatarUrl: userProfile.avatarUrl,
+        displayName: userProfile.displayName,
+        email: userProfile.email,
+      },
+      logs: [],
+      players: [],
+      ...formValues,
+    };
+    firestore
+      .collection(FirestoreCollection.ROOMS)
+      .add(newRoom)
+      .then(room => {
+        history.push(`${RouterPath.ROOMS_PATH}/${room.id}`);
+      });
+  };
+
+  const handleSubmit = (formValues: IRoomCreateForm) => {
+    createNewRoom(formValues);
   };
 
   useEffect(() => {
@@ -49,20 +67,8 @@ function RoomCreateC(props: RoomCreateProps) {
 
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
-      <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
-      <DialogContent dividers>
-        {/*<DialogContentText>*/}
-          <RoomCreateForm onSubmit={submit} />
-        {/*</DialogContentText>*/}
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          Disagree
-        </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
-          Agree
-        </Button>
-      </DialogActions>
+      <DialogTitle>Create new Room</DialogTitle>
+      <RoomCreateForm handleClose={handleClose} onSubmit={handleSubmit} />
     </Dialog>
   );
 }

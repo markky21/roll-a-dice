@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import { RouterPath } from '../models/paths';
 
 import { AppState } from '../store/main';
-import { authenticatedSelector, authenticatingSelector } from '../store/firebase/firebase.selectors';
+import { firebaseSelectors } from '../store/firebase/firebase.selectors';
 import { Loader } from '../components/Loader';
 
 const locationHelper = locationHelperBuilder({});
@@ -24,8 +24,8 @@ export const UserIsAuthenticated = connectedRouterRedirect({
   AuthenticatingComponent: Loader,
   wrapperDisplayName: 'UserIsAuthenticated',
   // Want to redirect the user when they are done loading and authenticated
-  authenticatedSelector,
-  authenticatingSelector,
+  authenticatedSelector: firebaseSelectors.authenticatedSelector,
+  authenticatingSelector: firebaseSelectors.authenticatingSelector,
   redirectAction: ((newLoc: any) => (dispatch: any) => {
     // Use push, replace, and go to navigate around.
     history.push(newLoc);

@@ -7,7 +7,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { Menu, MenuItem } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
-import { authenticatedSelector, profileSelector } from '../store/firebase/firebase.selectors';
+import { firebaseSelectors } from '../store/firebase/firebase.selectors';
 import { RouterPath } from '../models/paths';
 
 const styles = (theme: Theme) =>
@@ -27,8 +27,8 @@ interface ProfileAvatarProps extends WithStyles<typeof styles> {}
 function ProfileAvatarC(props: ProfileAvatarProps) {
   const firebase = useFirebase();
   const history = useHistory();
-  const profile = useSelector(profileSelector);
-  const isAuthenticated = useSelector(authenticatedSelector);
+  const profile = useSelector(firebaseSelectors.profileSelector);
+  const isAuthenticated = useSelector(firebaseSelectors.authenticatedSelector);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

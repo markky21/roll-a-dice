@@ -2,31 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/FormComponents.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/RoomCreate/components/RoomCreateForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/firestore.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Ornament.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Ornament.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Navigator/Navigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Navigator/Navigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormComponents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Core.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Core.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/WhenAuthenticated.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/WhenAuthenticated.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/CoreLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/CoreLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/main.model.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/paths.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/paths.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/rooms.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/ChatList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Chatter/components/ChatMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Chatter/components/ChatMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomCreate/components/RoomCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomCreate/components/RoomCreateForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/RoomList/RoomList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomList/RoomList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/CreateRoom/CreateRoomPage/CreateRoomPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CreateRoom/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/CreateRoom/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/chat.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/chat.query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/rooms.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/rooms.query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/RoomListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/RoomList/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RoomList/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/firebase/firebase.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firebase.selectors.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/firebase/firebase.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firebase.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/router.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/router.utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/RoomCreate/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/RoomList/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -92,19 +89,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/modules/RoomCreate/components" />
-      <recent name="$PROJECT_DIR$/src/modules" />
-      <recent name="$PROJECT_DIR$/src/modules/RoomList/components" />
-      <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/public/assets/svg" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/assets/svg" />
       <recent name="$PROJECT_DIR$/src/containers" />
       <recent name="$PROJECT_DIR$/src/routes/WhenAuthenticatedPage/WhenAuthenticated" />
       <recent name="$PROJECT_DIR$/src/routes" />
       <recent name="$PROJECT_DIR$/src/containers/WhenAuthenticated" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/RoomList/components" />
+      <recent name="$PROJECT_DIR$/src/modules/RoomCreate/components" />
+      <recent name="$PROJECT_DIR$/src/modules" />
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/public/assets/svg" />
     </key>
   </component>
   <component name="RunManager">
@@ -143,7 +140,8 @@
       <workItem from="1585910674535" duration="5616000" />
       <workItem from="1586062200631" duration="4809000" />
       <workItem from="1586073994944" duration="114000" />
-      <workItem from="1586074124005" duration="17264000" />
+      <workItem from="1586074124005" duration="17339000" />
+      <workItem from="1586154352922" duration="24441000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -194,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586085251105</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="WIP Implementing RoomCreate and RoomCreateForm.tsx components">
+      <created>1586120839931</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586120839931</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,17 +213,18 @@
     <MESSAGE value="Adjust components and theme" />
     <MESSAGE value="Create LoadingScreen and Loading components" />
     <MESSAGE value="Adjustments in Chat components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjustments in Chat components" />
+    <MESSAGE value="WIP Implementing RoomCreate and RoomCreateForm.tsx components" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP Implementing RoomCreate and RoomCreateForm.tsx components" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585831248210">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2218" y="-201" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585831248210" />
-    <state x="-2124" y="-331" key="#com.intellij.ide.util.MemberChooser" timestamp="1585908060029">
+    <state x="-2124" y="-331" key="#com.intellij.ide.util.MemberChooser" timestamp="1586179994509">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2124" y="-331" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585908060029" />
+    <state x="-2124" y="-331" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586179994509" />
     <state x="-2384" y="-482" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1585731233029">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
@@ -227,37 +233,37 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2205" y="-265" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585731206196" />
-    <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585904119699">
+    <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586180732495">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1585904119699" />
-    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2" timestamp="1586085250929">
+    <state x="-2218" y="-292" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586180732495" />
+    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2" timestamp="1586120839400">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586085250929" />
-    <state width="1575" height="381" key="GridCell.Tab.0.bottom" timestamp="1586062184424">
-      <screen x="51" y="23" width="1629" height="1027" />
+    <state x="-3252" y="-674" width="2146" height="1499" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586120839400" />
+    <state width="3724" height="358" key="GridCell.Tab.0.bottom" timestamp="1586207465329">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586022961537" />
-    <state width="1386" height="151" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
+    <state width="3724" height="358" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586207465329" />
+    <state width="1378" height="564" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586166187714" />
     <state width="1575" height="381" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586062184424" />
-    <state width="1575" height="381" key="GridCell.Tab.0.center" timestamp="1586062184423">
-      <screen x="51" y="23" width="1629" height="1027" />
+    <state width="3724" height="358" key="GridCell.Tab.0.center" timestamp="1586207465326">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586022961536" />
-    <state width="1386" height="151" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
+    <state width="3724" height="358" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586207465326" />
+    <state width="1378" height="564" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586166187713" />
     <state width="1575" height="381" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586062184423" />
-    <state width="1575" height="381" key="GridCell.Tab.0.left" timestamp="1586062184422">
-      <screen x="51" y="23" width="1629" height="1027" />
+    <state width="3724" height="358" key="GridCell.Tab.0.left" timestamp="1586207465325">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586022961535" />
-    <state width="1386" height="151" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737032" />
+    <state width="3724" height="358" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586207465325" />
+    <state width="1378" height="564" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586166187712" />
     <state width="1575" height="381" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586062184422" />
-    <state width="1575" height="381" key="GridCell.Tab.0.right" timestamp="1586062184424">
-      <screen x="51" y="23" width="1629" height="1027" />
+    <state width="3724" height="358" key="GridCell.Tab.0.right" timestamp="1586207465327">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3732" height="381" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586022961536" />
-    <state width="1386" height="151" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819737033" />
+    <state width="3724" height="358" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586207465327" />
+    <state width="1378" height="564" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586166187714" />
     <state width="1575" height="381" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586062184424" />
     <state x="-2998" y="-701" width="2749" height="1667" key="MergeDialog" timestamp="1585990003089">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
@@ -272,27 +278,35 @@
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586074094005" />
     <state x="451" y="153" key="SettingsEditor/51.23.1629.1027@51.23.1629.1027" timestamp="1586062379428" />
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1586085262240">
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1586120841797">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586085262240" />
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586120841797" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586086768622">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586086768622" />
-    <state x="-2302" y="-318" width="995" height="1179" key="find.popup" timestamp="1586090680114">
+    <state x="-2169" y="-98" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586170891283">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2302" y="-318" width="995" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586090680114" />
+    <state x="-2169" y="-98" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586170891283" />
+    <state x="-3251" y="-1057" width="1549" height="1642" key="dock-window-1" timestamp="1586173390424">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-3251" y="-1057" width="1549" height="1642" key="dock-window-1/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586173390424" />
+    <state x="-2302" y="-318" width="995" height="1179" key="find.popup" timestamp="1586198087814">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    </state>
+    <state x="-2302" y="-318" width="995" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586198087814" />
     <state x="690" y="378" width="613" height="504" key="find.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586066829048" />
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate" timestamp="1586024500997">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup" timestamp="1586107213129">
+    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup" timestamp="1586199150582">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586107213129" />
+    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586199150582" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819421253" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
   </component>

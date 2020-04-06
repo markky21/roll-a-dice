@@ -1,5 +1,10 @@
-import { Collection } from '../models/main.model';
+import { ReduxFirestoreQuerySetting } from 'react-redux-firebase';
+import { FirestoreCollection } from '../models/firestore.model';
 
-export const userRoomsQuery = {
-  collection: Collection.ROOMS,
+export const roomsQuery = {
+  getUserRoomsAsGameMaster: (uid: string): ReduxFirestoreQuerySetting => ({
+    collection: FirestoreCollection.ROOMS,
+    where: [['gameMaster.uid', '==', uid]],
+    storeAs: 'userRoomsAsGameMaster',
+  }),
 };

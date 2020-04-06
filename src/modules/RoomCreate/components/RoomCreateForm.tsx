@@ -1,61 +1,54 @@
 import React from 'react';
+import { Button, DialogActions, DialogContent } from '@material-ui/core';
+import { InjectedFormProps, reduxForm } from 'redux-form';
 
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import CheckboxGroup, {
-  renderCheckbox,
-  renderCheckboxGroup,
-  renderSelectField,
-  renderTextField,
-} from '../../../components/FormComponents';
-import { FormGroup } from '@material-ui/core';
+import { createRoomFormModel } from '../../../models/rooms.model';
+import { FormFieldCheckboxGroup, FormFieldText } from '../../../components/FormComponents';
 
-export interface RoomCreateFormProps extends InjectedFormProps {
-  handleSubmit: any;
+interface RoomCreateFormProps extends InjectedFormProps {
+  handleClose: () => void;
 }
+
 const validate = (values: any) => {
   const errors: any = {};
-  const requiredFields = ['firstName', 'lastName', 'email', 'favoriteColor', 'notes'];
-  requiredFields.forEach(field => {
+
+  [createRoomFormModel.roomName.name].forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required';
     }
   });
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+
+  if (!(values[createRoomFormModel.diceType.name] && values[createRoomFormModel.diceType.name].length)) {
+    errors[createRoomFormModel.diceType.name] = 'Select at least one dice';
   }
   return errors;
 };
 
 function RoomCreateFormC(props: RoomCreateFormProps) {
-  const { handleSubmit, pristine, reset, submitting } = props;
-
-  const options = [
-    { label: 'English', value: 'en' },
-    { label: '繁體中文', value: 'zh-TW' },
-    { label: 'Tibetan', value: 'bo' },
-  ];
+  const { handleSubmit, pristine, submitting, handleClose, invalid } = props;
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Field name="roomName" component={renderTextField} label="Room name" />
-      </div>
-      {/*<FormGroup>*/}
-      {/*  <Field name="diceType" component={renderCheckboxGroup} label="D4" />*/}
-      {/*</FormGroup>*/}
-      <CheckboxGroup name={'langs'} options={options} />
-      <div />
-      <div>
-        <Field name="notes" component={renderTextField} label="Notes" multiline rowsMax="4" margin="normal" />
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>
+      <DialogContent dividers>
+        <div>
+          <FormFieldText {...createRoomFormModel.roomName} />
+        </div>
+
+        <div>
+          <FormFieldText {...createRoomFormModel.description} />
+        </div>
+        <div>
+          <FormFieldCheckboxGroup {...createRoomFormModel.diceType} />
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button type="submit" color="primary" disabled={invalid || pristine || submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
+        </Button>
+        <Button type="button" onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+      </DialogActions>
     </form>
   );
 }
@@ -63,4 +56,4 @@ function RoomCreateFormC(props: RoomCreateFormProps) {
 export const RoomCreateForm = reduxForm({
   form: 'createRoom',
   validate,
-})(RoomCreateFormC);
+})(RoomCreateFormC as any) as any;

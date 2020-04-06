@@ -17,6 +17,8 @@ export interface FirestoreSchema {
 
 export interface FirestoreQuerySchema {
   readonly userChats?: Dictionary<IChat>;
+  readonly userRoomsAsPlayer?: Dictionary<IRoom>;
+  readonly userRoomsAsGameMaster?: Dictionary<IRoom>;
   readonly usersProfiles?: Dictionary<IProfile>;
 }
 

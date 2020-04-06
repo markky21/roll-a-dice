@@ -1,11 +1,11 @@
 import React from 'react';
-import {Avatar, Grow, List, ListItem, ListItemAvatar, ListItemText} from '@material-ui/core';
-import {createStyles, Theme, withStyles, WithStyles} from '@material-ui/core/styles';
-import {Dictionary} from 'react-redux-firebase';
+import { Avatar, Grow, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Dictionary } from 'react-redux-firebase';
 
-import {firstLettersJoined} from '../../../utils/text.utils';
-import {timeStampToFormattedDate} from '../../../utils/date.utils';
-import {IRoom} from '../../../models/rooms.model';
+import { firstLettersJoined } from '../../../utils/text.utils';
+import { timeStampToFormattedDate } from '../../../utils/date.utils';
+import { IRoom } from '../../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -41,10 +41,10 @@ function RoomListElementC(props: RoomListElementProps) {
           alignItems="flex-start"
         >
           <ListItemAvatar>
-            <Avatar>{firstLettersJoined(rooms[roomId].name || 'No name')}</Avatar>
+            <Avatar>{firstLettersJoined(rooms[roomId].roomName || 'No name')}</Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={rooms[roomId].name || 'No name'}
+            primary={rooms[roomId].roomName || 'No name'}
             secondary={timeStampToFormattedDate(rooms[roomId].createdAt)}
           />
         </ListItem>
