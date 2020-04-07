@@ -1,5 +1,5 @@
-import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
+import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import { createBrowserHistory } from 'history';
 import { RouterPath } from '../models/paths';
 

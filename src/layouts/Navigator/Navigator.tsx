@@ -1,17 +1,20 @@
 import ChatIcon from '@material-ui/icons/Chat';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
+import GamesIcon from '@material-ui/icons/Games';
 import HomeIcon from '@material-ui/icons/Home';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { List, ListItem } from '@material-ui/core';
 import { Omit } from '@material-ui/types';
-
-import { RouterPath } from '../../models/paths';
-import { NavigatorItem } from './components/NavigatorItem';
 import { useSelector } from 'react-redux';
+
+import { ChatList, ChatListType } from '../../modules/ChatList/ChatList';
+import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { locationSelectors } from '../../store/location/location.selectors';
-import { ChatListType, ChatList } from '../../modules/ChatList/ChatList';
+import { NavigatorItem } from './components/NavigatorItem';
+import { RoomCard } from '../../containers/RoomCard';
+import { RouterPath } from '../../models/paths';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -34,6 +37,9 @@ function NavigatorC(props: NavigatorProps) {
   const { classes, ...other } = props;
 
   const { path: locationPath } = useSelector(locationSelectors.match);
+  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
+
+  console.log({ selectedRoomData });
 
   return (
     <Drawer variant="permanent" {...other}>
@@ -47,6 +53,7 @@ function NavigatorC(props: NavigatorProps) {
         text="Home Page"
         active={RouterPath.HOME_PATH === locationPath}
       />
+
       <NavigatorItem
         navLink={RouterPath.ROOMS_PATH}
         icon={<MeetingRoomIcon />}
@@ -54,8 +61,9 @@ function NavigatorC(props: NavigatorProps) {
         expandable={locationPath.indexOf(RouterPath.ROOMS_PATH) === -1}
         active={locationPath.indexOf(RouterPath.ROOMS_PATH) > -1}
       >
-        <ChatList viewType={ChatListType.EMBEDDED} />
+        <React.Fragment>List here</React.Fragment>
       </NavigatorItem>
+
       <NavigatorItem
         navLink={RouterPath.CHATS_PATH}
         icon={<ChatIcon />}
@@ -65,6 +73,18 @@ function NavigatorC(props: NavigatorProps) {
       >
         <ChatList viewType={ChatListType.EMBEDDED} />
       </NavigatorItem>
+
+      {selectedRoomData && (
+        <NavigatorItem
+          icon={<GamesIcon />}
+          text="Room"
+          expandable={true}
+          active={locationPath.indexOf(RouterPath.ROOM_PATH) > -1}
+          defaultExpanded
+        >
+          <RoomCard room={selectedRoomData} />
+        </NavigatorItem>
+      )}
     </Drawer>
   );
 }

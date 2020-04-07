@@ -9,6 +9,8 @@ export const firestoreSelectors = {
   getChat: (chatId: string | null) => (state: AppState): IChat | null =>
     !!chatId && state.firestore.data.userChats ? state.firestore.data.userChats[chatId] : null,
 
+  selectedRoom: (state: AppState): IRoom | undefined => state.firestore.data.selectedRoom,
+
   userRoomsAsGameMaster: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsGameMaster,
 
   userRoomsAsPlayer: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsPlayer,

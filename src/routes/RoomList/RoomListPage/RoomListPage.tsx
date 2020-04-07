@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grow, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, Grow, Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,8 +32,8 @@ export interface RoomListProps {
 
 export function RoomListsC(props: RoomListProps) {
   const classes = useStyles();
-
   const { match } = props;
+
   const dispatch = useDispatch();
   const storeLocationMatch = useSelector(locationSelectors.match);
   const userRoomsAsGameMaster: Dictionary<IRoom> = useSelector(firestoreSelectors.userRoomsAsGameMaster) || {};
@@ -50,14 +50,10 @@ export function RoomListsC(props: RoomListProps) {
       <section className={classes.cards}>
         <Grow in>
           <Card>
-            <CardMedia
-              className={classes.media}
-              image="/assets/images/fantasy-wallpapers.jpg"
-              title="Contemplative Reptile"
-            />
+            <CardMedia className={classes.media} image="/assets/images/fantasy-wallpapers.jpg" title="Fantasy RPG" />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                Enter the new world
+                Enter to the new world
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 Create a new game room to start a new adventure with your friends!
@@ -76,20 +72,14 @@ export function RoomListsC(props: RoomListProps) {
 
       <section className={classes.cards}>
         <RoomList
-          rooms={userRoomsAsGameMaster}
+          roomsAsGameMaster={userRoomsAsGameMaster}
+          roomsAsPlayer={userRoomsAsPlayer}
           selectedRoom={null}
           showSearchBar
-          label={'Search room where you are a Game Master'}
+          label={'Search room by name'}
         />
       </section>
-      <section className={classes.cards}>
-        <RoomList
-          rooms={userRoomsAsPlayer}
-          selectedRoom={null}
-          showSearchBar
-          label={'Search room where you are a player'}
-        />
-      </section>
+
       <RoomCreate />
     </React.Fragment>
   );

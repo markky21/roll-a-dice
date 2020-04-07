@@ -60,6 +60,7 @@ function ChatListC(props: ChatListProps) {
     return () => {
       dispatch(chatsActions.setSelectedChat(null));
     };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChatClick = (chatId: string) => {
@@ -80,7 +81,7 @@ function ChatListC(props: ChatListProps) {
                   <Grid item xs>
                     <TextField
                       fullWidth
-                      placeholder="Search by room name or players"
+                      placeholder="Search chat by room name or players"
                       InputProps={{
                         disableUnderline: true,
                         className: classes.searchInput,

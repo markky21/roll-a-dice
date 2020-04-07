@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Grow, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { Avatar, Divider, Grow, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Dictionary } from 'react-redux-firebase';
 
@@ -18,20 +18,22 @@ const styles = (theme: Theme) =>
     item: {
       cursor: 'pointer',
     },
+    divider: { backgroundColor: 'rgba(0, 0, 0, 0.12)' },
   });
 
 interface RoomListElementProps extends WithStyles<typeof styles> {
-  rooms: Dictionary<IRoom>;
+  roomsAsGameMaster: Dictionary<IRoom>;
+  roomsAsPlayer: Dictionary<IRoom>;
   selectedRoom: string | null;
   onRoomClick: (roomId: string) => void;
 }
 
 function RoomListElementC(props: RoomListElementProps) {
-  const { classes, rooms, onRoomClick, selectedRoom } = props;
+  const { classes, roomsAsGameMaster, roomsAsPlayer, onRoomClick, selectedRoom } = props;
 
-  const renderElement = () =>
+  const renderElement = (rooms: Dictionary<IRoom>, timeout: number = 300) =>
     Object.keys(rooms).map((roomId, id) => (
-      <Grow key={roomId} in timeout={1000 * id + 300}>
+      <Grow key={roomId} in timeout={1000 * id + timeout}>
         <ListItem
           onClick={() => onRoomClick(roomId)}
           selected={roomId === selectedRoom}
@@ -51,7 +53,15 @@ function RoomListElementC(props: RoomListElementProps) {
       </Grow>
     ));
 
-  return <List className={classes.root}>{renderElement()}</List>;
+  return (
+    <List className={classes.root}>
+      {renderElement(roomsAsGameMaster)}
+      <Grow in={!!Object.keys(roomsAsGameMaster).length} timeout={1000 * Object.keys(roomsAsGameMaster).length + 300}>
+        <Divider className={classes.divider} />
+      </Grow>
+      {renderElement(roomsAsPlayer, 1000 * Object.keys(roomsAsGameMaster).length + 300)}
+    </List>
+  );
 }
 
 export const RoomListElements = withStyles(styles)(RoomListElementC);

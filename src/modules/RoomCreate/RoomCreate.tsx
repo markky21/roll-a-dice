@@ -8,7 +8,6 @@ import { locationSelectors } from '../../store/location/location.selectors';
 import { RoomCreateForm } from './components/RoomCreateForm';
 import { RouterPath } from '../../models/paths';
 import { IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
-import { IChatMessage } from '../../models/chats.model';
 import { useFirestore } from 'react-redux-firebase';
 import { FirestoreCollection } from '../../models/firestore.model';
 import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
@@ -51,7 +50,8 @@ function RoomCreateC(props: RoomCreateProps) {
       .collection(FirestoreCollection.ROOMS)
       .add(newRoom)
       .then(room => {
-        history.push(`${RouterPath.ROOMS_PATH}/${room.id}`);
+        setOpen(false);
+        history.push(`${RouterPath.ROOM_PATH}/${room.id}`);
       });
   };
 

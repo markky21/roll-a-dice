@@ -20,6 +20,7 @@ export interface FirestoreQuerySchema {
   readonly userRoomsAsPlayer?: Dictionary<IRoom>;
   readonly userRoomsAsGameMaster?: Dictionary<IRoom>;
   readonly usersProfiles?: Dictionary<IProfile>;
+  readonly selectedRoom?: IRoom;
 }
 
 export interface FirebaseUserProfile {

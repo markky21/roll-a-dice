@@ -10,6 +10,8 @@ import { chatsReducer } from './chats/chats.reducer';
 import { ChatsState } from './chats/chats.model';
 import { locationReducer } from './location/location.reducer';
 import { LocationState } from './location/location.model';
+import { RoomsState } from './rooms/rooms.model';
+import { roomsReducer } from './rooms/rooms.reducer';
 
 /**********************************************************
  * Interfaces
@@ -32,6 +34,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     firebase: firebaseReducer,
     firestore,
     chats: chatsReducer,
+    rooms: roomsReducer,
     location: locationReducer,
     form: formReducer,
     ...asyncReducers,
@@ -45,5 +48,6 @@ const rootReducer = combineReducers<RootState>({
 
 export interface AppState extends ReturnType<typeof rootReducer> {
   chats: ChatsState;
+  rooms: RoomsState;
   location: LocationState;
 }

@@ -68,18 +68,22 @@ const styles = (theme: Theme) =>
 
 export interface NavigatorItemProps extends Omit<DrawerProps, 'classes'>, WithStyles<typeof styles> {
   active?: boolean;
-  children?: React.ReactElement;
+  children?: React.ReactElement | React.ReactFragment;
   icon?: React.ReactElement;
-  navLink: RouterPath;
+  navLink?: RouterPath;
   text?: string;
   expandable?: boolean;
+  defaultExpanded?: boolean;
 }
 
 function NavigatorItemC(props: NavigatorItemProps) {
-  const { classes, children, icon, text, navLink, active, expandable } = props;
+  const { classes, children, icon, text, navLink, active, expandable, defaultExpanded } = props;
+
+  const setNavLink = (children: React.ReactElement) =>
+    navLink ? <NavLink to={navLink}>{children}</NavLink> : <React.Fragment>{children}</React.Fragment>;
 
   return expandable ? (
-    <ExpansionPanel className={clsx(classes.expansionPanel, classes.divider)}>
+    <ExpansionPanel className={clsx(classes.expansionPanel, classes.divider)} defaultExpanded={defaultExpanded}>
       <ExpansionPanelSummary
         aria-controls="additional-actions1-content"
         aria-label="Expand"
@@ -90,7 +94,7 @@ function NavigatorItemC(props: NavigatorItemProps) {
       >
         <div className={classes.itemCategoryWrapper} />
 
-        <NavLink to={navLink}>
+        {setNavLink(
           <ListItem
             button
             className={clsx(
@@ -103,12 +107,12 @@ function NavigatorItemC(props: NavigatorItemProps) {
             {icon && <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>}
             {text && <ListItemText classes={{ primary: classes.itemPrimary }}>{text}</ListItemText>}
           </ListItem>
-        </NavLink>
+        )}
       </ExpansionPanelSummary>
       {children && <ExpansionPanelDetails>{children}</ExpansionPanelDetails>}
     </ExpansionPanel>
   ) : (
-    <NavLink to={navLink}>
+    setNavLink(
       <ListItem
         button
         className={clsx(classes.item, classes.itemCategory, active && classes.itemActiveItem, classes.divider)}
@@ -116,7 +120,7 @@ function NavigatorItemC(props: NavigatorItemProps) {
         {icon && <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>}
         {text && <ListItemText classes={{ primary: classes.itemPrimary }}>{text}</ListItemText>}
       </ListItem>
-    </NavLink>
+    )
   );
 }
 

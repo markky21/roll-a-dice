@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grow } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import { Dictionary } from 'react-redux-firebase';
-import { Redirect } from 'react-router-dom';
 
 import { RouterPath } from '../../models/paths';
 import { IRoom } from '../../models/rooms.model';
@@ -36,16 +36,18 @@ const styles = (theme: Theme) =>
 
 export interface RoomListProps extends WithStyles<typeof styles> {
   showSearchBar?: boolean;
-  rooms: Dictionary<IRoom>;
+  roomsAsGameMaster: Dictionary<IRoom>;
+  roomsAsPlayer: Dictionary<IRoom>;
   selectedRoom: string | null;
   label: string;
 }
 
 function RoomListC(props: RoomListProps) {
-  const { classes, rooms, showSearchBar, selectedRoom, label } = props;
+  const { classes, roomsAsGameMaster, roomsAsPlayer, showSearchBar, selectedRoom, label } = props;
+  const history = useHistory();
 
   const onRoomClick = (roomId: string) => {
-    return <Redirect to={`${RouterPath.CHATS_PATH}/${roomId}`} />;
+    return history.push(`${RouterPath.ROOM_PATH}/${roomId}`);
   };
 
   return (
@@ -73,7 +75,12 @@ function RoomListC(props: RoomListProps) {
           </AppBar>
         )}
         <div className={classes.contentWrapper}>
-          <RoomListElements rooms={rooms} onRoomClick={onRoomClick} selectedRoom={selectedRoom} />
+          <RoomListElements
+            roomsAsGameMaster={roomsAsGameMaster}
+            roomsAsPlayer={roomsAsPlayer}
+            onRoomClick={onRoomClick}
+            selectedRoom={selectedRoom}
+          />
         </div>
       </Paper>
     </Grow>
