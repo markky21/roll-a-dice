@@ -8,6 +8,7 @@ import { firebaseSelectors } from '../store/firebase/firebase.selectors';
 import { profileQuery } from '../queries/profile.query';
 import { roomsQuery } from '../queries/rooms.query';
 import { roomsSelectors } from '../store/rooms/rooms.selectors';
+import { firestoreSelectors } from '../store/firebase/firestore.selectors';
 
 interface CoreProps {}
 
@@ -16,10 +17,11 @@ export function WhenAuthenticated(props: CoreProps) {
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
   const uniqProfilesUid: string[] = useSelector(chatsSelectors.uniqProfilesUid(selectedChat));
   const selectedRoom = useSelector(roomsSelectors.selectedRoom);
-  console.log(selectedRoom);
+  const allUserRoomsUid = useSelector(firestoreSelectors.allUserRoomsUid);
+
   useFirestoreConnect([
     profileQuery.getProfilesByUid(uniqProfilesUid.length ? uniqProfilesUid : ['']),
-    chatsQuery.getUserChats(profile.uid || ''),
+    chatsQuery.getUserChats(allUserRoomsUid),
     roomsQuery.getUserRoomsAsGameMaster(profile.uid || ''),
     roomsQuery.getRoom(selectedRoom || ''),
   ]);

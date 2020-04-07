@@ -15,5 +15,11 @@ export const firestoreSelectors = {
 
   userRoomsAsPlayer: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsPlayer,
 
+  allUserRoomsUid: (state: AppState): string[] =>
+    Object.keys({
+      ...state.firestore.data.userRoomsAsGameMaster,
+      ...state.firestore.data.userRoomsAsPlayer,
+    }),
+
   usersProfiles: (state: AppState): Dictionary<IProfile> => state.firestore.data.usersProfiles || {},
 };

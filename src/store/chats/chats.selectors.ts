@@ -7,7 +7,7 @@ export const chatsSelectors = {
     if (!selectedChat) return [];
 
     return (
-      state.firestore.data?.userChats?.[selectedChat].messages
+      state.firestore.data?.userChats?.[selectedChat]?.messages
         .map(m => m.uid)
         .filter((v, i, a) => a.indexOf(v) === i) || []
     );

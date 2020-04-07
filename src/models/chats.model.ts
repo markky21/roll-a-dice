@@ -5,8 +5,7 @@ export interface IChatMessage {
 }
 
 export interface IChat {
-  count: number;
-  gameName: string;
+  roomName: string;
   createdAt: string;
   messages: IChatMessage[];
   uid: string;

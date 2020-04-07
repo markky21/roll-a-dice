@@ -39,8 +39,6 @@ function NavigatorC(props: NavigatorProps) {
   const { path: locationPath } = useSelector(locationSelectors.match);
   const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
 
-  console.log({ selectedRoomData });
-
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>

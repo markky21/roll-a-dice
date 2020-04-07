@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createStyles, Theme, useTheme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Dialog, DialogTitle, useMediaQuery } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { locationSelectors } from '../../store/location/location.selectors';
 import { RoomCreateForm } from './components/RoomCreateForm';
@@ -11,6 +11,8 @@ import { IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
 import { useFirestore } from 'react-redux-firebase';
 import { FirestoreCollection } from '../../models/firestore.model';
 import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
+import { IChat } from '../../models/chats.model';
+import { chatsActions } from '../../store/chats/chats.actions';
 
 const styles = (theme: Theme) => createStyles({});
 
@@ -27,13 +29,14 @@ function RoomCreateC(props: RoomCreateProps) {
   const history = useHistory();
   const firestore = useFirestore();
   const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setOpen(false);
     history.push(RouterPath.ROOMS_PATH);
   };
 
-  const createNewRoom = (formValues: IRoomCreateForm) => {
+  function createNewRoom(formValues: IRoomCreateForm): Promise<void> {
     const newRoom: IRoom = {
       createdAt: Date.now().toString(),
       gameMaster: {
@@ -46,14 +49,34 @@ function RoomCreateC(props: RoomCreateProps) {
       players: [],
       ...formValues,
     };
-    firestore
+    return firestore
       .collection(FirestoreCollection.ROOMS)
       .add(newRoom)
+      .then(room => {
+        createNewChat(room, newRoom);
+        return room;
+      })
       .then(room => {
         setOpen(false);
         history.push(`${RouterPath.ROOM_PATH}/${room.id}`);
       });
-  };
+  }
+
+  function createNewChat<T>(room: T, roomObject: IRoom): Promise<T> {
+    const newChat: IChat = {
+      createdAt: Date.now().toString(),
+      roomName: roomObject.roomName,
+      messages: [],
+      uid: (room as any).id,
+    };
+    return firestore
+      .collection(FirestoreCollection.CHATS)
+      .add(newChat)
+      .then(chat => {
+        dispatch(chatsActions.setSelectedChat(chat.id));
+        return room;
+      });
+  }
 
   const handleSubmit = (formValues: IRoomCreateForm) => {
     createNewRoom(formValues);

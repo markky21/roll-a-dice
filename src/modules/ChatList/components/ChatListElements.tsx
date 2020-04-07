@@ -41,10 +41,10 @@ function ChatListElementC(props: ChatListElementProps) {
           alignItems="flex-start"
         >
           <ListItemAvatar>
-            <Avatar>{firstLettersJoined(chats[chatId].gameName || 'No name')}</Avatar>
+            <Avatar>{firstLettersJoined(chats[chatId].roomName || 'No name')}</Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={chats[chatId].gameName || 'No name'}
+            primary={chats[chatId].roomName || 'No name'}
             secondary={timeStampToFormattedDate(chats[chatId].createdAt)}
           />
         </ListItem>
