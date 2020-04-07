@@ -9,6 +9,8 @@ import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
 import { locationSelectors } from '../../../store/location/location.selectors';
 import { roomsActions } from '../../../store/rooms/rooms.actions';
+import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
+import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
 
 const styles = (theme: Theme) => ({
   cards: {
@@ -41,24 +43,26 @@ export function RoomC(props: RoomListProps) {
   const { match } = props;
   const dispatch = useDispatch();
   const storeLocationMatch = useSelector(locationSelectors.match);
+  const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
 
-  useEffect(() => {
+  function onChangeSetLocationMatch(): void {
     if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {
       dispatch(locationActions.matchChange(match));
     }
-  });
+    dispatch(roomsActions.setSelectedRoom((storeLocationMatch.params as any)['roomId']));
+  }
+  function onUnmountSetSelectedRoomToNull(): void {
+    dispatch(roomsActions.setSelectedRoom(null));
+  }
+  function onChangeSetSelectedChat(): void {
+    dispatch(chatsActions.setSelectedChat(selectedRoom?.chatUid || null));
+  }
 
+  useEffect(() => onChangeSetLocationMatch());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => onChangeSetSelectedChat(), [selectedRoom?.chatUid || null]);
   useEffect(() => {
-    const roomId = (storeLocationMatch.params as any)['roomId'];
-    roomId && dispatch(roomsActions.setSelectedRoom(roomId));
-    roomId && dispatch(chatsActions.setSelectedChat(roomId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [(storeLocationMatch.params as any)['roomId']]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(roomsActions.setSelectedRoom(null));
-    };
+    return () => onUnmountSetSelectedRoomToNull();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

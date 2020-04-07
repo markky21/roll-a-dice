@@ -38,13 +38,14 @@ interface ChatProps extends WithStyles<typeof styles> {
 function ChatC(props: ChatProps) {
   const { classes, height = '40vh' } = props;
   const firestore = useFirestore();
-  const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
-  const chat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChat)) || null;
+  const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
+  const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;
+
   const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
   const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
 
   const onNewMessage = (message: string) => {
-    let documentRef = firestore.doc(`chats/${selectedChat}`);
+    let documentRef = firestore.doc(`chats/${selectedChatUid}`);
 
     const newMessage: IChatMessage = {
       createdAt: Date.now().toString(),
@@ -72,7 +73,7 @@ function ChatC(props: ChatProps) {
       <Paper className={classes.paper}>
         <Grid container direction="column" justify="space-between" alignItems="flex-end">
           <div className={classes.contentWrapper}>
-            <ChatMessage chat={chat} usersProfiles={usersProfiles} listStyles={{ height }} />
+            <ChatMessage chat={selectedChat} usersProfiles={usersProfiles} listStyles={{ height }} />
           </div>
           <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
             <ChatInputBox onNewMessage={message => onNewMessage(message)} />

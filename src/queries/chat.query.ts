@@ -2,12 +2,12 @@ import { ReduxFirestoreQuerySetting } from 'react-redux-firebase';
 import { FirestoreCollection } from '../models/firestore.model';
 
 export const chatsQuery = {
-  getUserChats: (uids: string[]): ReduxFirestoreQuerySetting => {
-    const uidsNonEmptyArray = uids.length === 0 ? ['unknown'] : uids;
+  getUserChats: (uid: string): ReduxFirestoreQuerySetting => {
+    const uidNonEmptyArray = uid && uid?.length !== 0 ? uid : 'unknown';
 
     return {
       collection: FirestoreCollection.CHATS,
-      where: [['uid', 'in', uidsNonEmptyArray]],
+      where: [['players', 'array-contains', uidNonEmptyArray]],
       storeAs: 'userChats',
     };
   },

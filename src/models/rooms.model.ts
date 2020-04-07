@@ -29,8 +29,9 @@ export interface IRoomLog {
 export interface IRoom extends IRoomCreateForm {
   createdAt: string;
   gameMaster: IProfile;
-  players: IProfile[];
+  players: string[];
   logs: IRoomLog[];
+  chatUid?: string;
 }
 
 export interface IRoomCreateForm {

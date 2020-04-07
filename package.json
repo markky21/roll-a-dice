@@ -20,6 +20,8 @@
     "@types/redux-form": "^8.2.3",
     "dayjs": "^1.8.23",
     "firebase": "^7.13.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-redux": "^7.1.0",
