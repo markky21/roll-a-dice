@@ -3,7 +3,10 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 
 const styles = (theme: Theme) =>
   createStyles({
-    diceCanvas: { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 },
+    diceCanvas: {
+      // width: '100%', height: '100%',
+      // position: 'absolute', top: 0, left: 0
+    },
   });
 
 interface DiceCardProps extends WithStyles<typeof styles> {}

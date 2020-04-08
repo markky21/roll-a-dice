@@ -17,6 +17,8 @@ export interface IProfile {
   avatarUrl: string;
   displayName: string;
   email: string;
+  photoURL: string;
+  connected?: boolean;
 }
 
 export interface IRoomLog {

@@ -1,33 +1,54 @@
+import clsx from 'clsx';
 import React, { useEffect } from 'react';
+import { Grid } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFirestore } from 'react-redux-firebase';
 
 import { chatsActions } from '../../../store/chats/chats.actions';
 import { Chatter } from '../../../modules/Chatter/Chatter';
 import { DiceCard } from '../../../containers/DiceCard';
+import { firebaseSelectors } from '../../../store/firebase/firebase.selectors';
+import { FirestoreCollection } from '../../../models/firestore.model';
+import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
 import { locationSelectors } from '../../../store/location/location.selectors';
+import { Players } from '../../../modules/Players/Players';
 import { roomsActions } from '../../../store/rooms/rooms.actions';
+import { RoomSpeedDialWrapper } from './components/RoomSpeedDial';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
-import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
 
 const styles = (theme: Theme) => ({
-  cards: {
+  root: {
     position: 'relative' as 'relative',
-    margin: '-48px -32px',
+    margin: theme.spacing(-6, -4),
+    height: `calc(100% + ${theme.spacing(12)}px)`,
+  },
+  grid: {
     height: '100%',
-    //
+    width: '100%',
   },
   diceWrapper: {},
-  media: {
-    height: 140,
-  },
   chatter: {
     zIndex: 100000,
     position: 'fixed' as 'fixed',
-    bottom: '20px',
-    right: '20px',
+    bottom: theme.spacing(26),
+    right: theme.spacing(2),
+    transition: 'bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
+  },
+  chatterLower: {
+    bottom: theme.spacing(4),
+  },
+  speedDial: {
+    position: 'absolute' as 'absolute',
+    bottom: theme.spacing(22),
+    left: theme.spacing(2),
+    zIndex: 10,
+    transition: 'bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
+  },
+  speedDialLower: {
+    bottom: theme.spacing(2),
   },
 });
 
@@ -38,13 +59,21 @@ export interface RoomListProps {
 }
 
 export function RoomC(props: RoomListProps) {
-  const classes = useStyles();
-
   const { match } = props;
-  const dispatch = useDispatch();
-  const storeLocationMatch = useSelector(locationSelectors.match);
-  const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
 
+  const chatOpened = useSelector(roomsSelectors.chatOpened);
+  const playersOpened = useSelector(roomsSelectors.playersOpened);
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const firestore = useFirestore();
+  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
+  const storeLocationMatch = useSelector(locationSelectors.match);
+  const userProfile = useSelector(firebaseSelectors.userProfile);
+
+  /**
+   * Effects logic
+   */
   function onChangeSetLocationMatch(): void {
     if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {
       dispatch(locationActions.matchChange(match));
@@ -55,25 +84,61 @@ export function RoomC(props: RoomListProps) {
     dispatch(roomsActions.setSelectedRoom(null));
   }
   function onChangeSetSelectedChat(): void {
-    dispatch(chatsActions.setSelectedChat(selectedRoom?.chatUid || null));
+    dispatch(chatsActions.setSelectedChat(selectedRoomData?.chatUid || null));
+  }
+  function onEnterTheRoomAddUserToPlayers(): void {
+    if (!selectedRoomData?.players || !userProfile.uid) {
+      return;
+    }
+
+    if (selectedRoomData.players.indexOf(userProfile.uid) === -1) {
+      let documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
+      firestore.runTransaction((t: any) => {
+        return t
+          .get(documentRef)
+          .then((doc: any) => {
+            const players = [...doc.data().players, userProfile.uid];
+            return t.update(documentRef, { players });
+          })
+          .catch((err: any) => {
+            // TODO: add toast message
+            // TRANSACTION_FAILURE action dispatched
+            console.log('Transaction failure:', err);
+          });
+      });
+    }
   }
 
+  /**
+   * Effects
+   */
   useEffect(() => onChangeSetLocationMatch());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => onChangeSetSelectedChat(), [selectedRoom?.chatUid || null]);
+
+  useEffect(() => {
+    onEnterTheRoomAddUserToPlayers();
+    onChangeSetSelectedChat();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedRoomUid, selectedRoomData?.createdAt, userProfile.uid]);
+
   useEffect(() => {
     return () => onUnmountSetSelectedRoomToNull();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <React.Fragment>
-      <section className={classes.cards}>
+    <section className={classes.root}>
+      <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
+        <RoomSpeedDialWrapper />
+      </nav>
+
+      <article className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
+        <Chatter visbile={chatOpened} />
+      </article>
+
+      <Grid container direction="column" justify="flex-end" alignItems="stretch" className={classes.grid}>
         <DiceCard />
-      </section>
-      <section className={classes.chatter}>
-        <Chatter />
-      </section>
-    </React.Fragment>
+        <Players visible={playersOpened} />
+      </Grid>
+    </section>
   );
 }

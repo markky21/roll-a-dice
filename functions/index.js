@@ -46,7 +46,7 @@ exports.createChatOnRoomCreate = functions.firestore.document('rooms/{roomId}').
     .then(chatData => snapshot.ref.update({ chatUid: chatData.id }));
 });
 
-//TODO: test this function
+// TODO: fix error! Error: 5 NOT_FOUND: No document to update: projects/roll-a-dice-4cba1/databases/(default)/documents/chats/undefined
 exports.onRoomPlayersUpdateUpdateChat = functions.firestore.document('rooms/{roomId}').onUpdate((snapshot, context) => {
   const roomAfter = snapshot.after.data();
   const PlayersBefore = snapshot.before.data().players;

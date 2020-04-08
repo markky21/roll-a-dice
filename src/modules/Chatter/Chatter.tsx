@@ -13,6 +13,7 @@ import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IChat, IChatMessage } from '../../models/chats.model';
 import { IProfile } from '../../models/rooms.model';
+import { FirestoreCollection } from '../../models/firestore.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -33,19 +34,20 @@ const styles = (theme: Theme) =>
 
 interface ChatProps extends WithStyles<typeof styles> {
   height?: string;
+  visbile?: boolean;
 }
 
 function ChatC(props: ChatProps) {
-  const { classes, height = '40vh' } = props;
+  const { classes, height = '40vh', visbile } = props;
   const firestore = useFirestore();
   const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
   const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;
 
-  const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
+  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile);
   const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
 
   const onNewMessage = (message: string) => {
-    let documentRef = firestore.doc(`chats/${selectedChatUid}`);
+    let documentRef = firestore.doc(`${FirestoreCollection.CHATS}/${selectedChatUid}`);
 
     const newMessage: IChatMessage = {
       createdAt: Date.now().toString(),
@@ -69,7 +71,7 @@ function ChatC(props: ChatProps) {
   };
 
   return (
-    <Slide direction="up" in>
+    <Slide direction="up" in={visbile}>
       <Paper className={classes.paper}>
         <Grid container direction="column" justify="space-between" alignItems="flex-end">
           <div className={classes.contentWrapper}>

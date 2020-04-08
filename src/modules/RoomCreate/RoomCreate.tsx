@@ -24,7 +24,7 @@ function RoomCreateC(props: RoomCreateProps) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const history = useHistory();
   const firestore = useFirestore();
-  const userProfile: IProfile = useSelector(firebaseSelectors.profileSelector);
+  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile);
 
   const handleClose = () => {
     setOpen(false);
@@ -39,6 +39,7 @@ function RoomCreateC(props: RoomCreateProps) {
         avatarUrl: userProfile.avatarUrl,
         displayName: userProfile.displayName,
         email: userProfile.email,
+        photoURL: userProfile.photoURL,
       },
       logs: [],
       players: [],

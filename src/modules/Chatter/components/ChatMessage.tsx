@@ -1,9 +1,40 @@
 import React, { useEffect, useRef } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { Avatar, Badge, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { IChat } from '../../../models/chats.model';
 import { Dictionary } from 'react-redux-firebase';
 import { IProfile } from '../../../models/rooms.model';
+
+const StyledBadge = withStyles((theme: Theme) =>
+  createStyles({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  })
+)(Badge);
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -42,13 +73,26 @@ function ChatListElementC(props: ChatListElementProps) {
     if (!chat || !chat.messages.length) return '';
 
     return chat?.messages.map((message, id) => {
-      const { displayName, avatarUrl } = usersProfiles[message.uid] || {};
+      const { displayName, photoURL, connected } = usersProfiles[message.uid] || {};
       return (
         <React.Fragment key={message.createdAt}>
           {!!id && <Divider variant="inset" component="li" light={true} />}
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt={displayName} src={avatarUrl} />
+              {connected ? (
+                <StyledBadge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  variant="dot"
+                >
+                  <Avatar alt={displayName} src={photoURL} />
+                </StyledBadge>
+              ) : (
+                <Avatar alt={displayName} src={photoURL} />
+              )}
             </ListItemAvatar>
             <ListItemText primary={displayName} secondary={message.content} />
           </ListItem>

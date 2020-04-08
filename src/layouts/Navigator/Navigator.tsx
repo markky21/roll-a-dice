@@ -15,6 +15,7 @@ import { locationSelectors } from '../../store/location/location.selectors';
 import { NavigatorItem } from './components/NavigatorItem';
 import { RoomCard } from '../../containers/RoomCard';
 import { RouterPath } from '../../models/paths';
+import { roomsSelectors } from '../../store/rooms/rooms.selectors';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -38,9 +39,14 @@ function NavigatorC(props: NavigatorProps) {
 
   const { path: locationPath } = useSelector(locationSelectors.match);
   const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
+  const drawerOpened = useSelector(roomsSelectors.drawerOpened);
 
   return (
-    <Drawer variant="permanent" {...other}>
+    <Drawer
+      open={drawerOpened}
+      variant={locationPath === RouterPath.ROOMS_PATH_ID ? 'persistent' : 'permanent'}
+      {...other}
+    >
       <List disablePadding>
         <ListItem className={classes.logo}>Roll a Dice...</ListItem>
       </List>
@@ -75,7 +81,7 @@ function NavigatorC(props: NavigatorProps) {
       {selectedRoomData && (
         <NavigatorItem
           icon={<GamesIcon />}
-          text="Room"
+          text="Room Ditails"
           expandable={true}
           active={locationPath.indexOf(RouterPath.ROOM_PATH) > -1}
           defaultExpanded

@@ -50,7 +50,7 @@ const styles = createStyles({
     background: theme.palette.background.default,
   },
   footer: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     background: theme.palette.background.default,
   },
 });

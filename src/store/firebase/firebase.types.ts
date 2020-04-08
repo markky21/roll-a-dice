@@ -23,6 +23,11 @@ export interface FirestoreQuerySchema {
   readonly selectedRoom?: IRoom;
 }
 
+export interface FirebaseQuerySchema {
+  connected: boolean;
+}
+
 export interface FirebaseUserProfile {
   email: string;
+  status: boolean;
 }

@@ -22,4 +22,18 @@ export const firestoreSelectors = {
     }),
 
   usersProfiles: (state: AppState): Dictionary<IProfile> => state.firestore.data.usersProfiles || {},
+
+  selectedRoomPlayers: (state: AppState): IProfile[] => {
+    const usersProfiles: Dictionary<IProfile> = state.firestore.data.usersProfiles || {};
+    const playersUid = state.firestore.data.selectedRoom?.players || [];
+
+    return playersUid.map((uid: string) => usersProfiles[uid]).filter((p: IProfile) => !!p);
+  },
+
+  selectedRoomGameMasterProfile: (state: AppState): IProfile | null => {
+    const usersProfiles: Dictionary<IProfile> = state.firestore.data.usersProfiles || {};
+    const uid = state.firestore.data.selectedRoom?.gameMaster.uid;
+
+    return usersProfiles && uid ? usersProfiles[uid] : null;
+  },
 };

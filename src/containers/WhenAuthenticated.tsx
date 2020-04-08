@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useFirestoreConnect } from 'react-redux-firebase';
+import { useFirebase, useFirebaseConnect, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 
 import { chatsQuery } from '../queries/chat.query';
 import { firebaseSelectors } from '../store/firebase/firebase.selectors';
@@ -8,19 +8,45 @@ import { profileQuery } from '../queries/profile.query';
 import { roomsQuery } from '../queries/rooms.query';
 import { roomsSelectors } from '../store/rooms/rooms.selectors';
 import { mainSelectors } from '../store/main.selectors';
+import { FirestoreCollection } from '../models/firestore.model';
 
-interface CoreProps {}
+export function WhenAuthenticated() {
+  const firestore = useFirestore();
+  const firebase = useFirebase();
 
-export function WhenAuthenticated(props: CoreProps) {
-  const profile = useSelector(firebaseSelectors.profileSelector);
+  const profile = useSelector(firebaseSelectors.userProfile);
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
   const uniqProfilesUid: string[] = [...useSelector(mainSelectors.getAllNeededPlayersUid)];
-  const selectedRoom = useSelector(roomsSelectors.selectedRoom);
+  const userConnected = useSelector(firebaseSelectors.userConnected);
+
+  function updateUserStatus(connected: boolean): void {
+    const docUserRef = firestore.doc(`${FirestoreCollection.USERS}/${profile.uid}`);
+    docUserRef.update({ connected });
+  }
+
+  function updateUserStatusOnDisconnect(): void {
+    const docUserRef = firebase.ref(`${FirestoreCollection.USERS}/${profile.uid}`);
+    docUserRef.onDisconnect().update({ connected: false });
+  }
+
+  useEffect(() => {
+    if (userConnected !== true || !profile.uid) {
+      return;
+    }
+    updateUserStatus(userConnected);
+    updateUserStatusOnDisconnect();
+    return () => {
+      updateUserStatus(false);
+    };
+  }, [userConnected, profile.uid]);
+
+  useFirebaseConnect([profileQuery.connected]);
 
   useFirestoreConnect([
     /**
      * Get all profiles data listed in array (for chat and room)
      */
-    profileQuery.getProfilesByUid(uniqProfilesUid.length ? uniqProfilesUid : ['']),
+    profileQuery.getProfilesByUid(uniqProfilesUid.length ? uniqProfilesUid : ['unknown']),
     /**
      * Get all profiles listed in chat messages
      */
@@ -28,15 +54,15 @@ export function WhenAuthenticated(props: CoreProps) {
     /**
      * Get all rooms where user is MG
      */
-    roomsQuery.getUserRoomsAsGameMaster(profile.uid || ''),
+    roomsQuery.getUserRoomsAsGameMaster(profile.uid || 'unknown'),
     /**
      * Get all rooms where user is Player
      */
-    roomsQuery.getUserRoomsAsPlayer(profile.uid || ''),
+    roomsQuery.getUserRoomsAsPlayer(profile.uid || 'unknown'),
     /**
      * Get selectedRoom by player
      */
-    roomsQuery.getRoom(selectedRoom || ''),
+    roomsQuery.getRoom(selectedRoomUid || 'unknown'),
   ]);
   return <React.Fragment />;
 }
