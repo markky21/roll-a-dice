@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFirestore } from 'react-redux-firebase';
 
 import { chatsActions } from '../../../store/chats/chats.actions';
 import { Chatter } from '../../../modules/Chatter/Chatter';
-import { DiceCard } from '../../../containers/DiceCard';
+import { DiceCard } from '../../../modules/DiceCard/DiceCard';
 import { firebaseSelectors } from '../../../store/firebase/firebase.selectors';
 import { FirestoreCollection } from '../../../models/firestore.model';
 import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
@@ -19,21 +18,19 @@ import { roomsActions } from '../../../store/rooms/rooms.actions';
 import { RoomSpeedDialWrapper } from './components/RoomSpeedDial';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
 
+// TODO: update grid heights when no profiles
 const styles = (theme: Theme) => ({
   root: {
     position: 'relative' as 'relative',
     margin: theme.spacing(-6, -4),
     height: `calc(100% + ${theme.spacing(12)}px)`,
   },
-  grid: {
-    height: '100%',
-    width: '100%',
-  },
   diceWrapper: {},
   chatter: {
     zIndex: 100000,
     position: 'fixed' as 'fixed',
-    bottom: theme.spacing(26),
+    bottom: theme.spacing(4),
+    // bottom: theme.spacing(26), // TODO: update height or grid structure
     right: theme.spacing(2),
     transition: 'bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
   },
@@ -42,13 +39,30 @@ const styles = (theme: Theme) => ({
   },
   speedDial: {
     position: 'absolute' as 'absolute',
-    bottom: theme.spacing(22),
-    left: theme.spacing(2),
+    bottom: theme.spacing(23),
+    left: theme.spacing(3),
     zIndex: 10,
     transition: 'bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
   },
   speedDialLower: {
-    bottom: theme.spacing(2),
+    bottom: theme.spacing(3),
+  },
+  cssGrid: {
+    height: 'calc(100% - 60px)',
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '1fr 160px',
+    rowGap: `${theme.spacing(2)}px`,
+    columnGap: `${theme.spacing(2)}px`,
+    padding: theme.spacing(2, 2, 0, 2),
+  },
+  cssItem1: {
+    gridColumn: 1,
+    gridRow: 1,
+  },
+  cssItem2: {
+    gridColumn: 1,
+    gridRow: 2,
   },
 });
 
@@ -135,10 +149,14 @@ export function RoomC(props: RoomListProps) {
         <Chatter visbile={chatOpened} />
       </article>
 
-      <Grid container direction="column" justify="flex-end" alignItems="stretch" className={classes.grid}>
-        <DiceCard />
-        <Players visible={playersOpened} />
-      </Grid>
+      <div className={classes.cssGrid}>
+        <div className={classes.cssItem1}>
+          <DiceCard />
+        </div>
+        <div className={classes.cssItem2}>
+          <Players visible={playersOpened} />
+        </div>
+      </div>
     </section>
   );
 }

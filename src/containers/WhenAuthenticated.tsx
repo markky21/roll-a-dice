@@ -38,6 +38,7 @@ export function WhenAuthenticated() {
     return () => {
       updateUserStatus(false);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userConnected, profile.uid]);
 
   useFirebaseConnect([profileQuery.connected]);

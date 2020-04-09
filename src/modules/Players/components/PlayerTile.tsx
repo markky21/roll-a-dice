@@ -11,7 +11,7 @@ const styles = (theme: Theme) =>
   createStyles({
     tile: {
       borderRadius: theme.spacing(1),
-      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
       maxWidth: theme.spacing(30),
       overflow: 'hidden',
       padding: '0 !Important',
