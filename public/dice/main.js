@@ -3,6 +3,7 @@
 function dice_initialize(container, config) {
   var _throwRequestResult;
   var _diceSet = 'd4+d6+d8+d10+d12+d20+d100';
+
   var defaultConfig = {
     idCanvas: 'canvas',
     idLabel: 'label',
@@ -18,6 +19,7 @@ function dice_initialize(container, config) {
     roll: false,
     diceThrow$: null,
     diceThrowResult$: null,
+    diceBeforeThrow$: null,
   };
 
   var _config = Object.assign({}, defaultConfig, config);
@@ -51,6 +53,7 @@ function dice_initialize(container, config) {
   }
 
   function before_roll(vectors, notation, callback) {
+    _config.diceBeforeThrow$.next({ vectors: vectors, notation: notation, throwRequestResult: _throwRequestResult });
     // do here rpc call or whatever to get your own result of throw.
     // then callback with array of your result, example:
     // callback([2, 2, 2, 2]); // for 4d6 where all dice values are 2.
@@ -65,20 +68,29 @@ function dice_initialize(container, config) {
     _throwRequestResult = null;
     _config.diceThrowResult$.next({
       result: result,
-      notation: notation,
       diceSet: _diceSet,
+      emit: true,
+    });
+  }
+
+  function after_roll_no_emit(notation, result) {
+    _throwRequestResult = null;
+    _config.diceThrowResult$.next({
+      result: result,
+      diceSet: _diceSet,
+      emit: false,
     });
   }
 
   box.bind_mouse(container, notation_getter, before_roll, after_roll);
-  box.bind_throw($t.id('throw'), notation_getter, before_roll, after_roll);
 
   show_selector();
 
   _config.diceThrow$.subscribe(function(throwConfig) {
-    _throwRequestResult = throwConfig.throwRequestResult;
+    _throwRequestResult = throwConfig.result;
     _diceSet = throwConfig.diceSet;
-    box.start_throw(notation_getter, before_roll, after_roll);
+
+    box.start_throw(notation_getter, before_roll, after_roll_no_emit);
   });
 
   return {

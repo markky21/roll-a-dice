@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
+
 import { DiceNav } from './components/DiceNav';
-import { ReplaySubject, Subject } from 'rxjs';
 import { diceDefaultConfig } from '../../config/dice.config';
+import { DiceService } from '../../services/dice.service';
+import { useFirestore } from 'react-redux-firebase';
+import { useSelector } from 'react-redux';
+import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
+import { roomsSelectors } from '../../store/rooms/rooms.selectors';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -29,27 +34,32 @@ interface DiceCardProps extends WithStyles<typeof styles> {}
 function DiceCardC(props: DiceCardProps) {
   const { classes } = props;
 
+  const firestore = useFirestore();
+  const profile = useSelector(firebaseSelectors.userProfile);
+  const roomUid = useSelector(roomsSelectors.selectedRoomUid);
+
+  const diceService = DiceService.getInstance(firestore);
   const diceContainerEl = useRef(null);
 
-  const diceThrow$ = new Subject();
-  const diceThrowResult$ = new ReplaySubject(1);
+  useEffect(() => {
+    diceService.profile = profile;
 
-  setInterval(() => {
-    diceThrow$.next({
-      diceSet: 'd4+d6+d8+d10+d12+d20+d100',
-      throwRequestResult: [1, 2, 3, 4],
-    });
-  }, 10000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile]);
 
-  diceThrowResult$.subscribe(e => {
-    console.log(e);
-  });
+  useEffect(() => {
+    diceService.roomUid = roomUid || null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roomUid]);
+
   useEffect(() => {
     (window as any).dice_initialize(diceContainerEl.current, {
       ...diceDefaultConfig,
-      diceThrow$,
-      diceThrowResult$,
+      diceThrow$: diceService.diceThrow$,
+      diceThrowResult$: diceService.diceThrowResult$,
+      diceBeforeThrow$: diceService.diceBeforeThrow$,
     });
+    return () => diceService.hostDestroyed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,7 +69,6 @@ function DiceCardC(props: DiceCardProps) {
         <div id="canvas" />
         <nav className={classes.nav}>
           <DiceNav />
-
         </nav>
       </div>
     </Paper>

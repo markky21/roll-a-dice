@@ -1,15 +1,7 @@
+import {Dice, IDiceThrowResult} from './dice.model';
+
 export enum Log {
   DICE_ROLL = 'DICE_ROLL',
-}
-
-export enum Dice {
-  D4 = 'd4',
-  D6 = 'd6',
-  D8 = 'd8',
-  D10 = 'd10',
-  D12 = 'd12',
-  D20 = 'd20',
-  D100 = 'd100',
 }
 
 export interface IProfile {
@@ -24,8 +16,8 @@ export interface IProfile {
 export interface IRoomLog {
   timestamp: string;
   type: Log;
-  author: IProfile;
-  value: string | number;
+  authorUid: string;
+  payload: Omit<IDiceThrowResult, 'emit'>
 }
 
 export interface IRoom extends IRoomCreateForm {

@@ -6,6 +6,7 @@ export const initialState: RoomsState = {
   drawerOpened: true,
   chatOpened: true,
   playersOpened: true,
+  diceRolling: false,
 };
 
 export const roomsReducer: Reducer<RoomsState> = (state = initialState, action) => {
@@ -21,6 +22,9 @@ export const roomsReducer: Reducer<RoomsState> = (state = initialState, action) 
     }
     case RoomsAction.SET_PLAYERS_OPEN_VALUE: {
       return { ...state, playersOpened: action.payload };
+    }
+    case RoomsAction.SET_DICE_ROLLING: {
+      return { ...state, diceRolling: action.payload };
     }
     default: {
       return state;

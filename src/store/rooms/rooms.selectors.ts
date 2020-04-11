@@ -5,4 +5,5 @@ export const roomsSelectors = {
   drawerOpened: (state: AppState): boolean => state.rooms.drawerOpened,
   chatOpened: (state: AppState): boolean => state.rooms.chatOpened,
   playersOpened: (state: AppState): boolean => state.rooms.playersOpened,
+  diceRolling: (state: AppState): boolean => state.rooms.diceRolling,
 };
