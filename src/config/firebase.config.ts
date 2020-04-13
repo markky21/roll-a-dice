@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import { initializeApp, firestore } from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
@@ -29,5 +29,5 @@ export const reactReduxFirebaseProps = {
   createFirestoreInstance,
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore();
+initializeApp(firebaseConfig);
+firestore();
