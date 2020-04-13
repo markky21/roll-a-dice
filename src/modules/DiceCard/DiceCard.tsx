@@ -43,7 +43,6 @@ function DiceCardC(props: DiceCardProps) {
 
   useEffect(() => {
     diceService.profile = profile;
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
