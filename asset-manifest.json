@@ -3,12 +3,12 @@
     "static/js/0.42a90e61.chunk.js": "/roll-a-dice/static/js/0.42a90e61.chunk.js",
     "static/js/0.42a90e61.chunk.js.map": "/roll-a-dice/static/js/0.42a90e61.chunk.js.map",
     "main.css": "/roll-a-dice/static/css/main.97937574.chunk.css",
-    "main.js": "/roll-a-dice/static/js/main.611d0e7a.chunk.js",
-    "main.js.map": "/roll-a-dice/static/js/main.611d0e7a.chunk.js.map",
+    "main.js": "/roll-a-dice/static/js/main.831ce706.chunk.js",
+    "main.js.map": "/roll-a-dice/static/js/main.831ce706.chunk.js.map",
     "runtime-main.js": "/roll-a-dice/static/js/runtime-main.e09518d0.js",
     "runtime-main.js.map": "/roll-a-dice/static/js/runtime-main.e09518d0.js.map",
-    "static/js/3.ebe67570.chunk.js": "/roll-a-dice/static/js/3.ebe67570.chunk.js",
-    "static/js/3.ebe67570.chunk.js.map": "/roll-a-dice/static/js/3.ebe67570.chunk.js.map",
+    "static/js/3.8627b22b.chunk.js": "/roll-a-dice/static/js/3.8627b22b.chunk.js",
+    "static/js/3.8627b22b.chunk.js.map": "/roll-a-dice/static/js/3.8627b22b.chunk.js.map",
     "static/js/4.52e02cf6.chunk.js": "/roll-a-dice/static/js/4.52e02cf6.chunk.js",
     "static/js/4.52e02cf6.chunk.js.map": "/roll-a-dice/static/js/4.52e02cf6.chunk.js.map",
     "static/js/5.4eab8e49.chunk.js": "/roll-a-dice/static/js/5.4eab8e49.chunk.js",
@@ -22,17 +22,17 @@
     "static/js/9.5d73e309.chunk.js": "/roll-a-dice/static/js/9.5d73e309.chunk.js",
     "static/js/9.5d73e309.chunk.js.map": "/roll-a-dice/static/js/9.5d73e309.chunk.js.map",
     "index.html": "/roll-a-dice/index.html",
-    "precache-manifest.cb91f074774e05c08a729c70867f7435.js": "/roll-a-dice/precache-manifest.cb91f074774e05c08a729c70867f7435.js",
+    "precache-manifest.6a0834c608942f1442675cbf0a5e6bfe.js": "/roll-a-dice/precache-manifest.6a0834c608942f1442675cbf0a5e6bfe.js",
     "service-worker.js": "/roll-a-dice/service-worker.js",
     "static/css/main.97937574.chunk.css.map": "/roll-a-dice/static/css/main.97937574.chunk.css.map",
     "static/js/0.42a90e61.chunk.js.LICENSE.txt": "/roll-a-dice/static/js/0.42a90e61.chunk.js.LICENSE.txt",
-    "static/js/3.ebe67570.chunk.js.LICENSE.txt": "/roll-a-dice/static/js/3.ebe67570.chunk.js.LICENSE.txt",
+    "static/js/3.8627b22b.chunk.js.LICENSE.txt": "/roll-a-dice/static/js/3.8627b22b.chunk.js.LICENSE.txt",
     "static/js/4.52e02cf6.chunk.js.LICENSE.txt": "/roll-a-dice/static/js/4.52e02cf6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e09518d0.js",
-    "static/js/3.ebe67570.chunk.js",
+    "static/js/3.8627b22b.chunk.js",
     "static/css/main.97937574.chunk.css",
-    "static/js/main.611d0e7a.chunk.js"
+    "static/js/main.831ce706.chunk.js"
   ]
 }
