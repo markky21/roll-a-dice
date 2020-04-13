@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +174,7 @@
       <workItem from="1586502603883" duration="61000" />
       <workItem from="1586531960781" duration="347000" />
       <workItem from="1586595171325" duration="7742000" />
-      <workItem from="1586775134676" duration="9134000" />
+      <workItem from="1586775134676" duration="9199000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -290,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586780677987</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Changes in package.json">
+      <created>1586790109863</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1586790109863</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +315,8 @@
     <MESSAGE value="WIP DiceCard" />
     <MESSAGE value="Add LazyLoad modules pages" />
     <MESSAGE value="Fix issue with not displaying messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix issue with not displaying messages" />
+    <MESSAGE value="Changes in package.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in package.json" />
   </component>
   <component name="WindowStateProjectService">
     <state x="365" y="121" key="#Inspections" timestamp="1586776696286">
@@ -346,11 +352,11 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2" timestamp="1586780677796">
+    <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2" timestamp="1586790109606">
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586427756932" />
-    <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586780677796" />
+    <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586790109606" />
     <state width="1575" height="296" key="GridCell.Tab.0.bottom" timestamp="1586790077511">
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
@@ -444,11 +450,11 @@
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586260745417" />
     <state x="234" y="23" key="SettingsEditor/51.23.1629.1027@51.23.1629.1027" timestamp="1586775111621" />
-    <state x="652" y="379" key="Vcs.Push.Dialog.v2" timestamp="1586780680230">
+    <state x="652" y="379" key="Vcs.Push.Dialog.v2" timestamp="1586790111582">
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586427767669" />
-    <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586780680230" />
+    <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586790111582" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586273841119">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
