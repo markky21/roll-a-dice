@@ -1,5 +1,5 @@
 import { ReplaySubject, Subject } from 'rxjs';
-import { firestore } from 'firebase';
+import { firestore } from 'firebase/app';
 import { filter, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Store } from 'redux';
 
