@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter} from 'react-router-dom';
 import { Core } from './containers/Core';
 import { CreateRoutes } from './routes';
 import { reactReduxFirebaseProps } from './config/firebase.config';
@@ -33,9 +33,9 @@ export default function App(props: AppProps) {
       <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
         <ThemeProvider theme={theme}>
           <Core>
-            <BrowserRouter>
+            <HashRouter>
               <CreateRoutes />
-            </BrowserRouter>
+            </HashRouter>
           </Core>
         </ThemeProvider>
       </ReactReduxFirebaseProvider>
