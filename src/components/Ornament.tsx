@@ -5,7 +5,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 const styles = (theme: Theme) =>
   createStyles({
     ornament: {
-      backgroundImage: 'url(/assets/svg/ornament-knot.svg)',
+      backgroundImage: `url(${process.env.PUBLIC_URL}/assets/svg/ornament-knot.svg)`,
       width: '100%',
       height: '100%',
       backgroundRepeatX: 'repeat',
@@ -13,7 +13,7 @@ const styles = (theme: Theme) =>
       backgroundSize: 'contain',
     },
     vartical: {
-      backgroundImage: 'url(/assets/svg/ornament-knot-vartical.svg)',
+      backgroundImage: `url(${process.env.PUBLIC_URL}/assets/svg/ornament-knot-vartical.svg)`,
       backgroundRepeatX: 'no-repeat',
       backgroundRepeatY: 'repeat',
     },

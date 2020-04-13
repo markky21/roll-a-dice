@@ -24,7 +24,7 @@ function RoomCardC(props: RoomCardProps) {
 
   return (
     <Card className={classes.cards}>
-      <CardMedia className={classes.media} image="/assets/images/fantasy-wallpapers.jpg" title="Room image" />
+      <CardMedia className={classes.media} image={`${process.env.PUBLIC_URL}/assets/images/fantasy-wallpapers.jpg`} title="Room image" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {room.roomName}

@@ -50,7 +50,7 @@ export function RoomListsC(props: RoomListProps) {
       <section className={classes.cards}>
         <Grow in>
           <Card>
-            <CardMedia className={classes.media} image="/assets/images/fantasy-wallpapers.jpg" title="Fantasy RPG" />
+            <CardMedia className={classes.media} image={`${process.env.PUBLIC_URL}/assets/images/fantasy-wallpapers.jpg`} title="Fantasy RPG" />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Enter to the new world
