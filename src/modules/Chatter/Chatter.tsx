@@ -38,7 +38,7 @@ interface ChatProps extends WithStyles<typeof styles> {
 }
 
 function ChatC(props: ChatProps) {
-  const { classes, height = '40vh', visbile } = props;
+  const { classes, height = '40vh', visbile = true } = props;
   const firestore = useFirestore();
   const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
   const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;

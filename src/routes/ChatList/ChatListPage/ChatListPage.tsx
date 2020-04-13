@@ -35,6 +35,7 @@ export function ChatListPageC(props: ChatListProps) {
 
   const classes = useStyles();
   const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
+  
   return (
     <React.Fragment>
       <Grow in={true}>

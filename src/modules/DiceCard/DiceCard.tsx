@@ -55,8 +55,6 @@ function DiceCardC(props: DiceCardProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomUid]);
 
-  console.log({ canvasHeight: canvasWidth }, canvasRef.current);
-
   useEffect(() => {
     if (!diceInitialized && canvasWidth !== 0) {
       (window as any).dice_initialize(diceContainerEl.current, {

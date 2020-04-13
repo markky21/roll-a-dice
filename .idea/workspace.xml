@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modules/Chatter/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormComponents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ProfileAvatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/rooms.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/WhenAuthenticated.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/WhenAuthenticated.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/DiceCard/DiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DiceCard/DiceCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/ChatListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ChatList/ChatListPage/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ChatList/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ChatList/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RoomList/RoomListPage/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/RoomList/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RoomList/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +158,7 @@
       <workItem from="1586502603883" duration="61000" />
       <workItem from="1586531960781" duration="347000" />
       <workItem from="1586595171325" duration="7742000" />
-      <workItem from="1586775134676" duration="2604000" />
+      <workItem from="1586775134676" duration="4448000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -267,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586427757470</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add LazyLoad modules pages">
+      <created>1586777947944</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1586777947944</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +283,8 @@
     <MESSAGE value="WIP Implementing RoomCreate and RoomCreateForm.tsx components" />
     <MESSAGE value="WIP RoomPage" />
     <MESSAGE value="WIP DiceCard" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP DiceCard" />
+    <MESSAGE value="Add LazyLoad modules pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add LazyLoad modules pages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="365" y="121" key="#Inspections" timestamp="1586776696286">
@@ -321,10 +320,11 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1586427756932">
-      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    <state x="54" y="23" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1586777947244">
+      <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586427756932" />
+    <state x="54" y="23" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586777947244" />
     <state width="1575" height="296" key="GridCell.Tab.0.bottom" timestamp="1586776654124">
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
@@ -418,10 +418,11 @@
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586260745417" />
     <state x="234" y="23" key="SettingsEditor/51.23.1629.1027@51.23.1629.1027" timestamp="1586775111621" />
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1586427767669">
-      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    <state x="652" y="379" key="Vcs.Push.Dialog.v2" timestamp="1586777950178">
+      <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586427767669" />
+    <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586777950178" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586273841119">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
@@ -438,21 +439,22 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-1237" y="-568" width="1560" height="2063" key="dock-window-2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586424582215" />
-    <state x="-2302" y="-318" width="1119" height="1179" key="find.popup" timestamp="1586444539909">
-      <screen x="-3786" y="-1057" width="3786" height="2137" />
+    <state x="691" y="378" width="766" height="624" key="find.popup" timestamp="1586780461636">
+      <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-2302" y="-318" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586444539909" />
     <state x="690" y="378" width="613" height="504" key="find.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586066829048" />
+    <state x="691" y="378" width="766" height="624" key="find.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1586780461636" />
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate" timestamp="1586024500997">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="687" y="262" width="838" height="496" key="search.everywhere.popup" timestamp="1586776645740">
+    <state x="687" y="262" width="838" height="496" key="search.everywhere.popup" timestamp="1586780500847">
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586466129571" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1585819421253" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
-    <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1586776645740" />
+    <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1586780500847" />
   </component>
 </project>

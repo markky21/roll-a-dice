@@ -1,17 +1,28 @@
 import React, { Suspense } from 'react';
+import { Backdrop, createStyles, Theme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { Route, Switch } from 'react-router-dom';
 
+import { ChatList } from './ChatList';
 import { CoreLayout } from '../layouts/CoreLayout';
 import { Home } from './Home';
-import { RoomList } from './RoomList';
-import { ChatList } from './ChatList';
 import { Room } from './Room';
-import { Loader } from '../components/Loader';
+import { RoomList } from './RoomList';
 
-export function createRoutes() {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  })
+);
+
+export function CreateRoutes() {
+  const classes = useStyles();
   return (
     <CoreLayout>
-      <Suspense fallback={<Loader style={{ backgroundColor: 'transparent' }} />}>
+      <Suspense fallback={<Backdrop className={classes.backdrop} open />}>
         <Switch>
           <Route exact path={Home.path} component={Home.component} />
 
