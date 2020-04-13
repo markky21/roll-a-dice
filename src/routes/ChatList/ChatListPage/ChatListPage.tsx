@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ChatList } from '../../../modules/ChatList/ChatList';
 import { chatsSelectors } from '../../../store/chats/chats.selectors';
-import { Chatter } from '../../../modules/Chatter/Chatter';
+import { Chatter } from '../../../modules/Chatter';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
 import { locationSelectors } from '../../../store/location/location.selectors';

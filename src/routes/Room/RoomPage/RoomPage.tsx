@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFirestore } from 'react-redux-firebase';
 
 import { chatsActions } from '../../../store/chats/chats.actions';
-import { Chatter } from '../../../modules/Chatter/Chatter';
+import { Chatter } from '../../../modules/Chatter';
 import { DiceCard } from '../../../modules/DiceCard/DiceCard';
 import { firebaseSelectors } from '../../../store/firebase/firebase.selectors';
 import { FirestoreCollection } from '../../../models/firestore.model';

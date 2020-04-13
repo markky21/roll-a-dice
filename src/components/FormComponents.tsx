@@ -8,6 +8,7 @@ import {
   FormLabel,
   InputLabel,
   Select,
+  Slider,
   TextField,
 } from '@material-ui/core';
 import { Field } from 'redux-form';
@@ -136,8 +137,6 @@ export const FormFieldCheckboxGroup = (props: FormFieldWithOptionsProps) => {
       );
     });
 
-    // console.log({ touched, error });
-
     return (
       <FormControl error={touched && !!error} component="fieldset">
         <FormLabel component="legend">{label}</FormLabel>
@@ -148,4 +147,34 @@ export const FormFieldCheckboxGroup = (props: FormFieldWithOptionsProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
+};
+
+export const FormFieldDiceSpinner = (props: FormFieldGenericProps) => {
+  const classes = useStyles();
+
+  function valuetext(value: number) {
+    return `${value}`;
+  }
+
+  const formField = ({ label, input, meta: { touched, invalid, error }, ...custom }: any) => (
+    <React.Fragment>
+      <FormControlLabel
+        control={
+          <Slider
+            defaultValue={1}
+            getAriaValueText={valuetext}
+            aria-labelledby="number-of-dices"
+            valueLabelDisplay="auto"
+            step={1}
+            marks
+            min={0}
+            max={16}
+          />
+        }
+        label={label}
+      />
+    </React.Fragment>
+  );
+
+  return <Field {...props} component={formField} className={classes.formField} />;
 };

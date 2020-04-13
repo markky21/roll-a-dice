@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 
@@ -34,6 +34,10 @@ interface DiceCardProps extends WithStyles<typeof styles> {}
 function DiceCardC(props: DiceCardProps) {
   const { classes } = props;
 
+  const canvasRef = React.useRef(null);
+  const canvasWidth: number = (canvasRef.current && (canvasRef.current as any).getBoundingClientRect().width) || 0;
+
+  const [diceInitialized, setDiceInitialized] = useState(false);
   const firestore = useFirestore();
   const profile = useSelector(firebaseSelectors.userProfile);
   const roomUid = useSelector(roomsSelectors.selectedRoomUid);
@@ -43,7 +47,6 @@ function DiceCardC(props: DiceCardProps) {
 
   useEffect(() => {
     diceService.profile = profile;
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
@@ -52,21 +55,26 @@ function DiceCardC(props: DiceCardProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomUid]);
 
+  console.log({ canvasHeight: canvasWidth }, canvasRef.current);
+
   useEffect(() => {
-    (window as any).dice_initialize(diceContainerEl.current, {
-      ...diceDefaultConfig,
-      diceThrow$: diceService.diceThrow$,
-      diceThrowResult$: diceService.diceThrowResult$,
-      diceBeforeThrow$: diceService.diceBeforeThrow$,
-    });
+    if (!diceInitialized && canvasWidth !== 0) {
+      (window as any).dice_initialize(diceContainerEl.current, {
+        ...diceDefaultConfig,
+        diceThrow$: diceService.diceThrow$,
+        diceThrowResult$: diceService.diceThrowResult$,
+        diceBeforeThrow$: diceService.diceBeforeThrow$,
+      });
+      setDiceInitialized(true);
+    }
     return () => diceService.hostDestroyed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [canvasWidth]);
 
   return (
     <Paper elevation={3} className={classes.root}>
       <div id="diceCanvasContainer" ref={diceContainerEl} className={classes.diceCanvas}>
-        <div id="canvas" />
+        <div ref={canvasRef} id="canvas" />
         <nav className={classes.nav}>
           <DiceNav />
         </nav>

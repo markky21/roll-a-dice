@@ -86,4 +86,4 @@ function ChatC(props: ChatProps) {
   );
 }
 
-export const Chatter = withStyles(styles)(ChatC);
+export default withStyles(styles)(ChatC);
