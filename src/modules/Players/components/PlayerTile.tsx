@@ -41,7 +41,7 @@ function PlayerTileC(props: PlayerTileProps) {
 
   return (
     <GridListTile className={classes.tile}>
-      <img src={player.photoURL} alt={player.displayName} />
+      <img src={player.avatarUrl || player.photoURL} alt={player.displayName} />
       <GridListTileBar
         title={player.displayName}
         classes={{

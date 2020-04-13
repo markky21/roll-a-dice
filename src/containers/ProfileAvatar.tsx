@@ -57,7 +57,7 @@ function ProfileAvatarC(props: ProfileAvatarProps) {
   return (
     <React.Fragment>
       <IconButton color="inherit" className={classes.iconButtonAvatar} onClick={handleClick}>
-        <Avatar src={profile.photoURL} alt={profile.displayName} className={classes.avatarSize} />
+        <Avatar src={profile.avatarUrl || profile.photoURL} alt={profile.displayName} className={classes.avatarSize} />
       </IconButton>
 
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>

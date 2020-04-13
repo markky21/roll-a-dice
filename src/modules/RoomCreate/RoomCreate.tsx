@@ -39,7 +39,7 @@ function RoomCreateC(props: RoomCreateProps) {
         avatarUrl: userProfile.avatarUrl,
         displayName: userProfile.displayName,
         email: userProfile.email,
-        photoURL: userProfile.photoURL,
+        photoURL: userProfile.avatarUrl || userProfile.photoURL,
       },
       logs: [],
       players: [],

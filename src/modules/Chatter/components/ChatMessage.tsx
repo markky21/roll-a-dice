@@ -73,7 +73,7 @@ function ChatListElementC(props: ChatListElementProps) {
     if (!chat || !chat.messages.length) return '';
 
     return chat?.messages.map((message, id) => {
-      const { displayName, photoURL, connected } = usersProfiles[message.uid] || {};
+      const { displayName, photoURL, avatarUrl, connected } = usersProfiles[message.uid] || {};
       return (
         <React.Fragment key={message.createdAt}>
           {!!id && <Divider variant="inset" component="li" light={true} />}
@@ -88,10 +88,10 @@ function ChatListElementC(props: ChatListElementProps) {
                   }}
                   variant="dot"
                 >
-                  <Avatar alt={displayName} src={photoURL} />
+                  <Avatar alt={displayName} src={avatarUrl || photoURL} />
                 </StyledBadge>
               ) : (
-                <Avatar alt={displayName} src={photoURL} />
+                <Avatar alt={displayName} src={avatarUrl || photoURL} />
               )}
             </ListItemAvatar>
             <ListItemText primary={displayName} secondary={message.content} />
