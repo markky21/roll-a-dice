@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useFirebase, useFirebaseConnect, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 
 import { chatsQuery } from '../queries/chat.query';
@@ -9,9 +9,6 @@ import { roomsQuery } from '../queries/rooms.query';
 import { roomsSelectors } from '../store/rooms/rooms.selectors';
 import { mainSelectors } from '../store/main.selectors';
 import { FirestoreCollection } from '../models/firestore.model';
-import { chatsSelectors } from '../store/chats/chats.selectors';
-import { chatsActions } from '../store/chats/chats.actions';
-import { firestoreSelectors } from '../store/firebase/firestore.selectors';
 
 export function WhenAuthenticated() {
   const firestore = useFirestore();
@@ -21,9 +18,6 @@ export function WhenAuthenticated() {
   const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
   const uniqProfilesUid: string[] = [...useSelector(mainSelectors.getAllNeededPlayersUid)];
   const userConnected = useSelector(firebaseSelectors.userConnected);
-  const selectedChat = useSelector(chatsSelectors.selectedChat);
-  const userChats = useSelector(firestoreSelectors.userChats);
-  const dispatch = useDispatch();
 
   function updateUserStatus(connected: boolean): void {
     const docUserRef = firestore.doc(`${FirestoreCollection.USERS}/${profile.uid}`);
@@ -46,13 +40,6 @@ export function WhenAuthenticated() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userConnected, profile.uid]);
-
-  useEffect(() => {
-    if (!selectedChat && Object.keys(userChats || {}).length) {
-      dispatch(chatsActions.setSelectedChat(Object.keys(userChats as any)[0]));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!!selectedChat, Object.keys(userChats || {}).length === 0]);
 
   useFirebaseConnect([profileQuery.connected]);
 

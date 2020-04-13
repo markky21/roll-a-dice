@@ -30,30 +30,37 @@ export interface IRoom extends IRoomCreateForm {
 admin.initializeApp();
 const db = admin.firestore();
 
-exports.createChatOnRoomCreate = functions.firestore.document('rooms/{roomId}').onCreate((snapshot, context) => {
-  const data = snapshot.data();
+exports.createChatOnRoomCreate = functions.firestore.document('rooms/{roomId}').onCreate((roomSnapshot, context) => {
+  const data = roomSnapshot.data();
 
   const chat = {
     roomName: data.roomName,
     createdAt: Date.now().toString(),
     messages: [],
-    roomUid: snapshot.id,
+    roomUid: roomSnapshot.id,
     players: [data.gameMaster.uid],
   };
   return db
     .collection('chats')
     .add(chat)
-    .then(chatData => snapshot.ref.update({ chatUid: chatData.id }));
+    .then(chatData => roomSnapshot.ref.update({ chatUid: chatData.id }));
 });
 
-// TODO: fix error! Error: 5 NOT_FOUND: No document to update: projects/roll-a-dice-4cba1/databases/(default)/documents/chats/undefined
-exports.onRoomPlayersUpdateUpdateChat = functions.firestore.document('rooms/{roomId}').onUpdate((snapshot, context) => {
-  const roomAfter = snapshot.after.data();
-  const PlayersBefore = snapshot.before.data().players;
-  const PlayersAfter = snapshot.after.data().players;
+exports.onRoomPlayersUpdateUpdateChat = functions.firestore
+  .document('rooms/{roomId}')
+  .onUpdate((roomSnapshot, context) => {
+    const roomAfter = roomSnapshot.after.data();
+    const roomBefore = roomSnapshot.before.data();
+    const PlayersBefore = roomBefore.players;
+    const PlayersAfter = roomAfter.players;
 
-  if (JSON.stringify(PlayersBefore) !== JSON.stringify(PlayersAfter)) {
-    const chatRef = db.doc(`chats/${roomAfter.chatUid}`);
-    return chatRef.update({ players: [roomAfter.gameMaster.uid, ...snapshot.after.data().players] });
-  }
-});
+    if (JSON.stringify(PlayersBefore) !== JSON.stringify(PlayersAfter && Boolean(roomBefore.chatUid))) {
+      const chatRef = db.doc(`chats/${roomBefore.chatUid}`);
+
+      return chatRef.get().then(chatSnapshot => {
+        return chatSnapshot.exists
+          ? chatRef.update({ players: [roomAfter.gameMaster.uid, ...roomSnapshot.after.data().players] })
+          : null;
+      });
+    }
+  });

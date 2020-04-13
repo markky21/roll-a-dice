@@ -60,8 +60,15 @@ function ChatListC(props: ChatListProps) {
     return () => {
       dispatch(chatsActions.setSelectedChat(null));
     };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!selectedChat && Object.keys(userChats || {}).length) {
+      dispatch(chatsActions.setSelectedChat(Object.keys(userChats as any)[0]));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [!!selectedChat, Object.keys(userChats || {}).length === 0]);
 
   const onChatClick = (chatId: string) => {
     dispatch(chatsActions.setSelectedChat(chatId));
