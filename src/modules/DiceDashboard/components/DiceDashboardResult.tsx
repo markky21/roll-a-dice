@@ -20,8 +20,6 @@ function DiceDashboardResultC(props: DiceDashboardResultProps) {
       resultObject[diceName] = [...(resultObject[diceName] || []), throwResult?.result[id]];
     });
 
-    console.log({ resultObject });
-
     return Object.keys(resultObject).map(diceName => (
       <ListItem key={diceName}>
         <Typography variant="h2" component="div">

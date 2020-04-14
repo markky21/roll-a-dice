@@ -33,10 +33,10 @@ export class DiceService {
 
   public get handleDiceSetFormChanges$(): Observable<string> {
     return this.storeService.getDiceSetForm().pipe(
-        map(form => form?.values),
-        distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
-        map(dices => diceSetToString(dices)),
-        takeUntil(this.takeUntil$)
+      map(form => form?.values),
+      distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+      map(dices => diceSetToString(dices)),
+      takeUntil(this.takeUntil$)
     );
   }
 
@@ -49,19 +49,19 @@ export class DiceService {
   }
 
   private createSubscriptions(): void {
-    this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
-      console.log('diceThrow$: ', diceThrow);
-    });
+    // this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+    //   console.log('diceThrow$: ', diceThrow);
+    // });
 
     this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(true);
-      console.log('diceBeforeThrow$: ', diceThrow);
+      // console.log('diceBeforeThrow$: ', diceThrow);
     });
 
     this.diceThrowResult$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(false);
       diceThrow.emit && this.firestoreAddNewThrow(diceThrow);
-      console.log('diceThrowResult$: ', diceThrow);
+      // console.log('diceThrowResult$: ', diceThrow);
     });
 
     this.performDiceThrowWhenNewDiceThrowLogAppears();

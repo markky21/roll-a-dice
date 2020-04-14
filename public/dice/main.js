@@ -3,6 +3,7 @@
 function dice_initialize(container, config) {
   var _throwRequestResult;
   var _diceSet = 'd4+d6+d8+d10+d12+d20+d100';
+  var _diceSetArray = [];
 
   var defaultConfig = {
     idCanvas: 'canvas',
@@ -54,7 +55,7 @@ function dice_initialize(container, config) {
   }
 
   function before_roll(vectors, notation, callback) {
-    _config.diceBeforeThrow$.next({ vectors: vectors, notation: notation, throwRequestResult: _throwRequestResult });
+    _config.diceBeforeThrow$.next({ vectors: vectors, notation: notation, result: _throwRequestResult });
     // do here rpc call or whatever to get your own result of throw.
     // then callback with array of your result, example:
     // callback([2, 2, 2, 2]); // for 4d6 where all dice values are 2.
@@ -66,8 +67,6 @@ function dice_initialize(container, config) {
   }
 
   function after_roll(notation, result) {
-
-    console.log({notation});
     _throwRequestResult = null;
     _config.diceThrowResult$.next({
       result: result,
@@ -80,7 +79,7 @@ function dice_initialize(container, config) {
     _throwRequestResult = null;
     _config.diceThrowResult$.next({
       result: result,
-      diceSet: _diceSet,
+      diceSet: $t.dice.parse_notation(_diceSet).set,
       emit: false,
     });
   }
@@ -91,14 +90,30 @@ function dice_initialize(container, config) {
 
   _config.diceThrow$.subscribe(function(throwConfig) {
     _throwRequestResult = throwConfig.result;
-    _diceSet = throwConfig.diceSet;
+    _diceSet = prepareDiceSetToString(throwConfig.diceSet);
+    _diceSetArray = throwConfig.diceSet;
 
     box.start_throw(notation_getter, before_roll, after_roll_no_emit);
   });
 
-  _config.diceSet$.subscribe(diceSet => (_diceSet = diceSet));
+  _config.diceSet$.subscribe(function(diceSet) {
+    _diceSet = diceSet;
+  });
 
   return {
     diceThrowResult$: _config.diceThrowResult$,
   };
+
+  function prepareDiceSetToString(diceSet) {
+    var counts = {};
+    diceSet.forEach(function(x) {
+      counts[x] = (counts[x] || 0) + 1;
+    });
+
+    return Object.keys(counts)
+      .map(function(diceName, id) {
+        return counts[diceName] + diceName;
+      })
+      .join('+');
+  }
 }
