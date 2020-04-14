@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a4fe61a19cf9a265860699b784a3cd96",
+    "revision": "90c9a0ad2164dfb6e848c0d74d9c121b",
     "url": "/roll-a-dice/index.html"
   },
   {
-    "revision": "d1616966a8ae5f12c14e",
+    "revision": "5f467d448569dc057dca",
     "url": "/roll-a-dice/static/css/main.97937574.chunk.css"
   },
   {
@@ -36,27 +36,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/roll-a-dice/static/js/5.9130189c.chunk.js"
   },
   {
-    "revision": "9d777b6bd4b702695679",
-    "url": "/roll-a-dice/static/js/6.3dbe32e6.chunk.js"
+    "revision": "9c6b7fca3c50afcf9dbb",
+    "url": "/roll-a-dice/static/js/6.93931a25.chunk.js"
   },
   {
     "revision": "a8ca7bc67940da001f43",
     "url": "/roll-a-dice/static/js/7.57120c5d.chunk.js"
   },
   {
-    "revision": "f203c1917c57449a3c05",
-    "url": "/roll-a-dice/static/js/8.58ef9ba0.chunk.js"
+    "revision": "78c522a45eb7852f8ea9",
+    "url": "/roll-a-dice/static/js/8.82c7795e.chunk.js"
   },
   {
     "revision": "f8c40d5eef1279b31390",
     "url": "/roll-a-dice/static/js/9.bdd8edef.chunk.js"
   },
   {
-    "revision": "d1616966a8ae5f12c14e",
-    "url": "/roll-a-dice/static/js/main.671101d1.chunk.js"
+    "revision": "5f467d448569dc057dca",
+    "url": "/roll-a-dice/static/js/main.1db8b524.chunk.js"
   },
   {
-    "revision": "525880596f03c5aa7f37",
-    "url": "/roll-a-dice/static/js/runtime-main.78b397b4.js"
+    "revision": "dd7d25e062def0637d50",
+    "url": "/roll-a-dice/static/js/runtime-main.3d63ab07.js"
   }
 ]);
