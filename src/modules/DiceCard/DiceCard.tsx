@@ -65,7 +65,6 @@ function DiceCardC(props: DiceCardProps) {
       });
       setDiceInitialized(true);
     }
-    return () => diceService.hostDestroyed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasWidth]);
 

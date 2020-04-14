@@ -56,7 +56,7 @@ export class DiceService {
     this.diceThrowResult$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(false);
       diceThrow.emit && this.firestoreAddNewThrow(diceThrow);
-      // console.log('diceThrowResult$: ', diceThrow);
+      console.log('diceThrowResult$: ', diceThrow);
     });
 
     this.performDiceThrowWhenNewDiceThrowLogAppears();

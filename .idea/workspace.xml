@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be13d24f-878a-4291-b4fe-6b38eab094d3" name="Default Changelist" comment="">
+    <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/rooms.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/firebase/firebase.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firebase.selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/dice/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dice/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DiceCard/DiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DiceCard/DiceCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/dice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dice.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,19 +74,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/modules/DiceCard/components" />
-      <recent name="$PROJECT_DIR$/src/modules/Players/components" />
-      <recent name="$PROJECT_DIR$/public/assets/images" />
-      <recent name="$PROJECT_DIR$/src/modules/Players" />
-      <recent name="$PROJECT_DIR$/src/routes/Room/RoomPage/components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/DiceCard" />
       <recent name="$PROJECT_DIR$/functions/src/firestore" />
       <recent name="$PROJECT_DIR$/public/assets/svg" />
       <recent name="$PROJECT_DIR$/src/containers" />
       <recent name="$PROJECT_DIR$/src/routes/WhenAuthenticatedPage/WhenAuthenticated" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/DiceCard/components" />
+      <recent name="$PROJECT_DIR$/src/modules/Players/components" />
+      <recent name="$PROJECT_DIR$/public/assets/images" />
+      <recent name="$PROJECT_DIR$/src/modules/Players" />
+      <recent name="$PROJECT_DIR$/src/routes/Room/RoomPage/components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.deploy">
@@ -402,31 +400,31 @@
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586427756932" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
-    <state width="1386" height="234" key="GridCell.Tab.0.bottom" timestamp="1586813278892">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="3728" height="698" key="GridCell.Tab.0.bottom" timestamp="1586845140179">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="358" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586607006393" />
+    <state width="3728" height="698" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586845140179" />
     <state width="1386" height="234" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586813278892" />
     <state width="3724" height="358" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121192" />
     <state width="1575" height="296" key="GridCell.Tab.0.bottom/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032580" />
-    <state width="1386" height="234" key="GridCell.Tab.0.center" timestamp="1586813278891">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="3728" height="698" key="GridCell.Tab.0.center" timestamp="1586845140178">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="358" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586607006391" />
+    <state width="3728" height="698" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586845140178" />
     <state width="1386" height="234" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586813278891" />
     <state width="3724" height="358" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.center/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032579" />
-    <state width="1386" height="234" key="GridCell.Tab.0.left" timestamp="1586813278890">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="3728" height="698" key="GridCell.Tab.0.left" timestamp="1586845140177">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="358" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586607006388" />
+    <state width="3728" height="698" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586845140177" />
     <state width="1386" height="234" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586813278890" />
     <state width="3724" height="358" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.left/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032578" />
-    <state width="1386" height="234" key="GridCell.Tab.0.right" timestamp="1586813278891">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="3728" height="698" key="GridCell.Tab.0.right" timestamp="1586845140178">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="358" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586607006392" />
+    <state width="3728" height="698" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586845140178" />
     <state width="1386" height="234" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586813278891" />
     <state width="3724" height="358" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.right/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032579" />
@@ -528,10 +526,10 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="561" y="227" width="838" height="424" key="search.everywhere.popup" timestamp="1586814157100">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup" timestamp="1586845216961">
+      <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586466129571" />
+    <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586845216961" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586814157100" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
     <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1586793079223" />
