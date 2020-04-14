@@ -20,11 +20,11 @@ function dice_initialize(container, config) {
     diceThrow$: null,
     diceThrowResult$: null,
     diceBeforeThrow$: null,
+    diceSet$: null,
   };
 
   var _config = Object.assign({}, defaultConfig, config);
   var containerBox = container.getBoundingClientRect();
-
 
   var canvas = $t.id(_config.idCanvas);
   canvas.style.width = containerBox.width - 1 + 'px';
@@ -66,10 +66,12 @@ function dice_initialize(container, config) {
   }
 
   function after_roll(notation, result) {
+
+    console.log({notation});
     _throwRequestResult = null;
     _config.diceThrowResult$.next({
       result: result,
-      diceSet: _diceSet,
+      diceSet: notation.set,
       emit: true,
     });
   }
@@ -93,6 +95,8 @@ function dice_initialize(container, config) {
 
     box.start_throw(notation_getter, before_roll, after_roll_no_emit);
   });
+
+  _config.diceSet$.subscribe(diceSet => (_diceSet = diceSet));
 
   return {
     diceThrowResult$: _config.diceThrowResult$,
