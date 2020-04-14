@@ -50,6 +50,13 @@ export const createRoomFormModel = {
     ],
   },
   description: { name: 'description', label: 'Room description', multiline: true, fullWidth: true },
+  d4: { name: Dice.D4, label: Dice.D4 },
+  d6: { label: Dice.D6, name: Dice.D6 },
+  d8: { label: Dice.D8, name: Dice.D8 },
+  d10: { label: Dice.D10, name: Dice.D10 },
+  d12: { label: Dice.D12, name: Dice.D12 },
+  d20: { label: Dice.D20, name: Dice.D20 },
+  d100: { label: Dice.D100, name: Dice.D100 },
 };
 
 export const diceSetFormModel = {
@@ -61,3 +68,7 @@ export const diceSetFormModel = {
   diceD20: { name: Dice.D20, label: Dice.D20, defaultValue: 1 },
   diceD100: { name: Dice.D100, label: Dice.D100, defaultValue: 1 },
 };
+
+export interface IDiceDashboardForm {
+  [key: string]: number;
+}

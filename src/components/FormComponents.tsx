@@ -21,6 +21,8 @@ interface FormFieldGenericProps<T = any> {
   name: string;
   label: string;
   value?: T;
+  min?: number;
+  max?: number;
   [key: string]: any;
 }
 export interface IGroupOption {
@@ -37,7 +39,11 @@ interface FormFieldWithOptionsProps extends FormFieldGenericProps {
  */
 
 const styles = (theme: Theme) => ({
-  formField: { marginBottom: '16px' },
+  formField: { marginBottom: theme.spacing(2) },
+  sliderFormField: {
+    width: '100%',
+    marginLeft: 0,
+  },
 });
 
 const useStyles = makeStyles(styles);
@@ -149,32 +155,45 @@ export const FormFieldCheckboxGroup = React.memo((props: FormFieldWithOptionsPro
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
 });
 
-export const FormFieldDiceSpinner = React.memo((props: FormFieldGenericProps) => {
+export const FormFieldSlider = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
 
   function valuetext(value: number) {
     return `${value}`;
   }
 
-  const formField = ({ label, input, meta: { touched, invalid, error }, ...custom }: any) => (
-    <React.Fragment>
+  const formField = ({
+    min = 0,
+    max = 16,
+    label,
+    input: { value, onChange, ...inputRest },
+    meta: { touched, invalid, error },
+    ...custom
+  }: any) => {
+    return (
       <FormControlLabel
+        className={classes.sliderFormField}
+        label={label}
+        labelPlacement="start"
         control={
           <Slider
-            defaultValue={1}
+            defaultValue={0}
             getAriaValueText={valuetext}
             aria-labelledby="number-of-dices"
             valueLabelDisplay="auto"
             step={1}
             marks
-            min={0}
-            max={16}
+            min={min}
+            max={max}
+            value={typeof value === 'number' ? value : 0}
+            onChange={(e: Event, value: number) => onChange(value)}
+            {...inputRest}
+            {...custom}
           />
         }
-        label={label}
       />
-    </React.Fragment>
-  );
+    );
+  };
 
   return <Field {...props} component={formField} className={classes.formField} />;
 });

@@ -1,6 +1,6 @@
 import { Action, combineReducers, Reducer } from 'redux';
 import { firebaseReducer, FirebaseReducer, FirestoreReducer } from 'react-redux-firebase';
-import { reducer as formReducer } from 'redux-form';
+import { FormReducer, reducer as formReducer } from 'redux-form';
 // @ts-ignore
 import firestore from 'redux-firestore/lib/reducer';
 
@@ -53,8 +53,18 @@ const rootReducer = combineReducers<RootState>({
   firestore,
 });
 
+export interface IDiceSetForm {
+  registeredFields: {
+    [key: string]: Object;
+  };
+  values: {
+    [key: string]: number;
+  };
+}
+
 export interface AppState extends ReturnType<typeof rootReducer> {
   chats: ChatsState;
   rooms: RoomsState;
   location: LocationState;
+  form: FormReducer & { diceSetForm: IDiceSetForm };
 }

@@ -6,8 +6,8 @@ export interface IDiceBeforeThrow {
 }
 
 export interface IDiceThrowResult {
-  diceSet: string;
-  throwRequestResult: number[];
+  diceSet: string[];
+  result: number[];
   emit: boolean;
 }
 
@@ -47,6 +47,6 @@ interface IDiceVector {
 }
 
 export interface IDiceThrow {
-  diceSet: string;
-  throwRequestResult: number[];
+  diceSet: string[];
+  result: number[];
 }

@@ -1,28 +1,24 @@
-import { ReplaySubject, Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
-import { filter, takeUntil, withLatestFrom } from 'rxjs/operators';
-import { Store } from 'redux';
+import { distinctUntilChanged, filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 import { IDiceBeforeThrow, IDiceThrow, IDiceThrowResult } from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
 import { FirestoreCollection } from '../models/firestore.model';
 import { IProfile, IRoom, IRoomLog, Log } from '../models/rooms.model';
-import { store } from '../config/store.config';
 import { StoreService } from './store.service';
+import { diceSetToString } from '../utils/dice.utils';
 
 export class DiceService {
   private static instance: DiceService | null;
 
-  //TODO implement set dice set
-  public readonly diceThrowSetArray$ = new ReplaySubject<Array<string>>(1);
   public readonly diceThrow$ = new Subject<IDiceThrow>();
   public readonly diceBeforeThrow$ = new Subject<IDiceBeforeThrow>();
   public readonly diceThrowResult$ = new ReplaySubject<IDiceThrowResult>(1);
   public profile: IProfile | null = null;
   public roomUid: string | null = null;
-  public store: Store = store;
-  private readonly takeUntil$ = new Subject();
 
+  private readonly takeUntil$ = new Subject();
   private readonly storeService: StoreService = StoreService.getInstance();
 
   private constructor(private firestore: firestore.Firestore) {
@@ -33,6 +29,15 @@ export class DiceService {
     this.takeUntil$.next();
     DiceService.instance = null;
     this.setDiceRolling(false);
+  }
+
+  public get handleDiceSetFormChanges$(): Observable<string> {
+    return this.storeService.getDiceSetForm().pipe(
+        map(form => form?.values),
+        distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+        map(dices => diceSetToString(dices)),
+        takeUntil(this.takeUntil$)
+    );
   }
 
   static getInstance(firestore: firestore.Firestore): DiceService {
@@ -66,7 +71,7 @@ export class DiceService {
    * Set UI flag to tell if dice are rolling
    */
   private setDiceRolling(diceRolling: boolean): void {
-    this.store.dispatch(roomsActions.diceRolling(diceRolling));
+    this.storeService.dispatch(roomsActions.diceRolling(diceRolling));
   }
 
   private firestoreAddNewThrow(diceThrowResult: IDiceThrowResult): void {

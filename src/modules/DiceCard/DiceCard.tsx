@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-
-import { DiceNav } from './components/DiceNav';
-import { diceDefaultConfig } from '../../config/dice.config';
-import { DiceService } from '../../services/dice.service';
 import { useFirestore } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
+
+import { diceDefaultConfig } from '../../config/dice.config';
+import { DiceService } from '../../services/dice.service';
 import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
 import { roomsSelectors } from '../../store/rooms/rooms.selectors';
 
@@ -20,12 +19,6 @@ const styles = (theme: Theme) =>
     diceCanvas: {
       width: '100%',
       height: '100%',
-      // position: 'absolute', top: 0, left: 0
-    },
-    nav: {
-      position: 'absolute' as 'absolute',
-      top: theme.spacing(1),
-      left: theme.spacing(1),
     },
   });
 
@@ -35,7 +28,7 @@ function DiceCardC(props: DiceCardProps) {
   const { classes } = props;
 
   const canvasRef = React.useRef(null);
-  const canvasWidth: number = (canvasRef.current && (canvasRef.current as any).getBoundingClientRect().width) || 0;
+  const diceContainerEl = useRef(null);
 
   const [diceInitialized, setDiceInitialized] = useState(false);
   const firestore = useFirestore();
@@ -43,7 +36,7 @@ function DiceCardC(props: DiceCardProps) {
   const roomUid = useSelector(roomsSelectors.selectedRoomUid);
 
   const diceService = DiceService.getInstance(firestore);
-  const diceContainerEl = useRef(null);
+  const canvasWidth: number = (canvasRef.current && (canvasRef.current as any).getBoundingClientRect().width) || 0;
 
   useEffect(() => {
     diceService.profile = profile;
@@ -62,19 +55,20 @@ function DiceCardC(props: DiceCardProps) {
         diceThrow$: diceService.diceThrow$,
         diceThrowResult$: diceService.diceThrowResult$,
         diceBeforeThrow$: diceService.diceBeforeThrow$,
+        diceSet$: diceService.handleDiceSetFormChanges$,
       });
       setDiceInitialized(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasWidth]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => () => diceService.hostDestroyed(), []);
+
   return (
     <Paper elevation={3} className={classes.root}>
       <div id="diceCanvasContainer" ref={diceContainerEl} className={classes.diceCanvas}>
         <div ref={canvasRef} id="canvas" />
-        <nav className={classes.nav}>
-          <DiceNav />
-        </nav>
       </div>
     </Paper>
   );

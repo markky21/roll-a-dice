@@ -17,6 +17,7 @@ import { Players } from '../../../modules/Players/Players';
 import { roomsActions } from '../../../store/rooms/rooms.actions';
 import { RoomSpeedDialWrapper } from './components/RoomSpeedDial';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
+import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashbard';
 
 // TODO: update grid heights when no profiles
 const styles = (theme: Theme) => ({
@@ -39,7 +40,7 @@ const styles = (theme: Theme) => ({
   },
   speedDial: {
     position: 'absolute' as 'absolute',
-    bottom: theme.spacing(23),
+    bottom: theme.spacing(25),
     left: theme.spacing(3),
     zIndex: 10,
     transition: 'bottom 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
@@ -48,7 +49,7 @@ const styles = (theme: Theme) => ({
     bottom: theme.spacing(3),
   },
   cssGrid: {
-    height: 'calc(100% - 60px)',
+    height: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
     gridTemplateRows: '1fr 160px',
@@ -64,6 +65,11 @@ const styles = (theme: Theme) => ({
     gridColumn: 1,
     gridRow: 2,
   },
+  diceDashboard: {
+    position: 'absolute' as 'absolute',
+    top: theme.spacing(3),
+    left: theme.spacing(3),
+  },
 });
 
 const useStyles = makeStyles(styles);
@@ -75,15 +81,17 @@ export interface RoomListProps {
 export function RoomC(props: RoomListProps) {
   const { match } = props;
 
-  const chatOpened = useSelector(roomsSelectors.chatOpened);
-  const playersOpened = useSelector(roomsSelectors.playersOpened);
   const classes = useStyles();
   const dispatch = useDispatch();
   const firestore = useFirestore();
+
+  const playersOpened = useSelector(roomsSelectors.playersOpened);
+  const chatOpened = useSelector(roomsSelectors.chatOpened);
   const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
   const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
   const storeLocationMatch = useSelector(locationSelectors.match);
   const userProfile = useSelector(firebaseSelectors.userProfile);
+  const diceRolling = useSelector(roomsSelectors.diceRolling);
 
   /**
    * Effects logic
@@ -145,13 +153,9 @@ export function RoomC(props: RoomListProps) {
 
   return (
     <section className={classes.root}>
-      <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
-        <RoomSpeedDialWrapper />
-      </nav>
-
-      <article className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
-        <Chatter visbile={chatOpened} />
-      </article>
+      <div className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
+        <Chatter visbile={chatOpened && !diceRolling} />
+      </div>
 
       <div className={classes.cssGrid}>
         <div className={classes.cssItem1}>
@@ -161,6 +165,14 @@ export function RoomC(props: RoomListProps) {
           <Players visible={playersOpened} />
         </div>
       </div>
+
+      <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
+        <RoomSpeedDialWrapper />
+      </nav>
+
+      <nav className={classes.diceDashboard}>
+        <DiceDashboard visible={!diceRolling} />
+      </nav>
     </section>
   );
 }

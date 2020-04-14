@@ -1,8 +1,8 @@
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { Store } from 'redux';
+import {AnyAction, Store} from 'redux';
 
 import { store } from '../config/store.config';
-import { AppState } from '../store/main';
+import { AppState, IDiceSetForm } from '../store/main';
 import { IProfile, IRoom, IRoomLog } from '../models/rooms.model';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 
@@ -23,6 +23,10 @@ export class StoreService {
 
   public get store$(): Observable<AppState> {
     return this._store$.asObservable();
+  }
+
+  public getDiceSetForm(): Observable<IDiceSetForm> {
+    return this.store$.pipe(map(state => state.form.diceSetForm));
   }
 
   public getSelectedRoomData$(): Observable<IRoom> {
@@ -47,6 +51,10 @@ export class StoreService {
 
   public getUserProfile$(): Observable<IProfile> {
     return this.store$.pipe(map(state => state.firebase.profile));
+  }
+
+  public dispatch(action: AnyAction): AnyAction {
+    return this.store.dispatch(action);
   }
 
   public hostDestroyed(): void {
