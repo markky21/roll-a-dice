@@ -25,6 +25,7 @@ function dice_initialize(container, config) {
   var _config = Object.assign({}, defaultConfig, config);
   var containerBox = container.getBoundingClientRect();
 
+
   var canvas = $t.id(_config.idCanvas);
   canvas.style.width = containerBox.width - 1 + 'px';
   canvas.style.height = containerBox.height - 1 + 'px';
