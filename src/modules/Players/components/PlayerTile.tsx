@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import GavelIcon from '@material-ui/icons/Gavel';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -24,7 +25,10 @@ const styles = (theme: Theme) =>
       color: theme.palette.warning.light,
     },
     masterGame: {
-      color: theme.palette.info.light,
+      position: 'absolute' as 'absolute',
+      zIndex: 10,
+      top: 0,
+      right: 0,
     },
     titleBar: {
       background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
@@ -62,9 +66,12 @@ function PlayerTileC(props: PlayerTileProps) {
       />
 
       {gameMaster && (
-        <Tooltip title={player.connected ? 'Online' : 'Offline'}>
+        <Tooltip
+          className={clsx(classes.masterGame, player.connected ? classes.title : classes.titleDisable)}
+          title={'Game Master'}
+        >
           <IconButton aria-label={`star ${player.displayName}`}>
-            <GavelIcon className={classes.masterGame} />
+            <GavelIcon />
           </IconButton>
         </Tooltip>
       )}
@@ -72,4 +79,4 @@ function PlayerTileC(props: PlayerTileProps) {
   );
 }
 
-export const PlayerTile =  React.memo(withStyles(styles)(PlayerTileC));
+export const PlayerTile = React.memo(withStyles(styles)(PlayerTileC));
