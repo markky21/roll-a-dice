@@ -64,3 +64,11 @@ exports.onRoomPlayersUpdateUpdateChat = functions.firestore
       });
     }
   });
+
+exports.onCreateUserCopyUid = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
+  const userRef = db.doc(`users/${userSnapshot.id}`);
+
+  return userRef.get().then(uSnapshot => {
+    return userRef.update({ uid: userSnapshot.id });
+  });
+});

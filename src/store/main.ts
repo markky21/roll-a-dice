@@ -26,8 +26,10 @@ interface RootState {
   firestore: FirestoreReducer.Reducer & {
     data: FirestoreSchema & FirestoreQuerySchema;
   };
-  firebase: FirebaseReducer.Reducer<FirebaseUserProfile> & { profile: IProfile;
-  data: FirebaseQuerySchema | any
+  firebase: FirebaseReducer.Reducer<FirebaseUserProfile> & {
+    auth: IProfile;
+    profile: IProfile;
+    data: FirebaseQuerySchema | any;
   };
 }
 
@@ -47,7 +49,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
 }
 
 const rootReducer = combineReducers<RootState>({
-  firebase: firebaseReducer,
+  firebase: firebaseReducer as any,
   firestore,
 });
 

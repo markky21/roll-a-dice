@@ -36,10 +36,10 @@ function RoomCreateC(props: RoomCreateProps) {
       createdAt: Date.now().toString(),
       gameMaster: {
         uid: userProfile.uid,
-        avatarUrl: userProfile.avatarUrl,
+        avatarUrl: userProfile.avatarUrl || userProfile.photoURL,
         displayName: userProfile.displayName,
         email: userProfile.email,
-        photoURL: userProfile.avatarUrl || userProfile.photoURL,
+        photoURL: (userProfile.photoURL || userProfile.avatarUrl) as string,
       },
       logs: [],
       players: [],

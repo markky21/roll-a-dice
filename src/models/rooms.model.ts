@@ -6,7 +6,7 @@ export enum Log {
 
 export interface IProfile {
   uid: string;
-  avatarUrl: string;
+  avatarUrl?: string;
   displayName: string;
   email: string;
   photoURL: string;
