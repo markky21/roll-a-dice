@@ -72,4 +72,4 @@ function PlayerTileC(props: PlayerTileProps) {
   );
 }
 
-export const PlayerTile = withStyles(styles)(PlayerTileC);
+export const PlayerTile =  React.memo(withStyles(styles)(PlayerTileC));

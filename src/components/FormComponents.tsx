@@ -54,7 +54,7 @@ export const FormFieldHelperText = ({ touched, error }: any) => {
   }
 };
 
-export const FormFieldText = (props: FormFieldGenericProps) => {
+export const FormFieldText = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
 
   const formField = ({ label, input, meta: { touched, invalid, error }, ...custom }: any) => (
@@ -70,9 +70,9 @@ export const FormFieldText = (props: FormFieldGenericProps) => {
   );
 
   return <Field {...props} component={formField} className={classes.formField} />;
-};
+});
 
-export const FormFieldSelect = (props: FormFieldGenericProps) => {
+export const FormFieldSelect = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
 
   const field = ({ input, label, meta: { touched, error }, children, ...custom }: FormFieldGenericProps) => {
@@ -97,9 +97,9 @@ export const FormFieldSelect = (props: FormFieldGenericProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-};
+});
 
-export const FormFieldCheckbox = (props: FormFieldGenericProps) => {
+export const FormFieldCheckbox = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
 
   const field = ({ input, label }: FormFieldGenericProps) => {
@@ -107,9 +107,9 @@ export const FormFieldCheckbox = (props: FormFieldGenericProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-};
+});
 
-export const FormFieldCheckboxGroup = (props: FormFieldWithOptionsProps) => {
+export const FormFieldCheckboxGroup = React.memo((props: FormFieldWithOptionsProps) => {
   const classes = useStyles();
 
   const field = ({ input, meta, options, label }: FormFieldWithOptionsProps) => {
@@ -147,9 +147,9 @@ export const FormFieldCheckboxGroup = (props: FormFieldWithOptionsProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-};
+});
 
-export const FormFieldDiceSpinner = (props: FormFieldGenericProps) => {
+export const FormFieldDiceSpinner = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
 
   function valuetext(value: number) {
@@ -177,4 +177,4 @@ export const FormFieldDiceSpinner = (props: FormFieldGenericProps) => {
   );
 
   return <Field {...props} component={formField} className={classes.formField} />;
-};
+});

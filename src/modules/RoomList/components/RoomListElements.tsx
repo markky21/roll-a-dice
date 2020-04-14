@@ -64,4 +64,4 @@ function RoomListElementC(props: RoomListElementProps) {
   );
 }
 
-export const RoomListElements = withStyles(styles)(RoomListElementC);
+export const RoomListElements =  React.memo(withStyles(styles)(RoomListElementC));

@@ -83,4 +83,4 @@ function HeaderC(props: HeaderProps) {
   );
 }
 
-export const Header = withStyles(styles)(HeaderC);
+export const Header =  React.memo(withStyles(styles)(HeaderC));

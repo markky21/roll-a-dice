@@ -29,4 +29,4 @@ function OrnamentC(props: OrnamentProps) {
   return <div className={clsx(classes.ornament, vartical && classes.vartical)} />;
 }
 
-export const Ornament = withStyles(styles)(OrnamentC);
+export const Ornament =  React.memo(withStyles(styles)(OrnamentC));

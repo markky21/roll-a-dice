@@ -124,4 +124,4 @@ function NavigatorItemC(props: NavigatorItemProps) {
   );
 }
 
-export const NavigatorItem = withStyles(styles)(NavigatorItemC);
+export const NavigatorItem =  React.memo(withStyles(styles)(NavigatorItemC));

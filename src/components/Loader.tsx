@@ -44,4 +44,4 @@ function LoaderC(props: LoaderProps) {
   );
 }
 
-export const Loader = withStyles(styles)(LoaderC);
+export const Loader =  React.memo(withStyles(styles)(LoaderC));

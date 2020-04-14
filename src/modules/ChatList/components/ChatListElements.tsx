@@ -54,4 +54,4 @@ function ChatListElementC(props: ChatListElementProps) {
   return <List className={classes.root}>{renderElement()}</List>;
 }
 
-export const ChatListElements = withStyles(styles)(ChatListElementC);
+export const ChatListElements =  React.memo(withStyles(styles)(ChatListElementC));
