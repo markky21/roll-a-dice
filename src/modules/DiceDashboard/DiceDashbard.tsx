@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardContent, CardMedia, Collapse, Grow } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 
 import { DiceDashboardForm } from './components/DiceDashboardForm';
-import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { DiceDashboardResult } from './components/DiceDashboardResult';
-import { DiceService } from '../../services/dice.service';
-import { useFirestore } from 'react-redux-firebase';
+import { DiceServiceContext } from '../../contexts/DiceService.context';
+import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IDiceThrowResult } from '../../models/dice.model';
 
 const styles = (theme: Theme) =>
@@ -39,16 +38,15 @@ export interface DiceDashboardProps extends WithStyles<typeof styles> {
 function DiceDashboardC(props: DiceDashboardProps) {
   const { classes, visible = true } = props;
 
-  const firestore = useFirestore();
   const roomData = useSelector(firestoreSelectors.selectedRoom);
 
-  const diceService = DiceService.getInstance(firestore);
+  const diceService = useContext(DiceServiceContext);
   const [throwResult, setThrowResult] = useState<IDiceThrowResult | null>(null);
 
   useEffect(() => {
-    diceService.diceThrowResult$.subscribe(result => setThrowResult(result));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    diceService?.diceThrowResult$.subscribe(result => setThrowResult(result));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [!!diceService]);
 
   return (
     <Grow in={!!roomData && visible}>
@@ -59,7 +57,7 @@ function DiceDashboardC(props: DiceDashboardProps) {
               <DiceDashboardForm diceType={roomData?.diceType} />
             </Collapse>
             <Collapse in={!!throwResult}>
-              <DiceDashboardResult throwResult={throwResult}/>
+              <DiceDashboardResult throwResult={throwResult} />
             </Collapse>
           </CardContent>
         </div>

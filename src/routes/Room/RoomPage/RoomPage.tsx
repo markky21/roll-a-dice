@@ -18,6 +18,7 @@ import { roomsActions } from '../../../store/rooms/rooms.actions';
 import { RoomSpeedDialWrapper } from './components/RoomSpeedDial';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
 import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashbard';
+import { DiceServiceContextC } from '../../../contexts/DiceService.context';
 
 // TODO: update grid heights when no profiles
 const styles = (theme: Theme) => ({
@@ -152,27 +153,29 @@ export function RoomC(props: RoomListProps) {
   }, [selectedRoomData?.chatUid]);
 
   return (
-    <section className={classes.root}>
-      <div className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
-        <Chatter visbile={chatOpened && !diceRolling} />
-      </div>
-
-      <div className={classes.cssGrid}>
-        <div className={classes.cssItem1}>
-          <DiceCard />
+    <DiceServiceContextC>
+      <section className={classes.root}>
+        <div className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
+          <Chatter visbile={chatOpened && !diceRolling} />
         </div>
-        <div className={classes.cssItem2}>
-          <Players visible={playersOpened} />
+
+        <div className={classes.cssGrid}>
+          <div className={classes.cssItem1}>
+            <DiceCard />
+          </div>
+          <div className={classes.cssItem2}>
+            <Players visible={playersOpened} />
+          </div>
         </div>
-      </div>
 
-      <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
-        <RoomSpeedDialWrapper />
-      </nav>
+        <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
+          <RoomSpeedDialWrapper />
+        </nav>
 
-      <nav className={classes.diceDashboard}>
-        <DiceDashboard visible={!diceRolling} />
-      </nav>
-    </section>
+        <nav className={classes.diceDashboard}>
+          <DiceDashboard visible={!diceRolling} />
+        </nav>
+      </section>
+    </DiceServiceContextC>
   );
 }
