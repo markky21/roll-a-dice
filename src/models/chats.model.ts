@@ -1,5 +1,3 @@
-import { IProfile } from './rooms.model';
-
 export interface IChatMessage {
   content: string;
   createdAt: string;
@@ -12,8 +10,4 @@ export interface IChat {
   messages: IChatMessage[];
   roomUid: string;
   players: string[];
-}
-
-export interface IChatToArray extends IChat {
-  id: string;
 }

@@ -78,7 +78,7 @@ function RoomSpeedDialC(props: RoomSpeedDialCProps) {
 
   return (
     <React.Fragment>
-      <SpeedDialWrapper actions={actions} direction={'up'} />
+      <SpeedDialWrapper actions={actions} direction={'right'} />
       <Snackbar
         className={classes.snackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

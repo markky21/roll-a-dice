@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardContent, CardMedia, Collapse, Grow } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
@@ -29,6 +30,9 @@ const styles = (theme: Theme) =>
       height: 38,
       width: 38,
     },
+    clicable: {
+      cursor: 'pointer',
+    },
   });
 
 export interface DiceDashboardProps extends WithStyles<typeof styles> {
@@ -50,7 +54,7 @@ function DiceDashboardC(props: DiceDashboardProps) {
 
   return (
     <Grow in={!!roomData && visible}>
-      <Card className={classes.root} onClick={() => setThrowResult(null)}>
+      <Card className={clsx(classes.root, !!throwResult && classes.clicable)} onClick={() => setThrowResult(null)}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Collapse in={!throwResult}>

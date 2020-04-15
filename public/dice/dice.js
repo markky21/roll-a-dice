@@ -997,17 +997,17 @@
     else roll();
   }
 
-  this.dice_box.prototype.bind_mouse = function(container, notation_getter, before_roll, after_roll) {
+  this.dice_box.prototype.bind_mouse = function(container, notation_getter, before_roll, after_roll, preventDefault) {
     var box = this;
     $t.bind(container, ['mousedown', 'touchstart'], function(ev) {
-      ev.preventDefault();
+      preventDefault && ev.preventDefault();
       box.mouse_time = new Date().getTime();
       box.mouse_start = $t.get_mouse_coords(ev);
     });
     $t.bind(container, ['mouseup', 'touchend'], function(ev) {
       if (box.rolling) return;
       if (box.mouse_start == undefined) return;
-      ev.stopPropagation();
+      preventDefault && ev.stopPropagation();
       var m = $t.get_mouse_coords(ev);
       var vector = { x: m.x - box.mouse_start.x, y: -(m.y - box.mouse_start.y) };
       box.mouse_start = undefined;

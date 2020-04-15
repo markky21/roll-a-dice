@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
@@ -15,6 +16,10 @@ const styles = (theme: Theme) =>
     diceCanvas: {
       width: '100%',
       height: '100%',
+      cursor: 'grab',
+    },
+    grabbing: {
+      cursor: 'grabbing',
     },
   });
 
@@ -27,6 +32,7 @@ function DiceCardC(props: DiceCardProps) {
   const diceContainerEl = useRef(null);
 
   const [diceInitialized, setDiceInitialized] = useState(false);
+  const [mouseDown, setMouseDown] = useState(false);
   const diceService = useContext(DiceServiceContext);
   const canvasWidth: number = (canvasRef.current && (canvasRef.current as any).getBoundingClientRect().width) || 0;
 
@@ -44,9 +50,20 @@ function DiceCardC(props: DiceCardProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!canvasWidth, !!diceService]);
 
+  const onMouseDown = (isDown: boolean): void => {
+    console.log({ isDown });
+    setMouseDown(isDown);
+  };
+
   return (
     <Paper elevation={3} className={classes.root}>
-      <div id="diceCanvasContainer" ref={diceContainerEl} className={classes.diceCanvas}>
+      <div
+        id="diceCanvasContainer"
+        ref={diceContainerEl}
+        className={clsx(classes.diceCanvas, mouseDown && classes.grabbing)}
+        onMouseDown={() => onMouseDown(true)}
+        onMouseUp={() => onMouseDown(false)}
+      >
         <div ref={canvasRef} id="canvas" />
       </div>
     </Paper>
