@@ -4,7 +4,6 @@
     <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/dice/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dice/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/DiceDashboard/components/DiceDashboardResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DiceDashboard/components/DiceDashboardResult.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/dice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dice.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +177,7 @@
       <workItem from="1586531960781" duration="347000" />
       <workItem from="1586595171325" duration="7742000" />
       <workItem from="1586775134676" duration="17829000" />
-      <workItem from="1586859568280" duration="20302000" />
+      <workItem from="1586859568280" duration="21384000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -362,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586884425232</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fix dice throw sync">
+      <created>1586890158763</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1586890158763</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +396,8 @@
     <MESSAGE value="add React.memo to dummy components" />
     <MESSAGE value="Fix displaying MG badge" />
     <MESSAGE value="Add favicon, add DiceDashboardForm.tsx DiceDashboardResult.tsx and DiceDashbard.tsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add favicon, add DiceDashboardForm.tsx DiceDashboardResult.tsx and DiceDashbard.tsx" />
+    <MESSAGE value="Fix dice throw sync" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix dice throw sync" />
   </component>
   <component name="WindowStateProjectService">
     <state x="365" y="121" key="#Inspections" timestamp="1586776696286">
@@ -426,37 +433,37 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1057" width="1337" height="877" key="CommitChangelistDialog2" timestamp="1586884424503">
+    <state x="-3786" y="-1057" width="1337" height="877" key="CommitChangelistDialog2" timestamp="1586890158568">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586884424503" />
+    <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890158568" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
-    <state width="3724" height="578" key="GridCell.Tab.0.bottom" timestamp="1586890126353">
+    <state width="3724" height="344" key="GridCell.Tab.0.bottom" timestamp="1586935447567">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="578" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890126353" />
+    <state width="3724" height="344" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586935447567" />
     <state width="1382" height="646" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
     <state width="3724" height="358" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121192" />
     <state width="1575" height="296" key="GridCell.Tab.0.bottom/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032580" />
-    <state width="3724" height="578" key="GridCell.Tab.0.center" timestamp="1586890126352">
+    <state width="3724" height="344" key="GridCell.Tab.0.center" timestamp="1586935447566">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="578" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890126352" />
+    <state width="3724" height="344" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586935447566" />
     <state width="1382" height="646" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319901" />
     <state width="3724" height="358" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.center/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032579" />
-    <state width="3724" height="578" key="GridCell.Tab.0.left" timestamp="1586890126352">
+    <state width="3724" height="344" key="GridCell.Tab.0.left" timestamp="1586935447565">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="578" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890126352" />
+    <state width="3724" height="344" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586935447565" />
     <state width="1382" height="646" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319900" />
     <state width="3724" height="358" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.left/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032578" />
-    <state width="3724" height="578" key="GridCell.Tab.0.right" timestamp="1586890126353">
+    <state width="3724" height="344" key="GridCell.Tab.0.right" timestamp="1586935447566">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state width="3724" height="578" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890126353" />
+    <state width="3724" height="344" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586935447566" />
     <state width="1382" height="646" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
     <state width="3724" height="358" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1575" height="296" key="GridCell.Tab.0.right/54.23.1626.1027@54.23.1626.1027" timestamp="1586798032579" />
@@ -525,10 +532,10 @@
     </state>
     <state x="-2508" y="-437" key="SettingsEditor/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586859612080" />
     <state x="234" y="23" key="SettingsEditor/51.23.1629.1027@51.23.1629.1027" timestamp="1586775111621" />
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1586884427117">
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2" timestamp="1586890161161">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
-    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586884427117" />
+    <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586890161161" />
     <state x="440" y="244" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812661051" />
     <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792828941" />
     <state x="-3686" y="-957" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586851380009">
