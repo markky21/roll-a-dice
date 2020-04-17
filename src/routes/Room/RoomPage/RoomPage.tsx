@@ -57,7 +57,6 @@ export function RoomC(props: RoomListProps) {
     if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) return;
     if (selectedRoomData.players.indexOf(userProfile.uid) !== -1) return;
 
-    debugger;
     const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
     firestore.runTransaction((t: any) => {
       return t
