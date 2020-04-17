@@ -48,13 +48,16 @@ export function RoomC(props: RoomListProps) {
   }
   function onEnterTheRoomAddUserToPlayers(): void {
     if (!selectedRoomData) return;
-    if (selectedRoomData?.maxPlayers >= selectedRoomData.players.length) {
+
+
+    if (selectedRoomData?.maxPlayers <= selectedRoomData.players.length) {
       // TODO toast message
       return;
     }
     if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) return;
     if (selectedRoomData.players.indexOf(userProfile.uid) !== -1) return;
 
+    debugger;
     const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
     firestore.runTransaction((t: any) => {
       return t

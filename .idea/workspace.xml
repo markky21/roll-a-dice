@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +182,7 @@
       <workItem from="1586775134676" duration="17829000" />
       <workItem from="1586859568280" duration="30606000" />
       <workItem from="1586974942639" duration="3447000" />
-      <workItem from="1587040305797" duration="33087000" />
+      <workItem from="1587040305797" duration="33736000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -430,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587134691127</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Major bugfix">
+      <created>1587152955502</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1587152955502</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +454,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="WIP Chatter implementation in Navbar" />
     <MESSAGE value="Adjust components and theme" />
     <MESSAGE value="Create LoadingScreen and Loading components" />
     <MESSAGE value="Adjustments in Chat components" />
@@ -473,7 +478,8 @@
     <MESSAGE value="Implemented possibility to update room description" />
     <MESSAGE value="Add DiceCard to home view" />
     <MESSAGE value="Added AddStat component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added AddStat component" />
+    <MESSAGE value="Major bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major bugfix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2493" y="-486" key="#ESLint" timestamp="1586954437395">
@@ -515,12 +521,12 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587134690755">
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587152955293">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977743385" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587134690755" />
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587152955293" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
     <state x="-2469" y="-563" key="DiffContextDialog" timestamp="1587104723669">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
@@ -632,12 +638,12 @@
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-1170" width="3586" height="1937" key="VCS.FileHistoryDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587119123400" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587134692794">
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587152957636">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977746086" />
     <state x="440" y="244" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812661051" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587134692794" />
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587152957636" />
     <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792828941" />
     <state x="-3686" y="-1170" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587152775769">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
@@ -669,12 +675,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="-2312" y="-772" width="1005" height="1032" key="search.everywhere.popup" timestamp="1587149024098">
+    <state x="-2312" y="-772" width="1005" height="1032" key="search.everywhere.popup" timestamp="1587154438589">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586955427327" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586814157100" />
-    <state x="-2312" y="-772" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587149024098" />
+    <state x="-2312" y="-772" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587154438589" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
     <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1586793079223" />
   </component>
