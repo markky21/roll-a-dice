@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cd52a91c736c69e37afbfb33d9a0e7c8",
+    "revision": "bafdd7b803c79d0a67733fe278785c09",
     "url": "/roll-a-dice/index.html"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/roll-a-dice/static/js/6.a3367af7.chunk.js"
   },
   {
-    "revision": "2d1f9c11e38eeb9e8537",
-    "url": "/roll-a-dice/static/js/7.918a3cac.chunk.js"
+    "revision": "30569b1af18bee75818f",
+    "url": "/roll-a-dice/static/js/7.1b9ecc23.chunk.js"
   },
   {
     "revision": "549123bdd062e8e84284",
@@ -56,7 +56,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/roll-a-dice/static/js/main.060f6cab.chunk.js"
   },
   {
-    "revision": "02b714f69fd7fa93e46b",
-    "url": "/roll-a-dice/static/js/runtime-main.9cbcb9bb.js"
+    "revision": "bd4d94c93196c0ed9daf",
+    "url": "/roll-a-dice/static/js/runtime-main.b0f7860f.js"
   }
 ]);
