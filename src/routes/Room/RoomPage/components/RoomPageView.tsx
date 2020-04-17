@@ -78,7 +78,7 @@ export function RoomView() {
 
   const isUserARoomPlayerOrGameMaster = useSelector(mainSelectors.isUserARoomPlayerOrGameMaster);
 
-  const diceCardFullHeight = !playersOpened || !selectedRoom?.players.length;
+  const diceCardFullHeight = !playersOpened || !selectedRoom ;
 
   return (
     <section className={classes.root}>

@@ -62,7 +62,7 @@ exports.onRoomUpdatePlayersUpdateChat = functions.firestore
     return Promise.resolve();
   });
 
-exports.onRoomUpdateLogsUpdateUpdateAppStats = functions.firestore
+exports.onRoomUpdateLogsUpdateAppStats = functions.firestore
   .document('rooms/{roomId}')
   .onUpdate((roomSnapshot, context) => {
     const roomAfter = roomSnapshot.after.data();
@@ -96,7 +96,8 @@ exports.onUserCreateCopyUid = functions.firestore.document('users/{userId}').onC
   });
 });
 
-exports.onUserCreateCopyUid = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
+
+exports.onUserCreateUpdateAppStats = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
   const applicationStatsRef = dbFirebase.ref('applicationStats');
   return applicationStatsRef.once('value').then(snapshot => {
     const stats = { ...initialApplicationStats, ...snapshot.val() };
