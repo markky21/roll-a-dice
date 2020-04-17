@@ -47,26 +47,28 @@ export function RoomC(props: RoomListProps) {
     dispatch(chatsActions.setSelectedChat(selectedRoomData?.chatUid || null));
   }
   function onEnterTheRoomAddUserToPlayers(): void {
-    if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) {
+    if (!selectedRoomData) return;
+    if (selectedRoomData?.maxPlayers >= selectedRoomData.players.length) {
+      // TODO toast message
       return;
     }
+    if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) return;
+    if (selectedRoomData.players.indexOf(userProfile.uid) !== -1) return;
 
-    if (selectedRoomData.players.indexOf(userProfile.uid) === -1) {
-      const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
-      firestore.runTransaction((t: any) => {
-        return t
-          .get(documentRef)
-          .then((doc: any) => {
-            const players = [...doc.data().players, userProfile.uid];
-            return t.update(documentRef, { players });
-          })
-          .catch((err: any) => {
-            // TODO: add toast message
-            // TRANSACTION_FAILURE action dispatched
-            console.log('Transaction failure:', err);
-          });
-      });
-    }
+    const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
+    firestore.runTransaction((t: any) => {
+      return t
+        .get(documentRef)
+        .then((doc: any) => {
+          const players = [...doc.data().players, userProfile.uid];
+          return t.update(documentRef, { players });
+        })
+        .catch((err: any) => {
+          // TODO: add toast message
+          // TRANSACTION_FAILURE action dispatched
+          console.log('Transaction failure:', err);
+        });
+    });
   }
 
   /**
@@ -90,8 +92,13 @@ export function RoomC(props: RoomListProps) {
   }, [selectedRoomData?.chatUid]);
 
   return (
-    <DiceServiceContextC>
-      <RoomView />
-    </DiceServiceContextC>
+    <React.Fragment>
+      {selectedRoomUid &&
+        [selectedRoomUid].map(uid => (
+          <DiceServiceContextC key={uid as string}>
+            <RoomView />
+          </DiceServiceContextC>
+        ))}
+    </React.Fragment>
   );
 }

@@ -1,6 +1,7 @@
 import { AppState } from './main';
 import { firestoreSelectors } from './firebase/firestore.selectors';
 import { chatsSelectors } from './chats/chats.selectors';
+import { IRoomCreateForm } from '../models/rooms.model';
 
 export const mainSelectors = {
   getAllNeededPlayersUid: (state: AppState): string[] => {
@@ -15,5 +16,15 @@ export const mainSelectors = {
       : 'unknown';
 
     return selectedRoomGameMaster === state.firebase.profile.uid;
+  },
+
+  getFormCreateRoom: (state: AppState): IRoomCreateForm => state.form.createRoom.values,
+
+  isUserARoomPlayerOrGameMaster: (state: AppState): boolean => {
+    if (!state.firestore.data.selectedRoom || !state.firebase.profile.uid) return false;
+    return (
+      state.firestore.data.selectedRoom?.players.indexOf(state.firebase.profile.uid) > -1 ||
+      state.firestore.data.selectedRoom?.gameMaster.uid === state.firebase.profile.uid
+    );
   },
 };

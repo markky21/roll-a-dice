@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useFirestore } from 'react-redux-firebase';
-import { DiceService } from '../services/dice.service';
 import { useSelector } from 'react-redux';
+
+import { DiceService } from '../services/dice.service';
 import { firebaseSelectors } from '../store/firebase/firebase.selectors';
 import { roomsSelectors } from '../store/rooms/rooms.selectors';
 

@@ -35,6 +35,7 @@ export class DiceService {
     return this.storeService.getDiceSetForm().pipe(
       map(form => form?.values),
       distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+      filter(dices => !!dices),
       map(dices => diceSetToString(dices)),
       takeUntil(this.takeUntil$)
     );

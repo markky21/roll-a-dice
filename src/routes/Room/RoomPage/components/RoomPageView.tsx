@@ -9,6 +9,8 @@ import { DiceDashboard } from '../../../../modules/DiceDashboard/DiceDashbard';
 import { Players } from '../../../../modules/Players/Players';
 import { RoomSpeedDialWrapper } from './RoomSpeedDial';
 import { roomsSelectors } from '../../../../store/rooms/rooms.selectors';
+import { mainSelectors } from '../../../../store/main.selectors';
+import { firestoreSelectors } from '../../../../store/firebase/firestore.selectors';
 
 // TODO: update grid heights when no profiles
 const styles = (theme: Theme) => ({
@@ -19,7 +21,7 @@ const styles = (theme: Theme) => ({
   },
   diceWrapper: {},
   chatter: {
-    zIndex: 10,
+    zIndex: 100,
     position: 'fixed' as 'fixed',
     bottom: theme.spacing(4),
     // bottom: theme.spacing(26), // TODO: update height or grid structure
@@ -58,7 +60,7 @@ const styles = (theme: Theme) => ({
   },
   diceDashboard: {
     position: 'absolute' as 'absolute',
-    zIndex: 100,
+    zIndex: 1000,
     top: theme.spacing(3),
     left: theme.spacing(3),
   },
@@ -74,11 +76,15 @@ export function RoomView(props: RoomViewProps) {
   const playersOpened = useSelector(roomsSelectors.playersOpened);
   const chatOpened = useSelector(roomsSelectors.chatOpened);
   const diceRolling = useSelector(roomsSelectors.diceRolling);
+  const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
+  const isUserARoomPlayerOrGameMaster = useSelector(mainSelectors.isUserARoomPlayerOrGameMaster);
+
+  const diceCardFullHeight = !playersOpened || !selectedRoom?.players.length;
 
   return (
     <section className={classes.root}>
-      <div className={clsx(classes.chatter, !playersOpened && classes.chatterLower)}>
-        <Chatter visbile={chatOpened && !diceRolling} />
+      <div className={clsx(classes.chatter, diceCardFullHeight && classes.chatterLower)}>
+        <Chatter visbile={chatOpened && !diceRolling && isUserARoomPlayerOrGameMaster} />
       </div>
 
       <div className={classes.cssGrid}>
@@ -86,16 +92,16 @@ export function RoomView(props: RoomViewProps) {
           <DiceCard />
         </div>
         <div className={classes.cssItem2}>
-          <Players visible={playersOpened} />
+          <Players visible={!diceCardFullHeight} />
         </div>
       </div>
 
-      <nav className={clsx(classes.speedDial, !playersOpened && classes.speedDialLower)}>
+      <nav className={clsx(classes.speedDial, diceCardFullHeight && classes.speedDialLower)}>
         <RoomSpeedDialWrapper />
       </nav>
 
       <nav className={classes.diceDashboard}>
-        <DiceDashboard visible={!diceRolling} />
+        <DiceDashboard visible={!diceRolling && isUserARoomPlayerOrGameMaster} />
       </nav>
     </section>
   );

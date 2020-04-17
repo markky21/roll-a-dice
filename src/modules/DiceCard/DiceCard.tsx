@@ -51,7 +51,6 @@ function DiceCardC(props: DiceCardProps) {
   }, [!!canvasWidth, !!diceService]);
 
   const onMouseDown = (isDown: boolean): void => {
-    console.log({ isDown });
     setMouseDown(isDown);
   };
 

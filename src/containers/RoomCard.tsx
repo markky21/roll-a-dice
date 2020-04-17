@@ -24,14 +24,25 @@ function RoomCardC(props: RoomCardProps) {
 
   return (
     <Card className={classes.cards}>
-      <CardMedia className={classes.media} image={`${process.env.PUBLIC_URL}/assets/images/fantasy-wallpapers.jpg`} title="Room image" />
+      {room.roomImage && <CardMedia className={classes.media} image={room.roomImage} title="Room image" />}
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {room.roomName}
         </Typography>
+        <Typography gutterBottom variant="h6" component="h6">
+          {room.campaignTitle}
+        </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {room.description}
         </Typography>
+        <p>
+          <Typography variant="caption" color="textSecondary" component="span">
+            Max players:
+          </Typography>{' '}
+          <Typography color="textSecondary" variant="h6" component="span">
+            {room.maxPlayers}
+          </Typography>
+        </p>
         <p>
           <Typography variant="caption" color="textSecondary" component="span">
             Room Game Master:

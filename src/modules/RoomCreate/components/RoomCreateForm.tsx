@@ -4,15 +4,12 @@ import { InjectedFormProps, reduxForm } from 'redux-form';
 
 import { createRoomFormModel } from '../../../models/rooms.model';
 import { FormFieldCheckboxGroup, FormFieldText } from '../../../components/FormComponents';
-
-interface RoomCreateFormProps extends InjectedFormProps {
-  handleClose: () => void;
-}
+import { RoomCreateImage } from './RoomCreateImage';
 
 const validate = (values: any) => {
   const errors: any = {};
 
-  [createRoomFormModel.roomName.name].forEach(field => {
+  [createRoomFormModel.roomName.name, createRoomFormModel.maxPlayers.name].forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required';
     }
@@ -24,22 +21,26 @@ const validate = (values: any) => {
   return errors;
 };
 
+interface RoomCreateFormProps extends InjectedFormProps {
+  handleClose: () => void;
+}
+
 function RoomCreateFormC(props: RoomCreateFormProps) {
   const { handleSubmit, pristine, submitting, handleClose, invalid } = props;
 
   return (
     <form onSubmit={handleSubmit}>
+      <RoomCreateImage />
       <DialogContent dividers>
-        <div>
-          <FormFieldText {...createRoomFormModel.roomName} />
+        <FormFieldText {...createRoomFormModel.roomName} />
+        <FormFieldText {...createRoomFormModel.roomImage} />
+        <FormFieldText {...createRoomFormModel.campaignTitle} />
+        <FormFieldText {...createRoomFormModel.description} />
+        <FormFieldText {...createRoomFormModel.gameMasterAvatar} />
+        <div style={{ width: '50%' }}>
+          <FormFieldText {...createRoomFormModel.maxPlayers} />
         </div>
-
-        <div>
-          <FormFieldText {...createRoomFormModel.description} />
-        </div>
-        <div>
-          <FormFieldCheckboxGroup {...createRoomFormModel.diceType} />
-        </div>
+        <FormFieldCheckboxGroup {...createRoomFormModel.diceType} />
       </DialogContent>
       <DialogActions>
         <Button type="submit" color="primary" disabled={invalid || pristine || submitting}>
