@@ -45,7 +45,7 @@ const styles = (theme: Theme) => ({
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '1fr 160px',
+    gridTemplateRows: '1fr auto',
     rowGap: `${theme.spacing(2)}px`,
     columnGap: `${theme.spacing(2)}px`,
     padding: theme.spacing(2, 2, 0, 2),
@@ -68,15 +68,14 @@ const styles = (theme: Theme) => ({
 
 const useStyles = makeStyles(styles);
 
-export interface RoomViewProps {}
-
-export function RoomView(props: RoomViewProps) {
+export function RoomView() {
   const classes = useStyles();
 
   const playersOpened = useSelector(roomsSelectors.playersOpened);
   const chatOpened = useSelector(roomsSelectors.chatOpened);
   const diceRolling = useSelector(roomsSelectors.diceRolling);
   const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
+
   const isUserARoomPlayerOrGameMaster = useSelector(mainSelectors.isUserARoomPlayerOrGameMaster);
 
   const diceCardFullHeight = !playersOpened || !selectedRoom?.players.length;
@@ -101,7 +100,7 @@ export function RoomView(props: RoomViewProps) {
       </nav>
 
       <nav className={classes.diceDashboard}>
-        <DiceDashboard visible={!diceRolling && isUserARoomPlayerOrGameMaster} />
+        <DiceDashboard visible={!diceRolling && !!selectedRoom && isUserARoomPlayerOrGameMaster} room={selectedRoom} />
       </nav>
     </section>
   );

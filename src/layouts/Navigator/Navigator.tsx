@@ -54,7 +54,7 @@ function NavigatorC(props: NavigatorProps) {
       <NavigatorItem
         navLink={RouterPath.HOME_PATH}
         icon={<HomeIcon />}
-        text="Home Page"
+        text="HomePage Page"
         active={RouterPath.HOME_PATH === locationPath}
       />
 

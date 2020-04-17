@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { ChatList } from './ChatList';
 import { CoreLayout } from '../layouts/CoreLayout';
-import { Home } from './Home';
+import { HomePage } from './Home/HomePage';
 import { Room } from './Room';
 import { RoomList } from './RoomList';
 
@@ -24,7 +24,7 @@ export function CreateRoutes() {
     <CoreLayout>
       <Suspense fallback={<Backdrop className={classes.backdrop} open />}>
         <Switch>
-          <Route exact path={Home.path} component={Home.component} />
+          <Route exact path={HomePage.path} component={HomePage.component} />
 
           {[RoomList, Room, ChatList].map((settings, index) => (
             <Route key={`Route-${index}`} {...settings} />

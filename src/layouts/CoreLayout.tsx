@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import React from 'react';
@@ -43,12 +44,18 @@ const styles = createStyles({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    maxWidth: '100vw',
+    overflow: 'hidden',
+  },
+  appWhenAuth: {
+    maxWidth: `calc(100vw - ${theme.spacing(40)})`,
   },
   main: {
     flex: 1,
     padding: theme.spacing(6, 4),
     background: theme.palette.background.default,
   },
+
   footer: {
     padding: theme.spacing(1),
     background: theme.palette.background.default,
@@ -61,7 +68,7 @@ export interface PaperbaseProps extends WithStyles<typeof styles> {
 function CoreLayoutC(props: PaperbaseProps) {
   const { classes, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const isAuthenticated = useSelector(firebaseSelectors.authenticatedSelector);
+  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated);
   const isAuthenticating = useSelector(firebaseSelectors.authenticatingSelector);
   const isRequesting = useSelector(firebaseSelectors.isRequesting);
 
@@ -79,7 +86,7 @@ function CoreLayoutC(props: PaperbaseProps) {
           </Slide>
           {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
 
-          <div className={classes.app}>
+          <div className={clsx(classes.app, isAuthenticated && classes.appWhenAuth)}>
             <Header onDrawerToggle={handleDrawerToggle} />
             <main className={classes.main}>{children}</main>
             <footer className={classes.footer}>

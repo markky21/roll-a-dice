@@ -12,7 +12,7 @@ export const firebaseSelectors = {
     return !auth.isLoaded || isInitializing;
   },
 
-  authenticatedSelector: (state: AppState) => {
+  isAuthenticated: (state: AppState) => {
     const {
       firebase: { auth },
     } = state;

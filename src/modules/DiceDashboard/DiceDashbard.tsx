@@ -11,6 +11,7 @@ import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IDiceThrowResult } from '../../models/dice.model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { IRoom } from '../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -39,14 +40,14 @@ const styles = (theme: Theme) =>
 
 export interface DiceDashboardProps extends WithStyles<typeof styles> {
   visible?: boolean;
+  room?: IRoom | null;
 }
 
 function DiceDashboardC(props: DiceDashboardProps) {
-  const { classes, visible = true } = props;
+  const { classes, visible = true, room } = props;
 
   const destroyed$ = new Subject();
 
-  const roomData = useSelector(firestoreSelectors.selectedRoom);
   const diceService = useContext(DiceServiceContext);
   const [throwResult, setThrowResult] = useState<IDiceThrowResult | null>(null);
 
@@ -59,12 +60,12 @@ function DiceDashboardC(props: DiceDashboardProps) {
   useEffect(() => () => destroyed$.next(), []);
 
   return (
-    <Grow in={!!roomData && visible}>
+    <Grow in={visible}>
       <Card className={clsx(classes.root, !!throwResult && classes.clickable)} onClick={() => setThrowResult(null)}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Collapse in={!throwResult}>
-              <DiceDashboardForm diceType={roomData?.diceType} />
+              <DiceDashboardForm diceType={room?.diceType} />
             </Collapse>
 
             <Collapse in={!!throwResult}>
@@ -72,8 +73,8 @@ function DiceDashboardC(props: DiceDashboardProps) {
             </Collapse>
           </CardContent>
         </div>
-        {roomData?.gameMasterAvatar && (
-          <CardMedia className={classes.cover} image={roomData?.gameMasterAvatar} title="Bot avatar" />
+        {room?.gameMasterAvatar && (
+          <CardMedia className={classes.cover} image={room?.gameMasterAvatar} title="Bot avatar" />
         )}
       </Card>
     </Grow>
