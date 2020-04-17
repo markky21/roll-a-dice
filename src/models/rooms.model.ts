@@ -39,14 +39,14 @@ export interface IRoomCreateForm {
 }
 
 export const createRoomFormModel = {
-  roomName: { name: 'roomName', label: 'Name of the Room', fullWidth: true },
+  roomName: { name: 'roomName', label: 'Name of the Room *', fullWidth: true },
   description: { name: 'description', label: 'Room description', multiline: true, fullWidth: true },
   campaignTitle: { name: 'campaignTitle', label: 'Current campaign tittle', multiline: false, fullWidth: true },
   roomImage: { name: 'roomImage', label: 'Room image URL', multiline: false, fullWidth: true },
   gameMasterAvatar: { name: 'gameMasterAvatar', label: 'Game master avatar URL', multiline: false, fullWidth: true },
   maxPlayers: {
     name: 'maxPlayers',
-    label: 'Maximum players',
+    label: 'Maximum players *',
     multiline: false,
     fullWidth: true,
     type: 'number',
@@ -54,7 +54,7 @@ export const createRoomFormModel = {
   },
   diceType: {
     name: 'diceType',
-    label: 'Allowed dice',
+    label: 'Allowed dice *',
     options: [
       { label: Dice.D4, value: Dice.D4 },
       { label: Dice.D6, value: Dice.D6 },

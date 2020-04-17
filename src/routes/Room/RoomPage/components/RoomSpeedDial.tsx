@@ -1,18 +1,20 @@
+import EditIcon from '@material-ui/icons/Edit';
 import ForumIcon from '@material-ui/icons/Forum';
 import GroupIcon from '@material-ui/icons/Group';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import React from 'react';
+import React, { useState } from 'react';
 import ShareIcon from '@material-ui/icons/Share';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Snackbar } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { ISpeedDialAction, SpeedDialWrapper } from '../../../../components/SpeedDial';
 import { mainSelectors } from '../../../../store/main.selectors';
 import { roomsActions } from '../../../../store/rooms/rooms.actions';
-import { ISpeedDialAction, SpeedDialWrapper } from '../../../../components/SpeedDial';
 import { roomsSelectors } from '../../../../store/rooms/rooms.selectors';
+import { RoomCreateInRoom } from '../../../../containers/RoomCreateInRoom';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -30,6 +32,7 @@ function RoomSpeedDialC(props: RoomSpeedDialCProps) {
   const drawerOpened = useSelector(roomsSelectors.drawerOpened);
   const chatOpened = useSelector(roomsSelectors.chatOpened);
   const playersOpened = useSelector(roomsSelectors.playersOpened);
+  const [showRoomForm, setShowRoomForm] = useState(false);
   const [snackbarConfig, setSnackbarConfig] = React.useState<{
     type: 'success' | 'error';
     open: boolean;
@@ -51,7 +54,15 @@ function RoomSpeedDialC(props: RoomSpeedDialCProps) {
     });
   }
 
-  const actionsAdditional: ISpeedDialAction[] = isGameMasterOfSelectedRoom ? [] : [];
+  const actionsAdditional: ISpeedDialAction[] = isGameMasterOfSelectedRoom
+    ? [
+        {
+          icon: <EditIcon />,
+          name: 'Edit Room Description',
+          callback: cb => setShowRoomForm(true),
+        },
+      ]
+    : [];
   const actions: ISpeedDialAction[] = [
     {
       icon: drawerOpened ? <NavigateBeforeIcon /> : <NavigateNextIcon />,
@@ -90,6 +101,7 @@ function RoomSpeedDialC(props: RoomSpeedDialCProps) {
           {snackbarConfig.text}
         </Alert>
       </Snackbar>
+      <RoomCreateInRoom open={showRoomForm} onClose={() => setShowRoomForm(false)} />
     </React.Fragment>
   );
 }

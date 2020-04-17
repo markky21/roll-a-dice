@@ -10,7 +10,7 @@ import { IRoom } from '../../../models/rooms.model';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';
 import { locationSelectors } from '../../../store/location/location.selectors';
-import { RoomCreate } from '../../../modules/RoomCreate/RoomCreate';
+import { RoomCreateInRoomList } from '../../../containers/RoomCreateInRoomList';
 import { RoomList } from '../../../modules/RoomList/RoomList';
 import { RouterPath } from '../../../models/paths';
 
@@ -50,7 +50,11 @@ export function RoomListsC(props: RoomListProps) {
       <section className={classes.cards}>
         <Grow in>
           <Card>
-            <CardMedia className={classes.media} image={`${process.env.PUBLIC_URL}/assets/images/fantasy-wallpapers.jpg`} title="Fantasy RPG" />
+            <CardMedia
+              className={classes.media}
+              image={`${process.env.PUBLIC_URL}/assets/images/fantasy-wallpapers.jpg`}
+              title="Fantasy RPG"
+            />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Enter to the new world
@@ -80,7 +84,7 @@ export function RoomListsC(props: RoomListProps) {
         />
       </section>
 
-      <RoomCreate />
+      <RoomCreateInRoomList />
     </React.Fragment>
   );
 }

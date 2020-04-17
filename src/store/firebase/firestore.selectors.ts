@@ -1,7 +1,7 @@
 import { AppState } from '../main';
 import { Dictionary } from 'react-redux-firebase';
 import { IChat } from '../../models/chats.model';
-import { IProfile, IRoom } from '../../models/rooms.model';
+import { IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
 
 export const firestoreSelectors = {
   userChats: (state: AppState): Dictionary<IChat> | undefined => state.firestore.data.userChats,
@@ -10,6 +10,20 @@ export const firestoreSelectors = {
     !!chatId && state.firestore.data.userChats ? state.firestore.data.userChats[chatId] : null,
 
   selectedRoom: (state: AppState): IRoom | undefined => state.firestore.data.selectedRoom,
+
+  selectedRoomFormData: (state: AppState): IRoomCreateForm | undefined => {
+    if (!state.firestore.data.selectedRoom) return;
+    const {
+      roomName,
+      diceType,
+      description,
+      roomImage,
+      gameMasterAvatar,
+      campaignTitle,
+      maxPlayers,
+    } = state.firestore.data.selectedRoom;
+    return { roomName, diceType, description, roomImage, gameMasterAvatar, campaignTitle, maxPlayers };
+  },
 
   userRoomsAsGameMaster: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsGameMaster,
 
