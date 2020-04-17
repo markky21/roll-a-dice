@@ -1,4 +1,5 @@
 import { AppState } from '../main';
+import { IApplicationStats } from '../../models/firebase.model';
 
 export const firebaseSelectors = {
   isRequesting: (state: AppState): boolean => !Object.values(state.firestore.status.requesting).every(v => !v),
@@ -19,5 +20,7 @@ export const firebaseSelectors = {
     return !auth.isEmpty && !!auth.uid;
   },
 
-  userConnected: (state: AppState) => state.firebase.data.connected,
+  userConnected: (state: AppState): boolean => state.firebase.data.connected,
+
+  applicationStats: (state: AppState): IApplicationStats => state.firebase.data.applicationStats,
 };

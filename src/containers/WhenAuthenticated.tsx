@@ -8,7 +8,7 @@ import { profileQuery } from '../queries/profile.query';
 import { roomsQuery } from '../queries/rooms.query';
 import { roomsSelectors } from '../store/rooms/rooms.selectors';
 import { mainSelectors } from '../store/main.selectors';
-import { FirestoreCollection } from '../models/firestore.model';
+import { FirestoreCollection } from '../models/firebase.model';
 
 export function WhenAuthenticated() {
   const firestore = useFirestore();

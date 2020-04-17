@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
+import { Paper, Grow } from '@material-ui/core';
 
 import { diceDefaultConfig } from '../../config/dice.config';
 import { DiceServiceContext } from '../../contexts/DiceService.context';
+import { timer } from 'rxjs';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -23,10 +24,12 @@ const styles = (theme: Theme) =>
     },
   });
 
-interface DiceCardProps extends WithStyles<typeof styles> {}
+interface DiceCardProps extends WithStyles<typeof styles> {
+  visible?: boolean;
+}
 
 function DiceCardC(props: DiceCardProps) {
-  const { classes } = props;
+  const { classes, visible = true } = props;
 
   const canvasRef = React.useRef(null);
   const diceContainerEl = useRef(null);
@@ -38,14 +41,16 @@ function DiceCardC(props: DiceCardProps) {
 
   useEffect(() => {
     if (!!diceService && !diceInitialized && canvasWidth !== 0) {
-      (window as any).dice_initialize(diceContainerEl.current, {
-        ...diceDefaultConfig,
-        diceThrow$: diceService.diceThrow$,
-        diceThrowResult$: diceService.diceThrowResult$,
-        diceBeforeThrow$: diceService.diceBeforeThrow$,
-        diceSet$: diceService.handleDiceSetFormChanges$,
+      timer(300).subscribe(() => {
+        (window as any).dice_initialize(diceContainerEl.current, {
+          ...diceDefaultConfig,
+          diceThrow$: diceService.diceThrow$,
+          diceThrowResult$: diceService.diceThrowResult$,
+          diceBeforeThrow$: diceService.diceBeforeThrow$,
+          diceSet$: diceService.handleDiceSetFormChanges$,
+        });
+        setDiceInitialized(true);
       });
-      setDiceInitialized(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!canvasWidth, !!diceService]);
@@ -55,17 +60,19 @@ function DiceCardC(props: DiceCardProps) {
   };
 
   return (
-    <Paper elevation={3} className={classes.root}>
-      <div
-        id="diceCanvasContainer"
-        ref={diceContainerEl}
-        className={clsx(classes.diceCanvas, mouseDown && classes.grabbing)}
-        onMouseDown={() => onMouseDown(true)}
-        onMouseUp={() => onMouseDown(false)}
-      >
-        <div ref={canvasRef} id="canvas" />
-      </div>
-    </Paper>
+    <Grow in={visible}>
+      <Paper elevation={3} className={classes.root}>
+        <div
+          id="diceCanvasContainer"
+          ref={diceContainerEl}
+          className={clsx(classes.diceCanvas, mouseDown && classes.grabbing)}
+          onMouseDown={() => onMouseDown(true)}
+          onMouseUp={() => onMouseDown(false)}
+        >
+          <div ref={canvasRef} id="canvas" />
+        </div>
+      </Paper>
+    </Grow>
   );
 }
 

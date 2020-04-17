@@ -2,22 +2,20 @@ import clsx from 'clsx';
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardContent, CardMedia, Collapse, Grow } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { DiceDashboardForm } from './components/DiceDashboardForm';
 import { DiceDashboardResult } from './components/DiceDashboardResult';
 import { DiceServiceContext } from '../../contexts/DiceService.context';
-import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IDiceThrowResult } from '../../models/dice.model';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { IRoom } from '../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      backgroundColor: '#f4f4f280',
+      backgroundColor: '#f4f4f2ef',
     },
     details: {
       display: 'flex',

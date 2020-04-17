@@ -2,7 +2,7 @@ import React from 'react';
 import { useFirestore } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 
-import { FirestoreCollection } from '../models/firestore.model';
+import { FirestoreCollection } from '../models/firebase.model';
 import { firestoreSelectors } from '../store/firebase/firestore.selectors';
 import { IRoomCreateForm } from '../models/rooms.model';
 import { RoomCreate } from '../modules/RoomCreate/RoomCreate';

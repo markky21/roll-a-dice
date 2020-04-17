@@ -4,33 +4,15 @@ const admin = require('firebase-admin');
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
-/*
-
-export interface IChat {
-  roomName: string;
-  createdAt: string;
-  messages: IChatMessage[];
-  roomUid: string;
-  players: string[];
-}
-
-
-export interface IRoom extends IRoomCreateForm {
-  createdAt: string;
-  gameMaster: IProfile;
-  players: string[];
-  logs: IRoomLog[];
-  roomName: string;
-  diceType: Dice[];
-  description: string;
-  chatUid
-}
-*/
-
 admin.initializeApp();
 const db = admin.firestore();
+const dbFirebase = admin.database();
+const initialApplicationStats = { players: 0, rooms: 0, diceThrows: 0 };
 
-exports.createChatOnRoomCreate = functions.firestore.document('rooms/{roomId}').onCreate((roomSnapshot, context) => {
+/**
+ * On Room Create
+ */
+exports.onRoomCreateCreateChat = functions.firestore.document('rooms/{roomId}').onCreate((roomSnapshot, context) => {
   const data = roomSnapshot.data();
 
   const chat = {
@@ -46,7 +28,21 @@ exports.createChatOnRoomCreate = functions.firestore.document('rooms/{roomId}').
     .then(chatData => roomSnapshot.ref.update({ chatUid: chatData.id }));
 });
 
-exports.onRoomPlayersUpdateUpdateChat = functions.firestore
+exports.onRoomCreateUpdateAppStats = functions.firestore.document('rooms/{roomId}').onCreate(roomSnapshot => {
+  const applicationStatsRef = dbFirebase.ref('applicationStats');
+  return applicationStatsRef.once('value').then(snapshot => {
+    const stats = { ...initialApplicationStats, ...snapshot.val() };
+    return applicationStatsRef.update({
+      ...stats,
+      rooms: stats.rooms + 1,
+    });
+  });
+});
+
+/**
+ * On Room Update
+ */
+exports.onRoomUpdatePlayersUpdateChat = functions.firestore
   .document('rooms/{roomId}')
   .onUpdate((roomSnapshot, context) => {
     const roomAfter = roomSnapshot.after.data();
@@ -63,12 +59,50 @@ exports.onRoomPlayersUpdateUpdateChat = functions.firestore
           : null;
       });
     }
+    return Promise.resolve();
   });
 
-exports.onCreateUserCopyUid = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
+exports.onRoomUpdateLogsUpdateUpdateAppStats = functions.firestore
+  .document('rooms/{roomId}')
+  .onUpdate((roomSnapshot, context) => {
+    const roomAfter = roomSnapshot.after.data();
+    const roomBefore = roomSnapshot.before.data();
+    const lastLogBefore = [...roomBefore.logs].pop();
+    const lastLogAfter = [...roomAfter.logs].pop();
+
+    if (Boolean(lastLogAfter) && lastLogAfter.type === 'DICE_ROLL') {
+      if (!lastLogBefore || lastLogAfter.timestamp !== lastLogBefore.timestamp) {
+        const applicationStatsRef = dbFirebase.ref('applicationStats');
+        return applicationStatsRef.once('value').then(snapshot => {
+          const stats = { ...initialApplicationStats, ...snapshot.val() };
+          return applicationStatsRef.update({
+            ...stats,
+            diceThrows: stats.diceThrows + 1,
+          });
+        });
+      }
+    }
+    return Promise.resolve();
+  });
+
+/**
+ * On Users Create
+ */
+exports.onUserCreateCopyUid = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
   const userRef = db.doc(`users/${userSnapshot.id}`);
 
   return userRef.get().then(uSnapshot => {
     return userRef.update({ uid: userSnapshot.id });
+  });
+});
+
+exports.onUserCreateCopyUid = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
+  const applicationStatsRef = dbFirebase.ref('applicationStats');
+  return applicationStatsRef.once('value').then(snapshot => {
+    const stats = { ...initialApplicationStats, ...snapshot.val() };
+    return applicationStatsRef.update({
+      ...stats,
+      players: stats.players + 1,
+    });
   });
 });

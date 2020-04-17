@@ -1,21 +1,22 @@
 import clsx from 'clsx';
-import React from 'react';
-
-import { DiceCard } from '../../../modules/DiceCard/DiceCard';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { DiceServiceContextC } from '../../../contexts/DiceService.context';
 import { useSelector } from 'react-redux';
-import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashbard';
-import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
-import { IRoom } from '../../../models/rooms.model';
-import { Dice } from '../../../models/dice.model';
+
 import { AppStats } from '../../../modules/AppStats/AppStats';
+import { Dice } from '../../../models/dice.model';
+import { DiceCard } from '../../../modules/DiceCard/DiceCard';
+import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashbard';
+import { DiceServiceContextC } from '../../../contexts/DiceService.context';
+import { IRoom } from '../../../models/rooms.model';
+import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
+import { timer } from 'rxjs';
 
 const styles = (theme: Theme) => ({
   root: {
     position: 'relative' as 'relative',
-    margin: theme.spacing(-6, -2),
-    height: `calc(100% + ${theme.spacing(12)}px)`,
+    margin: theme.spacing(-4, -2),
+    height: `calc(100% + ${theme.spacing(10)}px)`,
   },
   cssGrid: {
     display: 'grid',
@@ -55,6 +56,11 @@ export function HomeWrapper(props: HomeWrapperProps) {
   const classes = useStyles();
   const diceRolling = useSelector(roomsSelectors.diceRolling);
 
+  const [showDiceCard, setShowDiceCard] = useState(false);
+  useEffect(() => {
+    timer(300).subscribe(() => setShowDiceCard(true));
+  }, []);
+
   return (
     <div className={clsx(classes.root, classes.cssGrid)}>
       <section className={clsx(classes.mainInfoCard, classes.cssGrid)}>
@@ -65,10 +71,7 @@ export function HomeWrapper(props: HomeWrapperProps) {
         <nav className={classes.diceDashboard}>
           <DiceDashboard visible={!diceRolling} room={room as IRoom} />
         </nav>
-
-        <section className={classes.diceCard}>
-          <DiceCard />
-        </section>
+        <section className={classes.diceCard}>{showDiceCard && <DiceCard />}</section>
       </DiceServiceContextC>
     </div>
   );

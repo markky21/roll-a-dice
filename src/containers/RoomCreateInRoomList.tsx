@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { firebaseSelectors } from '../store/firebase/firebase.selectors';
-import { FirestoreCollection } from '../models/firestore.model';
+import { FirestoreCollection } from '../models/firebase.model';
 import { IProfile, IRoom, IRoomCreateForm } from '../models/rooms.model';
 import { locationSelectors } from '../store/location/location.selectors';
 import { RoomCreate } from '../modules/RoomCreate/RoomCreate';

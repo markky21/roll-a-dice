@@ -4,7 +4,7 @@ import { useFirestore } from 'react-redux-firebase';
 
 import { chatsActions } from '../../../store/chats/chats.actions';
 import { firebaseSelectors } from '../../../store/firebase/firebase.selectors';
-import { FirestoreCollection } from '../../../models/firestore.model';
+import { FirestoreCollection } from '../../../models/firebase.model';
 import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
 import { locationActions } from '../../../store/location/location.actions';
 import { LocationMatch } from '../../../store/location/location.model';

@@ -2,6 +2,7 @@ import { Dictionary } from 'react-redux-firebase';
 
 import { IProfile, IRoom } from '../../models/rooms.model';
 import { IChat } from '../../models/chats.model';
+import { IApplicationStats } from '../../models/firebase.model';
 
 // TODO: to remove
 export interface TodoValue {
@@ -24,7 +25,8 @@ export interface FirestoreQuerySchema {
 }
 
 export interface FirebaseQuerySchema {
-  connected: boolean;
+  readonly connected: boolean;
+  readonly applicationStats?: IApplicationStats;
 }
 
 export interface FirebaseUserProfile {

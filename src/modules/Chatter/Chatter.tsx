@@ -13,7 +13,7 @@ import { firebaseSelectors } from '../../store/firebase/firebase.selectors';
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IChat, IChatMessage } from '../../models/chats.model';
 import { IProfile } from '../../models/rooms.model';
-import { FirestoreCollection } from '../../models/firestore.model';
+import { FirestoreCollection } from '../../models/firebase.model';
 
 const styles = (theme: Theme) =>
   createStyles({

@@ -4,7 +4,7 @@ import { distinctUntilChanged, filter, map, takeUntil, withLatestFrom } from 'rx
 
 import { IDiceBeforeThrow, IDiceThrow, IDiceThrowResult } from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
-import { FirestoreCollection } from '../models/firestore.model';
+import { FirestoreCollection } from '../models/firebase.model';
 import { IProfile, IRoom, IRoomLog, Log } from '../models/rooms.model';
 import { StoreService } from './store.service';
 import { diceSetToString } from '../utils/dice.utils';

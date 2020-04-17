@@ -1,5 +1,5 @@
 import { ReduxFirestoreQuerySetting } from 'react-redux-firebase';
-import { FirestoreCollection } from '../models/firestore.model';
+import { FirestoreCollection } from '../models/firebase.model';
 
 export const chatsQuery = {
   getUserChats: (uid: string): ReduxFirestoreQuerySetting => {
