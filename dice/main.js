@@ -1,10 +1,6 @@
 'use strict';
 
 function dice_initialize(container, config) {
-  var _throwRequestResult;
-  var _diceSet = 'd4+d6+d8+d10+d12+d20+d100';
-  var _diceSetArray = [];
-
   var defaultConfig = {
     idCanvas: 'canvas',
     idLabel: 'label',
@@ -19,9 +15,9 @@ function dice_initialize(container, config) {
     noresult: false,
     roll: false,
     diceThrow$: null,
-    diceThrowResult$: null,
     diceBeforeThrow$: null,
-    diceSet$: null,
+    diceAfterThrow$: null,
+    requestNewThrow$: null,
   };
 
   var _config = Object.assign({}, defaultConfig, config);
@@ -54,66 +50,80 @@ function dice_initialize(container, config) {
     box.draw_selector();
   }
 
-  function before_roll(vectors, notation, callback) {
-    _config.diceBeforeThrow$.next({ vectors: vectors, notation: notation, result: _throwRequestResult });
-    // do here rpc call or whatever to get your own result of throw.
-    // then callback with array of your result, example:
-    // callback([2, 2, 2, 2]); // for 4d6 where all dice values are 2.
-    callback(_throwRequestResult);
-  }
-
-  function notation_getter() {
-    return $t.dice.parse_notation(_diceSet);
-  }
-
-  function after_roll(notation, result) {
-    _throwRequestResult = null;
-    _config.diceThrowResult$.next({
-      result: result,
-      diceSet: notation.set,
-      emit: true,
-    });
-  }
-
-  function after_roll_no_emit(notation, result) {
-    _throwRequestResult = null;
-    _config.diceThrowResult$.next({
-      result: result,
-      diceSet: $t.dice.parse_notation(_diceSet).set,
-      emit: false,
-    });
-  }
-
-  box.bind_mouse(container, notation_getter, before_roll, after_roll);
-
   show_selector();
 
+  box.bind_mouse_listener(container, function(vector, boost, dist) {
+    _config.requestNewThrow$.next({ vectors: vector, boost: boost, dist: dist });
+  });
+
   _config.diceThrow$.subscribe(function(throwConfig) {
-    _throwRequestResult = throwConfig.result;
-    _diceSet = prepareDiceSetToString(throwConfig.diceSet);
-    _diceSetArray = throwConfig.diceSet;
+    function notation_getter() {
+      return $t.dice.parse_notation(prepareDiceSetToString(throwConfig.diceSet));
+    }
 
-    box.start_throw(notation_getter, before_roll, after_roll_no_emit);
+    function before_roll(vectors, notation, callback) {
+      _config.diceBeforeThrow$.next({ throwConfig: throwConfig });
+      callback(prepareThrowResultToString(throwConfig.result));
+    }
+
+    function after_roll(notation, result) {
+      _config.diceAfterThrow$.next({ throwConfig: throwConfig, result: result });
+    }
+
+    box.start_throw(
+      notation_getter,
+      before_roll,
+      after_roll,
+      throwConfig.diceThrowConfig.vectors,
+      throwConfig.diceThrowConfig.boost,
+      throwConfig.diceThrowConfig.dist
+    );
   });
 
-  _config.diceSet$.subscribe(function(diceSet) {
-    _diceSet = diceSet;
-  });
+  return _config;
+}
 
-  return {
-    diceThrowResult$: _config.diceThrowResult$,
-  };
+function prepareDiceSetToString(diceSet) {
+  diceSet = objectSortByKeys(diceSet);
+  var requestDiceSet = '';
 
-  function prepareDiceSetToString(diceSet) {
-    var counts = {};
-    diceSet.forEach(function(x) {
-      counts[x] = (counts[x] || 0) + 1;
+  Object.keys(diceSet)
+    .sort(compareDiceKey)
+    .forEach(function(diceKey) {
+      var amount = diceSet[diceKey];
+      if (!amount) return;
+      requestDiceSet = requestDiceSet + amount + diceKey + '+';
+    });
+  requestDiceSet = requestDiceSet.slice(0, -1);
+
+  return requestDiceSet;
+}
+
+function prepareThrowResultToString(result) {
+  result = objectSortByKeys(result);
+  var requestResult = [];
+
+  Object.keys(result)
+    .sort(compareDiceKey)
+    .forEach(function(diceKey) {
+      requestResult = [...requestResult, ...result[diceKey]];
     });
 
-    return Object.keys(counts)
-      .map(function(diceName, id) {
-        return counts[diceName] + diceName;
-      })
-      .join('+');
-  }
+  return requestResult;
+}
+
+function objectSortByKeys(obj) {
+  const ordered = {};
+
+  Object.keys(obj)
+    .sort(compareDiceKey)
+    .forEach(function(key) {
+      ordered[key] = obj[key];
+    });
+
+  return ordered;
+}
+
+function compareDiceKey(a, b) {
+  return parseInt(a.slice(1)) - parseInt(b.slice(1));
 }
