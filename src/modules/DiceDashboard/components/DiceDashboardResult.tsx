@@ -1,29 +1,24 @@
 import React from 'react';
 import { List, ListItem, Typography } from '@material-ui/core';
 
-import { IDiceThrowResult } from '../../../models/dice.model';
+import { IDiceThrow } from '../../../models/dice.model';
 
 interface DiceDashboardResultProps {
-  throwResult: IDiceThrowResult | null;
+  throwResult: IDiceThrow;
 }
 
-function DiceDashboardResultC(props: DiceDashboardResultProps) {
+export function DiceDashboardResult(props: DiceDashboardResultProps) {
   const { throwResult } = props;
 
   const renderResultItem = () => {
-    if (!throwResult) {
+    if (!throwResult?.result) {
       return '';
     }
 
-    const resultObject: any = {};
-    throwResult?.diceSet.forEach((diceName, id) => {
-      resultObject[diceName] = [...(resultObject[diceName] || []), throwResult?.result[id]];
-    });
-
-    return Object.keys(resultObject).map(diceName => (
+    return Object.keys(throwResult.result).map(diceName => (
       <ListItem key={diceName}>
         <Typography variant="h2" component="div">
-          {diceName}: {resultObject[diceName].join(', ')}
+          {diceName}: {throwResult.result[diceName].join(', ')}
         </Typography>
       </ListItem>
     ));
@@ -36,4 +31,3 @@ function DiceDashboardResultC(props: DiceDashboardResultProps) {
     </article>
   );
 }
-export const DiceDashboardResult = DiceDashboardResultC;

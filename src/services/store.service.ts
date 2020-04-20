@@ -1,10 +1,13 @@
+import { AnyAction, Store } from 'redux';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import {AnyAction, Store} from 'redux';
 
 import { store } from '../config/store.config';
 import { AppState, IDiceSetForm } from '../store/main';
-import { IProfile, IRoom, IRoomLog } from '../models/rooms.model';
-import { distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { IProfile, IRoom, IRoomLog, Log } from '../models/rooms.model';
+import { distinctUntilObjectChanged } from '../utils/rxjs/distinctUntilObjectChanged.pipe';
+import { IDiceSet } from '../models/dice.model';
+import { diceUtils } from '../utils/dice.utils';
 
 export class StoreService {
   private static instance: StoreService | null;
@@ -26,27 +29,47 @@ export class StoreService {
   }
 
   public getDiceSetForm(): Observable<IDiceSetForm> {
-    return this.store$.pipe(map(state => state.form.diceSetForm));
+    return this.store$.pipe(
+      map(state => state.form.diceSetForm),
+      distinctUntilObjectChanged()
+    );
+  }
+
+  public getDiceSetFormValues(): Observable<IDiceSet> {
+    return this.store$.pipe(
+      map(state => state.form.diceSetForm?.values),
+      distinctUntilObjectChanged()
+    );
   }
 
   public getSelectedRoomData$(): Observable<IRoom> {
     return this.store$.pipe(
       map(state => state.firestore.data.selectedRoom),
       filter(room => !!room)
-    ) as Observable<IRoom>;
+    );
   }
 
   public getSelectedRoomDataLogs$(): Observable<Array<IRoomLog>> {
-    return this.getSelectedRoomData$().pipe(map(room => room.logs));
+    return this.getSelectedRoomData$().pipe(
+      map(room => room.logs),
+      filter(logs => !!logs)
+    );
   }
 
-  public getLastRoomLogOnChange$(): Observable<IRoomLog> {
+  public getSelectedRoomLastDiceThrowLog$(): Observable<IRoomLog> {
     return this.getSelectedRoomDataLogs$().pipe(
-      map(logs => [...logs].pop()),
-      // @ts-ignore
-      filter(log => !!log),
-      distinctUntilChanged((a, b) => a.timestamp === b.timestamp)
-    ) as Observable<IRoomLog>;
+      map(logs => logs[logs.length ? logs.length - 1 : 0]),
+      filter(log => !!log && log.type === Log.DICE_ROLL),
+      distinctUntilChanged((logA, logB) => logA.timestamp === logB.timestamp),
+      map((log: IRoomLog) => ({
+        ...log,
+        payload: {
+          ...log.payload,
+          diceSet: diceUtils.sortObjectWithDiceKey(log.payload.diceSet),
+          result: diceUtils.sortObjectWithDiceKey(log.payload.result),
+        },
+      }))
+    );
   }
 
   public getUserProfile$(): Observable<IProfile> {

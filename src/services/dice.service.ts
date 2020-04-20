@@ -1,20 +1,30 @@
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { from, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
-import { distinctUntilChanged, filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { concatMap, delayWhen, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
-import { IDiceBeforeThrow, IDiceThrow, IDiceThrowResult } from '../models/dice.model';
+import {
+  IDiceBeforeThrow,
+  IDiceSet,
+  IDiceThrow,
+  IDiceThrowConfig,
+  IDiceAfterThrow
+} from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
 import { FirestoreCollection } from '../models/firebase.model';
-import { IProfile, IRoom, IRoomLog, Log } from '../models/rooms.model';
+import { IProfile, IRoomLog, Log } from '../models/rooms.model';
 import { StoreService } from './store.service';
-import { diceSetToString } from '../utils/dice.utils';
+import { diceUtils } from '../utils/dice.utils';
+import { distinctUntilObjectChanged } from '../utils/rxjs/distinctUntilObjectChanged.pipe';
 
 export class DiceService {
   private static instance: DiceService | null;
 
   public readonly diceThrow$ = new Subject<IDiceThrow>();
   public readonly diceBeforeThrow$ = new Subject<IDiceBeforeThrow>();
-  public readonly diceThrowResult$ = new ReplaySubject<IDiceThrowResult>(1);
+  public readonly diceAfterThrow$ = new ReplaySubject<IDiceAfterThrow>(1);
+  public readonly requestNewThrow$ = new Subject<IDiceThrowConfig>();
+  public readonly diceThrowDelayedWhen$ = this.diceThrow$.pipe(delayWhen(() => this.diceAfterThrow$));
+
   public profile: IProfile | null = null;
   public roomUid: string | null = null;
 
@@ -23,6 +33,7 @@ export class DiceService {
 
   private constructor(private firestore: firestore.Firestore) {
     this.createSubscriptions();
+    this.diceThrowDelayedWhen$.subscribe(e => console.log({ e }));
   }
 
   public hostDestroyed(): void {
@@ -34,9 +45,9 @@ export class DiceService {
   public get handleDiceSetFormChanges$(): Observable<string> {
     return this.storeService.getDiceSetForm().pipe(
       map(form => form?.values),
-      distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+      distinctUntilObjectChanged(),
       filter(dices => !!dices),
-      map(dices => diceSetToString(dices)),
+      map(dices => diceUtils.diceSetToString(dices)),
       takeUntil(this.takeUntil$)
     );
   }
@@ -50,71 +61,74 @@ export class DiceService {
   }
 
   private createSubscriptions(): void {
-    // this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
-    //   console.log('diceThrow$: ', diceThrow);
-    // });
+    this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+      console.log('diceThrow$: ', diceThrow);
+    });
 
     this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(true);
-      // console.log('diceBeforeThrow$: ', diceThrow);
     });
 
-    this.diceThrowResult$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+    this.diceAfterThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(false);
-      diceThrow.emit && this.firestoreAddNewThrow(diceThrow);
-      // console.log('diceThrowResult$: ', diceThrow);
     });
 
-    this.performDiceThrowWhenNewDiceThrowLogAppears();
+    this.handleRequestNewThrow$().subscribe();
+    this.performDiceThrowWhenNewDiceThrowLogAppears$().subscribe();
   }
 
-  /**
-   * Set UI flag to tell if dice are rolling
-   */
   private setDiceRolling(diceRolling: boolean): void {
     this.storeService.dispatch(roomsActions.diceRolling(diceRolling));
   }
 
-  private firestoreAddNewThrow(diceThrowResult: IDiceThrowResult): void {
-    if (!this.roomUid) {
-      return;
-    }
+  /**
+   *
+   */
 
-    const { emit, ...payload } = diceThrowResult;
+  private performDiceThrowWhenNewDiceThrowLogAppears$(): Observable<IRoomLog> {
+    return this.storeService.getSelectedRoomLastDiceThrowLog$().pipe(
+      tap(({ payload }: IRoomLog) => this.diceThrow$.next(payload as IDiceThrow)),
+      takeUntil(this.takeUntil$)
+    );
+  }
+
+  private handleRequestNewThrow$(): Observable<IDiceThrowConfig> {
+    return this.requestNewThrow$.pipe(
+      tap(() => this.setDiceRolling(true)),
+      withLatestFrom(this.storeService.getDiceSetFormValues()),
+      map(([diceThrowConfig, diceSet]: [IDiceThrowConfig, IDiceSet]) => {
+        const diceThrow: IDiceThrow = {
+          diceThrowConfig,
+          diceSet,
+          result: diceUtils.generateThrowResultFromDiceSet(diceSet),
+        };
+        return diceThrow;
+      }),
+      concatMap(diceThrow => this.createNewThrowLogInRoomLogs$(diceThrow)),
+      takeUntil(this.takeUntil$)
+    );
+  }
+
+  private createNewThrowLogInRoomLogs$(diceThrow: IDiceThrow): Observable<any> {
+    if (!this.roomUid) return of(null);
+
+    console.log('SET NEW THROW: ', diceThrow);
+    // TODO: catch error and show toastBar
     const documentRef = this.firestore.doc(`${FirestoreCollection.ROOMS}/${this.roomUid}`);
-
-    this.firestore.runTransaction((t: firestore.Transaction) => {
-      return t
-        .get(documentRef)
-        .then(doc => {
+    return from(
+      this.firestore.runTransaction((t: firestore.Transaction) => {
+        return t.get(documentRef).then(doc => {
           const newLog: IRoomLog = {
-            authorUid: this.profile?.uid as string,
-            payload,
+            authorUid: this.profile?.uid,
+            payload: diceThrow,
             timestamp: Date.now().toString(),
             type: Log.DICE_ROLL,
           };
-          const logs: IRoomLog[] = [...(doc.data() as IRoom).logs, newLog];
-          return t.update(documentRef, { logs });
-        })
-        .catch((err: any) => {
-          // TODO: add toast message
-          // TRANSACTION_FAILURE action dispatched
-          console.log('Transaction failure:', err);
-        });
-    });
-  }
 
-  private performDiceThrowWhenNewDiceThrowLogAppears() {
-    this.storeService
-      .getLastRoomLogOnChange$()
-      .pipe(
-        filter((log: IRoomLog) => log.type === Log.DICE_ROLL),
-        withLatestFrom(this.storeService.getUserProfile$()),
-        filter(([log, profile]) => !!profile.uid && log.authorUid !== profile.uid),
-        takeUntil(this.takeUntil$)
-      )
-      .subscribe(([log]: [IRoomLog, IProfile]) => {
-        this.diceThrow$.next({ ...log.payload });
-      });
+          const logs: IRoomLog[] = [...doc.data().logs, newLog];
+          return t.update(documentRef, { logs });
+        });
+      })
+    );
   }
 }

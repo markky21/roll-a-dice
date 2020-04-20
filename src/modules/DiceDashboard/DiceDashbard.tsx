@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { DiceDashboardForm } from './components/DiceDashboardForm';
 import { DiceDashboardResult } from './components/DiceDashboardResult';
 import { DiceServiceContext } from '../../contexts/DiceService.context';
-import { IDiceThrowResult } from '../../models/dice.model';
+import { IDiceThrow } from '../../models/dice.model';
 import { IRoom } from '../../models/rooms.model';
 
 const styles = (theme: Theme) =>
@@ -38,7 +38,7 @@ const styles = (theme: Theme) =>
 
 export interface DiceDashboardProps extends WithStyles<typeof styles> {
   visible?: boolean;
-  room?: IRoom | null;
+  room?: IRoom;
 }
 
 function DiceDashboardC(props: DiceDashboardProps) {
@@ -47,10 +47,10 @@ function DiceDashboardC(props: DiceDashboardProps) {
   const destroyed$ = new Subject();
 
   const diceService = useContext(DiceServiceContext);
-  const [throwResult, setThrowResult] = useState<IDiceThrowResult | null>(null);
+  const [throwResult, setThrowResult] = useState<IDiceThrow>(null);
 
   useEffect(() => {
-    diceService?.diceThrowResult$.pipe(takeUntil(destroyed$)).subscribe(result => setThrowResult(result));
+    diceService?.diceThrowDelayedWhen$.pipe(takeUntil(destroyed$)).subscribe(result => setThrowResult(result));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!diceService]);
 

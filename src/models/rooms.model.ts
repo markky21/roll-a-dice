@@ -1,4 +1,4 @@
-import { Dice, IDiceThrowResult } from './dice.model';
+import { Dice, IDiceThrow } from './dice.model';
 
 export enum Log {
   DICE_ROLL = 'DICE_ROLL',
@@ -17,7 +17,7 @@ export interface IRoomLog {
   timestamp: string;
   type: Log;
   authorUid: string;
-  payload: Omit<IDiceThrowResult, 'emit'>;
+  payload: IDiceThrow;
 }
 
 export interface IRoom extends IRoomCreateForm {

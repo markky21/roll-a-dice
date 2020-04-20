@@ -1,14 +1,10 @@
 export interface IDiceBeforeThrow {
-  vectors: any;
-  notation: any;
-  throwRequestResult: number[];
-  emitResult: boolean;
+  throwConfig: IDiceThrowConfig;
 }
 
-export interface IDiceThrowResult {
-  diceSet: string[];
+export interface IDiceAfterThrow {
+  throwConfig: IDiceThrowConfig;
   result: number[];
-  emit: boolean;
 }
 
 export enum Dice {
@@ -21,32 +17,39 @@ export enum Dice {
   D100 = 'd100',
 }
 
-interface IDiceVector {
-  set: Dice;
-  pos: {
-    x: number;
-    y: number;
-    z: number;
-  };
-  velocity: {
-    x: number;
-    y: number;
-    z: number;
-  };
-  angle: {
-    x: number;
-    y: number;
-    z: number;
-  };
-  axis: {
-    x: number;
-    y: number;
-    z: number;
-    a: number;
-  };
+export interface IDiceVector {
+  x: number;
+  y: number;
+}
+
+export interface IDiceThrowConfig {
+  vectors: IDiceVector[];
+  boost: number;
+  dist: number;
+}
+
+export interface INewDiceThrowResult {
+  [Dice.D4]?: number[];
+  [Dice.D6]?: number[];
+  [Dice.D8]?: number[];
+  [Dice.D10]?: number[];
+  [Dice.D12]?: number[];
+  [Dice.D20]?: number[];
+  [Dice.D100]?: number[];
+}
+
+export interface IDiceSet {
+  [Dice.D4]?: number;
+  [Dice.D6]?: number;
+  [Dice.D8]?: number;
+  [Dice.D10]?: number;
+  [Dice.D12]?: number;
+  [Dice.D20]?: number;
+  [Dice.D100]?: number;
 }
 
 export interface IDiceThrow {
-  diceSet: string[];
-  result: number[];
+  diceSet: IDiceSet;
+  diceThrowConfig: IDiceThrowConfig;
+  result: INewDiceThrowResult;
 }

@@ -45,9 +45,9 @@ function DiceCardC(props: DiceCardProps) {
         (window as any).dice_initialize(diceContainerEl.current, {
           ...diceDefaultConfig,
           diceThrow$: diceService.diceThrow$,
-          diceThrowResult$: diceService.diceThrowResult$,
           diceBeforeThrow$: diceService.diceBeforeThrow$,
-          diceSet$: diceService.handleDiceSetFormChanges$,
+          diceAfterThrow$: diceService.diceAfterThrow$,
+          requestNewThrow$: diceService.requestNewThrow$
         });
         setDiceInitialized(true);
       });
