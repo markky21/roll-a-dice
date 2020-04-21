@@ -27,7 +27,6 @@ export class DiceService {
 
   private constructor(private firestore: firestore.Firestore) {
     this.createSubscriptions();
-    this.diceThrowDelayedWhen$.subscribe(e => console.log({ e }));
   }
 
   public hostDestroyed(): void {
@@ -45,9 +44,9 @@ export class DiceService {
   }
 
   private createSubscriptions(): void {
-    this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
-      console.log('diceThrow$: ', diceThrow);
-    });
+    // this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+    //   console.log('diceThrow$: ', diceThrow);
+    // });
 
     this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(true);
