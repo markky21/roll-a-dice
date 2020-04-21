@@ -78,7 +78,7 @@ export class DiceService {
     );
   }
 
-  private handleRequestNewThrow$(): Observable<IDiceThrowConfig> {
+  private handleRequestNewThrow$(): Observable<IDiceThrow> {
     return this.requestNewThrow$.pipe(
       tap(() => {
         this.setDiceRolling(true);
@@ -93,15 +93,22 @@ export class DiceService {
         };
         return diceThrow;
       }),
-      concatMap(diceThrow => this.createNewThrowLogInRoomLogs$(diceThrow)),
+      concatMap(diceThrow => {
+        if (!this.roomUid) {
+          return of(null).pipe(
+            tap(() => this.diceThrow$.next(diceThrow)),
+            map(() => diceThrow)
+          );
+        }
+        return this.createNewThrowLogInRoomLogs$(diceThrow);
+      }),
       takeUntil(this.takeUntil$)
     );
   }
 
-  private createNewThrowLogInRoomLogs$(diceThrow: IDiceThrow): Observable<any> {
+  private createNewThrowLogInRoomLogs$(diceThrow: IDiceThrow): Observable<IDiceThrow> {
     if (!this.roomUid) return of(null);
 
-    console.log('SET NEW THROW: ', diceThrow);
     // TODO: catch error and show toastBar
     const documentRef = this.firestore.doc(`${FirestoreCollection.ROOMS}/${this.roomUid}`);
     return from(
@@ -118,6 +125,6 @@ export class DiceService {
           return t.update(documentRef, { logs });
         });
       })
-    );
+    ).pipe(map(() => diceThrow));
   }
 }

@@ -78,7 +78,6 @@ function CoreLayoutC(props: PaperbaseProps) {
     setMobileOpen(!mobileOpen);
   };
 
-  console.log(isPending);
   return (
     <ThemeProvider theme={theme}>
       <LoaderScreen isAuthenticating={isAuthenticating}>

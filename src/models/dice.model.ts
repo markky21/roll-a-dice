@@ -50,6 +50,6 @@ export interface IDiceSet {
 
 export interface IDiceThrow {
   diceSet: IDiceSet;
-  diceThrowConfig: IDiceThrowConfig;
-  result: INewDiceThrowResult;
+  diceThrowConfig?: IDiceThrowConfig;
+  result?: INewDiceThrowResult;
 }
