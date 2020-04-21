@@ -12,6 +12,7 @@ import { Header } from './Header/Header';
 import { LoaderScreen } from '../components/LoaderScreen';
 import { NavBar } from './NavBar';
 import { theme } from '../styles/theme.styles';
+import { uiSelectors } from '../store/ui/ui.selectors';
 
 function Copyright() {
   return (
@@ -33,7 +34,7 @@ const styles = createStyles({
   },
   lineLoader: {
     position: 'fixed',
-    height: '4px',
+    height: theme.spacing(0.75),
     top: 0,
     left: 0,
     width: '100%',
@@ -71,18 +72,20 @@ function CoreLayoutC(props: PaperbaseProps) {
   const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated);
   const isAuthenticating = useSelector(firebaseSelectors.authenticatingSelector);
   const isRequesting = useSelector(firebaseSelectors.isRequesting);
+  const isPending = useSelector(uiSelectors.isPending);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  console.log(isPending);
   return (
     <ThemeProvider theme={theme}>
       <LoaderScreen isAuthenticating={isAuthenticating}>
         <div className={classes.root}>
           <CssBaseline />
-          <Slide in={isRequesting} direction={'down'}>
-            <LinearProgress className={classes.lineLoader} />
+          <Slide in={isRequesting || isPending} direction={'down'}>
+            <LinearProgress className={classes.lineLoader} color={'secondary'} />
           </Slide>
           {isAuthenticated && <NavBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />}
 

@@ -17,6 +17,8 @@ import { locationReducer } from './location/location.reducer';
 import { LocationState } from './location/location.model';
 import { RoomsState } from './rooms/rooms.model';
 import { roomsReducer } from './rooms/rooms.reducer';
+import { UiState } from './ui/ui.model';
+import { uiReducer } from './ui/ui.reducer';
 
 /**********************************************************
  * Interfaces
@@ -44,6 +46,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     rooms: roomsReducer,
     location: locationReducer,
     form: formReducer,
+    ui: uiReducer,
     ...asyncReducers,
   });
 }
@@ -67,4 +70,5 @@ export interface AppState extends ReturnType<typeof rootReducer> {
   rooms: RoomsState;
   location: LocationState;
   form: FormReducer & { diceSetForm: IDiceSetForm; createRoom: { values: IRoomCreateForm } };
+  ui: UiState;
 }

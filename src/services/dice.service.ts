@@ -1,20 +1,14 @@
 import { from, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
-import { concatMap, delayWhen, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { concatMap, delayWhen, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
-import {
-  IDiceBeforeThrow,
-  IDiceSet,
-  IDiceThrow,
-  IDiceThrowConfig,
-  IDiceAfterThrow
-} from '../models/dice.model';
+import { IDiceAfterThrow, IDiceBeforeThrow, IDiceSet, IDiceThrow, IDiceThrowConfig } from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
+import { uiActions } from '../store/ui/ui.actions';
 import { FirestoreCollection } from '../models/firebase.model';
 import { IProfile, IRoomLog, Log } from '../models/rooms.model';
 import { StoreService } from './store.service';
 import { diceUtils } from '../utils/dice.utils';
-import { distinctUntilObjectChanged } from '../utils/rxjs/distinctUntilObjectChanged.pipe';
 
 export class DiceService {
   private static instance: DiceService | null;
@@ -42,16 +36,6 @@ export class DiceService {
     this.setDiceRolling(false);
   }
 
-  public get handleDiceSetFormChanges$(): Observable<string> {
-    return this.storeService.getDiceSetForm().pipe(
-      map(form => form?.values),
-      distinctUntilObjectChanged(),
-      filter(dices => !!dices),
-      map(dices => diceUtils.diceSetToString(dices)),
-      takeUntil(this.takeUntil$)
-    );
-  }
-
   static getInstance(firestore: firestore.Firestore): DiceService {
     if (!DiceService.instance) {
       DiceService.instance = new DiceService(firestore);
@@ -67,10 +51,12 @@ export class DiceService {
 
     this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(true);
+      this.setIsPending(false);
     });
 
     this.diceAfterThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(false);
+      this.setIsPending(false);
     });
 
     this.handleRequestNewThrow$().subscribe();
@@ -81,9 +67,9 @@ export class DiceService {
     this.storeService.dispatch(roomsActions.diceRolling(diceRolling));
   }
 
-  /**
-   *
-   */
+  private setIsPending(isPending: boolean): void {
+    this.storeService.dispatch(uiActions.setIsPending(isPending));
+  }
 
   private performDiceThrowWhenNewDiceThrowLogAppears$(): Observable<IRoomLog> {
     return this.storeService.getSelectedRoomLastDiceThrowLog$().pipe(
@@ -94,7 +80,10 @@ export class DiceService {
 
   private handleRequestNewThrow$(): Observable<IDiceThrowConfig> {
     return this.requestNewThrow$.pipe(
-      tap(() => this.setDiceRolling(true)),
+      tap(() => {
+        this.setDiceRolling(true);
+        this.setIsPending(true);
+      }),
       withLatestFrom(this.storeService.getDiceSetFormValues()),
       map(([diceThrowConfig, diceSet]: [IDiceThrowConfig, IDiceSet]) => {
         const diceThrow: IDiceThrow = {
