@@ -4,7 +4,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import { Dictionary } from 'react-redux-firebase';
 
 import { firstLettersJoined } from '../../../utils/text.utils';
-import { timeStampToFormattedDate } from '../../../utils/date.utils';
+import { dateUtils } from '../../../utils/date.utils';
 import { IRoom } from '../../../models/rooms.model';
 
 const styles = (theme: Theme) =>
@@ -47,7 +47,7 @@ function RoomListElementC(props: RoomListElementProps) {
           </ListItemAvatar>
           <ListItemText
             primary={rooms[roomId].roomName || 'No name'}
-            secondary={timeStampToFormattedDate(rooms[roomId].createdAt)}
+            secondary={dateUtils.timeStampToFormattedDate(rooms[roomId].createdAt)}
           />
         </ListItem>
       </Grow>
@@ -64,4 +64,4 @@ function RoomListElementC(props: RoomListElementProps) {
   );
 }
 
-export const RoomListElements =  React.memo(withStyles(styles)(RoomListElementC));
+export const RoomListElements = React.memo(withStyles(styles)(RoomListElementC));

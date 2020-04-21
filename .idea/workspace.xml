@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="">
+    <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="Changes in nodejs.yml file">
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/LogsDashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogDiceThrow.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogListItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTabs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTimeline.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/dice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dice.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/rooms.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Chatter/Chatter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Chatter/components/ChatMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Chatter/components/ChatMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DiceDashboard/DiceDashbard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DiceDashboard/DiceDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DiceDashboard/components/DiceDashboardResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DiceDashboard/components/DiceDashboardResult.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Home/components/HomeWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Home/components/HomeWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/theme.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/theme.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/date.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/date.utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/LogsDashboard/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -77,19 +92,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/LogsDashboard/components" />
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/modules/LogDashboard" />
+      <recent name="$PROJECT_DIR$/src/store" />
+      <recent name="$PROJECT_DIR$/src/utils/rxjs" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/routes/Home" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/src/modules/DiceCard" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/store" />
-      <recent name="$PROJECT_DIR$/src/utils/rxjs" />
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="$PROJECT_DIR$/src/queries" />
-      <recent name="$PROJECT_DIR$/src/modules/AppStats" />
     </key>
   </component>
   <component name="RunManager" selected="npm.lint">
@@ -146,9 +161,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.test" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
@@ -480,7 +495,21 @@
       <option name="project" value="LOCAL" />
       <updated>1587452358670</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Changes in nodejs.yml file">
+      <created>1587456300740</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1587456300740</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Changes in nodejs.yml file">
+      <created>1587456393420</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1587456393420</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +527,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="WIP Implementing RoomCreate and RoomCreateForm.tsx components" />
     <MESSAGE value="WIP RoomPage" />
     <MESSAGE value="WIP DiceCard" />
     <MESSAGE value="Add LazyLoad modules pages" />
@@ -523,7 +551,8 @@
     <MESSAGE value="Major change in dice throw dispatch" />
     <MESSAGE value="Add isPending ui flag" />
     <MESSAGE value="Fix homepage dice card" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix homepage dice card" />
+    <MESSAGE value="Changes in nodejs.yml file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in nodejs.yml file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2493" y="-486" key="#ESLint" timestamp="1586954437395">
@@ -565,50 +594,50 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587452358454">
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587481826221">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977743385" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587452358454" />
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587481826221" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
     <state x="-2469" y="-563" key="DiffContextDialog" timestamp="1587104723669">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2469" y="-563" key="DiffContextDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587104723669" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587455257098">
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587482005688">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587455257098" />
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587482005688" />
     <state width="3724" height="358" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121192" />
     <state width="1572" height="124" key="GridCell.Tab.0.bottom/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.bottom/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587455257097">
+    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587482005687">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319901" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587455257097" />
+    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587482005687" />
     <state width="3724" height="358" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.center/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.center/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587455257096">
+    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587482005686">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319900" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587455257096" />
+    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587482005686" />
     <state width="3724" height="358" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.left/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.left/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587455257097">
+    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587482005688">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587455257097" />
+    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587482005688" />
     <state width="3724" height="358" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.right/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.right/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
@@ -684,12 +713,12 @@
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-1170" width="3586" height="1937" key="VCS.FileHistoryDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587119123400" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587451485312">
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587456396126">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977746086" />
     <state x="440" y="244" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812661051" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587451485312" />
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587456396126" />
     <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792828941" />
     <state x="-3686" y="-1170" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587152775769">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
@@ -700,21 +729,21 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2169" y="-98" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586170891283" />
-    <state x="-3786" y="-1270" width="1624" height="1656" key="dock-window-1" timestamp="1587104281471">
+    <state x="-3075" y="-667" width="1627" height="1661" key="dock-window-1" timestamp="1587461688196">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3389" y="-441" width="1683" height="1814" key="dock-window-1/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586862835018" />
-    <state x="-3786" y="-1270" width="1624" height="1656" key="dock-window-1/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587104281471" />
+    <state x="-3075" y="-667" width="1627" height="1661" key="dock-window-1/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587461688196" />
     <state x="-3242" y="-525" width="1683" height="1814" key="dock-window-2" timestamp="1586862999597">
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3242" y="-525" width="1683" height="1814" key="dock-window-2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586862999597" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587454114939">
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587481899116">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2302" y="-318" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586938923107" />
     <state x="511" y="194" width="929" height="706" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586842218164" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587454114939" />
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587481899116" />
     <state x="690" y="378" width="613" height="504" key="find.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586066829048" />
     <state x="690" y="344" width="930" height="706" key="find.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587300003198" />
     <state x="691" y="344" width="929" height="706" key="find.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587237390035" />
@@ -722,12 +751,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587455114235">
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587481965138">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586955427327" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586814157100" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587455114235" />
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587481965138" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
     <state x="686" y="262" width="839" height="496" key="search.everywhere.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587297719486" />
     <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587238237721" />

@@ -1,4 +1,5 @@
 import { Dice, IDiceThrow } from './dice.model';
+import React from 'react';
 
 export enum Log {
   DICE_ROLL = 'DICE_ROLL',
@@ -65,13 +66,13 @@ export const createRoomFormModel = {
       { label: Dice.D100, value: Dice.D100 },
     ],
   },
-  d4: { name: Dice.D4, label: Dice.D4 },
-  d6: { label: Dice.D6, name: Dice.D6 },
-  d8: { label: Dice.D8, name: Dice.D8 },
-  d10: { label: Dice.D10, name: Dice.D10 },
-  d12: { label: Dice.D12, name: Dice.D12 },
-  d20: { label: Dice.D20, name: Dice.D20 },
-  d100: { label: Dice.D100, name: Dice.D100 },
+  d4: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D4}</span>, name: Dice.D4 },
+  d6: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D6}</span>, name: Dice.D6 },
+  d8: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D8}</span>, name: Dice.D8 },
+  d10: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D10}</span>, name: Dice.D10 },
+  d12: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D12}</span>, name: Dice.D12 },
+  d20: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D20}</span>, name: Dice.D20 },
+  d100: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D100}</span>, name: Dice.D100 },
 };
 
 export const diceSetFormModel = {

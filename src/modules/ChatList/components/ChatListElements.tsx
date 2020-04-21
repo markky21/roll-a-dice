@@ -5,7 +5,7 @@ import { Dictionary } from 'react-redux-firebase';
 
 import { firstLettersJoined } from '../../../utils/text.utils';
 import { IChat } from '../../../models/chats.model';
-import { timeStampToFormattedDate } from '../../../utils/date.utils';
+import { dateUtils } from '../../../utils/date.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -45,7 +45,7 @@ function ChatListElementC(props: ChatListElementProps) {
           </ListItemAvatar>
           <ListItemText
             primary={chats[chatId].roomName || 'No name'}
-            secondary={timeStampToFormattedDate(chats[chatId].createdAt)}
+            secondary={dateUtils.timeStampToFormattedDate(chats[chatId].createdAt)}
           />
         </ListItem>
       </Grow>
@@ -54,4 +54,4 @@ function ChatListElementC(props: ChatListElementProps) {
   return <List className={classes.root}>{renderElement()}</List>;
 }
 
-export const ChatListElements =  React.memo(withStyles(styles)(ChatListElementC));
+export const ChatListElements = React.memo(withStyles(styles)(ChatListElementC));

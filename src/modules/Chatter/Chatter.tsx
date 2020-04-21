@@ -25,7 +25,6 @@ const styles = (theme: Theme) =>
     searchBar: {
       borderTop: '1px solid rgba(0, 0, 0, 0.12)',
     },
-
     contentWrapper: {
       padding: '16px 16px',
       width: '100%',
@@ -34,11 +33,11 @@ const styles = (theme: Theme) =>
 
 interface ChatProps extends WithStyles<typeof styles> {
   height?: string;
-  visbile?: boolean;
+  visible?: boolean;
 }
 
 function ChatC(props: ChatProps) {
-  const { classes, height = '40vh', visbile = true } = props;
+  const { classes, height = '40vh', visible = true } = props;
   const firestore = useFirestore();
   const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
   const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;
@@ -71,7 +70,7 @@ function ChatC(props: ChatProps) {
   };
 
   return (
-    <Slide direction="up" in={visbile}>
+    <Slide direction="up" in={visible}>
       <Paper className={classes.paper}>
         <Grid container direction="column" justify="space-between" alignItems="flex-end">
           <div className={classes.contentWrapper}>

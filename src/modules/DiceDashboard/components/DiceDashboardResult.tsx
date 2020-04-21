@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, Typography } from '@material-ui/core';
+import { Grid, List, ListItem, Typography } from '@material-ui/core';
 
 import { IDiceThrow } from '../../../models/dice.model';
 
@@ -17,16 +17,27 @@ export function DiceDashboardResult(props: DiceDashboardResultProps) {
 
     return Object.keys(throwResult.result).map(diceName => (
       <ListItem key={diceName}>
-        <Typography variant="h2" component="div">
-          {diceName}: {throwResult.result[diceName].join(', ')}
-        </Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <Typography variant="h4" component="span" color={'textSecondary'}>
+              {diceName}:
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h3" component="span">
+              {throwResult.result[diceName].join(', ')}
+            </Typography>
+          </Grid>
+        </Grid>
       </ListItem>
     ));
   };
 
   return (
     <article>
-      <h2>Throw result:</h2>
+      <Typography variant="h5" component="h2">
+        Throw result:
+      </Typography>
       <List>{renderResultItem()}</List>
     </article>
   );

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { AppStats } from '../../../modules/AppStats/AppStats';
 import { Dice } from '../../../models/dice.model';
 import { DiceCard } from '../../../modules/DiceCard/DiceCard';
-import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashbard';
+import { DiceDashboard } from '../../../modules/DiceDashboard/DiceDashboard';
 import { DiceServiceContextC } from '../../../contexts/DiceService.context';
 import { IRoom } from '../../../models/rooms.model';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';

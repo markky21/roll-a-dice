@@ -1,9 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Avatar, Badge, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import {
+  Avatar,
+  Badge,
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from '@material-ui/core';
 import { IChat } from '../../../models/chats.model';
 import { Dictionary } from 'react-redux-firebase';
 import { IProfile } from '../../../models/rooms.model';
+import { dateUtils } from '../../../utils/date.utils';
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -94,7 +105,19 @@ function ChatListElementC(props: ChatListElementProps) {
                 <Avatar alt={displayName} src={avatarUrl || photoURL} />
               )}
             </ListItemAvatar>
-            <ListItemText primary={displayName} secondary={message.content} />
+            <ListItemText
+              primary={
+                <Grid container direction="row" justify="space-between" alignItems="flex-start">
+                  <Typography component={'span'} variant={'body1'}>
+                    {displayName}
+                  </Typography>
+                  <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
+                    {dateUtils.timeStampToDetailedTime(message.createdAt)}
+                  </Typography>
+                </Grid>
+              }
+              secondary={message.content}
+            />
           </ListItem>
         </React.Fragment>
       );

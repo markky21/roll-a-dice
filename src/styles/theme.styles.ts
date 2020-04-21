@@ -82,7 +82,6 @@ function themeFn() {
           height: 3,
           borderTopLeftRadius: 3,
           borderTopRightRadius: 3,
-          backgroundColor: theme.palette.common.white,
         },
       },
       MuiTab: {

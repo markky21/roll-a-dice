@@ -50,4 +50,6 @@ export const firestoreSelectors = {
 
     return usersProfiles && uid ? usersProfiles[uid] : null;
   },
+
+  selectedRoomLogs: (state: AppState) => state.firestore.data.selectedRoom?.logs,
 };
