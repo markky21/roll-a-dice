@@ -53,11 +53,11 @@ export interface IRoomCreateForm {
 export interface IRoomPlayerProfileForm extends IPlayerProfile {}
 
 export const createRoomFormModel = {
-  roomName: { name: 'roomName', label: 'Name of the Room *', fullWidth: true },
-  description: { name: 'description', label: 'Room description', multiline: true, fullWidth: true },
-  campaignTitle: { name: 'campaignTitle', label: 'Current campaign tittle', fullWidth: true },
-  roomImage: { name: 'roomImage', label: 'Room image URL', fullWidth: true },
-  gameMasterAvatar: { name: 'gameMasterAvatar', label: 'Game master avatar URL', fullWidth: true },
+  roomName: { name: 'roomName', label: 'Name of the Room *', fullWidth: true, maxLength: 80 },
+  description: { name: 'description', label: 'Room description', multiline: true, fullWidth: true, maxLength: 1024 },
+  campaignTitle: { name: 'campaignTitle', label: 'Current campaign tittle', fullWidth: true, maxLength: 80 },
+  roomImage: { name: 'roomImage', label: 'Room image URL', fullWidth: true, maxLength: 256 },
+  gameMasterAvatar: { name: 'gameMasterAvatar', label: 'Game master avatar URL', fullWidth: true, maxLength: 256 },
   maxPlayers: {
     name: 'maxPlayers',
     label: 'Maximum players *',

@@ -17,6 +17,15 @@ const validate = (values: any) => {
     }
   });
 
+  Object.keys(createRoomFormModel).forEach(fieldKey => {
+    if (
+      createRoomFormModel[fieldKey].maxLength &&
+      values[createRoomFormModel[fieldKey].name]?.length > createRoomFormModel[fieldKey].maxLength
+    ) {
+      errors[fieldKey] = `Max length ${createRoomFormModel[fieldKey].maxLength} exceeded`;
+    }
+  });
+
   if (!(values[createRoomFormModel.diceType.name] && values[createRoomFormModel.diceType.name].length)) {
     errors[createRoomFormModel.diceType.name] = 'Select at least one dice';
   }
