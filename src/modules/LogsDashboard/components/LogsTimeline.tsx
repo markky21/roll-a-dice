@@ -6,6 +6,7 @@ import { Divider, List } from '@material-ui/core';
 import { IProfile, IRoomLog, Log } from '../../../models/rooms.model';
 import { LogListItem } from './LogListItem';
 import { LogDiceThrow } from './LogDiceThrow';
+import { LogNewPlayer } from './LogNewPlayer';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,6 +32,7 @@ function LogsTimelineC(props: LogsTimelineProps) {
         {!!id && <Divider variant="inset" component="li" light={true} />}
         <LogListItem profile={profiles[log.authorUid]} log={log}>
           {log.type === Log.DICE_ROLL && log.payload && <LogDiceThrow log={log} />}
+          {log.type === Log.NEW_PLAYER && <LogNewPlayer log={log} />}
         </LogListItem>
       </React.Fragment>
     ));

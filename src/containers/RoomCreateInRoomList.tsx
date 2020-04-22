@@ -34,7 +34,7 @@ export function RoomCreateInRoomList() {
         photoURL: (userProfile.photoURL || userProfile.avatarUrl) as string,
       },
       logs: [],
-      players: [],
+      players: {},
       ...formValues,
     };
     return firestore

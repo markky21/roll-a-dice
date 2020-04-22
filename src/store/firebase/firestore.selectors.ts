@@ -1,7 +1,7 @@
 import { AppState } from '../main';
 import { Dictionary } from 'react-redux-firebase';
 import { IChat } from '../../models/chats.model';
-import { IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
+import { IPlayerProfile, IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
 
 export const firestoreSelectors = {
   userChats: (state: AppState): Dictionary<IChat> | undefined => state.firestore.data.userChats,
@@ -37,12 +37,7 @@ export const firestoreSelectors = {
 
   usersProfiles: (state: AppState): Dictionary<IProfile> => state.firestore.data.usersProfiles || {},
 
-  selectedRoomPlayers: (state: AppState): IProfile[] => {
-    const usersProfiles: Dictionary<IProfile> = state.firestore.data.usersProfiles || {};
-    const playersUid = state.firestore.data.selectedRoom?.players || [];
-
-    return playersUid.map((uid: string) => usersProfiles[uid]).filter((p: IProfile) => !!p);
-  },
+  selectedRoomPlayers: (state: AppState): Dictionary<IPlayerProfile> => state.firestore.data.selectedRoom?.players,
 
   selectedRoomGameMasterProfile: (state: AppState): IProfile | null => {
     const usersProfiles: Dictionary<IProfile> = state.firestore.data.usersProfiles || {};

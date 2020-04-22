@@ -116,7 +116,7 @@ export class DiceService {
           const newLog: IRoomLog = {
             authorUid: this.profile?.uid,
             payload: diceThrow,
-            timestamp: Date.now().toString(),
+            timestamp: Date.now(),
             type: Log.DICE_ROLL,
           };
 

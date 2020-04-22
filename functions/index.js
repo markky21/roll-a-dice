@@ -12,6 +12,7 @@ const initialApplicationStats = { players: 0, rooms: 0, diceThrows: 0 };
 /**
  * On Room Create
  */
+
 exports.onRoomCreateCreateChat = functions.firestore.document('rooms/{roomId}').onCreate((roomSnapshot, context) => {
   const data = roomSnapshot.data();
 

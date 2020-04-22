@@ -177,6 +177,7 @@ export const FormFieldSlider = React.memo((props: FormFieldGenericProps) => {
         labelPlacement="start"
         control={
           <Slider
+            style={{ marginBottom: 0 }}
             defaultValue={0}
             getAriaValueText={valuetext}
             aria-labelledby="number-of-dices"

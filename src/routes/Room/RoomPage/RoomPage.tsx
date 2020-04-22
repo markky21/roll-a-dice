@@ -13,6 +13,7 @@ import { roomsActions } from '../../../store/rooms/rooms.actions';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
 import { DiceServiceContextC } from '../../../contexts/DiceService.context';
 import { RoomView } from './components/RoomPageView';
+import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
 
 //
 
@@ -49,21 +50,28 @@ export function RoomC(props: RoomListProps) {
   function onEnterTheRoomAddUserToPlayers(): void {
     if (!selectedRoomData) return;
 
-
-    if (selectedRoomData?.maxPlayers <= selectedRoomData.players.length) {
+    if (selectedRoomData?.maxPlayers <= Object.keys(selectedRoomData.players).length) {
       // TODO toast message
       return;
     }
     if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) return;
-    if (selectedRoomData.players.indexOf(userProfile.uid) !== -1) return;
+    if (selectedRoomData.players[userProfile.uid]) return;
 
     const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
-    firestore.runTransaction((t: any) => {
+    firestore.runTransaction(t => {
       return t
         .get(documentRef)
-        .then((doc: any) => {
-          const players = [...doc.data().players, userProfile.uid];
-          return t.update(documentRef, { players });
+        .then(doc => {
+          const log: IRoomLog = { authorUid: userProfile.uid, timestamp: Date.now(), type: Log.NEW_PLAYER };
+          const logs = [...doc.data().logs, log];
+          const player: IPlayerProfile = {
+            displayName: userProfile.displayName,
+            email: userProfile.email,
+            photoURL: userProfile.photoURL,
+            uid: userProfile.uid,
+          };
+          const players = { ...doc.data().players, [userProfile.uid]: player };
+          return t.update(documentRef, { logs, players });
         })
         .catch((err: any) => {
           // TODO: add toast message

@@ -43,9 +43,9 @@ function PlayersC(props: PlayersProps) {
         )}
 
         {players &&
-          players.map((player, id) => (
-            <Grow in key={player.uid} timeout={1000 * id + 1300}>
-              <PlayerTile player={player} />
+          Object.keys(players).map((playerUid, id) => (
+            <Grow in key={playerUid} timeout={1000 * id + 1300}>
+              <PlayerTile player={players[playerUid]} />
             </Grow>
           ))}
       </GridList>

@@ -8,6 +8,7 @@ import { LogsTimeline } from './LogsTimeline';
 import { useSelector } from 'react-redux';
 
 import { firestoreSelectors } from '../../../store/firebase/firestore.selectors';
+import { LogsByPlayers } from './LogsByPlayers';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,7 +29,7 @@ const styles = (theme: Theme) =>
       overflowY: 'scroll',
     },
     tabContent: {
-      margin: theme.spacing(0, -1, 0, -3),
+      margin: theme.spacing(-3),
     },
   });
 
@@ -80,7 +81,9 @@ function LogsTabsC(props: LogsTabsProps) {
               </div>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              <div className="classes.tabContent">Item Two</div>
+              <div className={classes.tabContent}>
+                <LogsByPlayers profiles={profiles} logs={logs} />
+              </div>
             </TabPanel>
           </SwipeableViews>
         </div>

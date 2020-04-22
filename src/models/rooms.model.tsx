@@ -1,8 +1,11 @@
 import { Dice, IDiceThrow } from './dice.model';
 import React from 'react';
+import { Omit } from '@material-ui/core';
+import {Dictionary} from "react-redux-firebase";
 
 export enum Log {
   DICE_ROLL = 'DICE_ROLL',
+  NEW_PLAYER = 'NEW_PLAYER',
 }
 
 export interface IProfile {
@@ -14,17 +17,23 @@ export interface IProfile {
   connected?: boolean;
 }
 
+export interface IPlayerProfile extends Omit<IProfile, 'connected'> {
+  characterName?: string;
+  characterDescription?: string;
+  notes?: string;
+}
+
 export interface IRoomLog {
-  timestamp: string;
+  timestamp: number;
   type: Log;
   authorUid: string;
-  payload: IDiceThrow;
+  payload?: IDiceThrow;
 }
 
 export interface IRoom extends IRoomCreateForm {
   createdAt: string;
   gameMaster: IProfile;
-  players: string[];
+  players: Dictionary<IPlayerProfile>;
   logs: IRoomLog[];
   chatUid?: string;
 }
