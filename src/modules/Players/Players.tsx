@@ -33,6 +33,8 @@ function PlayersC(props: PlayersProps) {
   const players = useSelector(firestoreSelectors.selectedRoomPlayers);
   const gameMaster = useSelector(firestoreSelectors.selectedRoomGameMasterProfile);
 
+  console.log({ gameMaster });
+
   return (
     <Slide direction="up" in={visible}>
       <GridList className={classes.gridList} cols={2.5}>

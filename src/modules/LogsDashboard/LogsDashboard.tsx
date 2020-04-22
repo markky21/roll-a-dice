@@ -7,14 +7,16 @@ export interface LogsDashboardProps {
   visible?: boolean;
 }
 
-export function LogsDashboard(props: LogsDashboardProps) {
+function LogsDashboardC(props: LogsDashboardProps) {
   const { visible = true } = props;
 
   return (
-    <Slide direction="right" in={visible}>
-      <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}>
+    <Slide direction="left" in={visible}>
+      <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', zIndex: 10 }}>
         <LogsTabs />
       </div>
     </Slide>
   );
 }
+
+export const LogsDashboard = React.memo(LogsDashboardC);

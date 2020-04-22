@@ -89,7 +89,7 @@ export function RoomView() {
     <section className={classes.root}>
       <div className={classes.mainGrid}>
         <div className={classes.gridItemLogs}>
-          <LogsDashboard></LogsDashboard>
+          <LogsDashboard visible={!diceRolling && !!selectedRoom}/>
         </div>
 
         <div className={classes.gridItemDiceCard}>

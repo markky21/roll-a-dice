@@ -1,7 +1,7 @@
-import { Dice, IDiceThrow } from './dice.model';
 import React from 'react';
+import { Dice, IDiceThrow } from './dice.model';
+import { Dictionary } from 'react-redux-firebase';
 import { Omit } from '@material-ui/core';
-import {Dictionary} from "react-redux-firebase";
 
 export enum Log {
   DICE_ROLL = 'DICE_ROLL',
