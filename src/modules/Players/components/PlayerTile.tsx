@@ -1,12 +1,13 @@
-import clsx from 'clsx';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import clsx from 'clsx';
 import GavelIcon from '@material-ui/icons/Gavel';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { GridListTile, GridListTileBar, IconButton, Tooltip } from '@material-ui/core';
+import { Grid, GridListTile, GridListTileBar, IconButton, Tooltip } from '@material-ui/core';
 
-import { IProfile } from '../../../models/rooms.model';
+import { IPlayerProfile } from '../../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -24,7 +25,7 @@ const styles = (theme: Theme) =>
     titleDisable: {
       color: theme.palette.warning.light,
     },
-    masterGame: {
+    actionGrid: {
       position: 'absolute' as 'absolute',
       zIndex: 10,
       top: 0,
@@ -36,18 +37,18 @@ const styles = (theme: Theme) =>
   });
 
 interface PlayerTileProps extends WithStyles<typeof styles> {
-  player: IProfile;
-  gameMaster?: boolean;
+  player: IPlayerProfile;
+  onEdit?: (uid: string) => void;
 }
 
 function PlayerTileC(props: PlayerTileProps) {
-  const { classes, player, gameMaster } = props;
+  const { classes, player, onEdit } = props;
 
   return (
     <GridListTile className={classes.tile}>
-      <img src={player.avatarUrl || player.photoURL} alt={player.displayName} />
+      <img src={player.characterAvatarUrl || player.avatarUrl || player.photoURL} alt={player.displayName} />
       <GridListTileBar
-        title={player.displayName}
+        title={player.characterName || player.displayName}
         classes={{
           root: classes.titleBar,
           title: player.connected ? classes.title : classes.titleDisable,
@@ -65,15 +66,37 @@ function PlayerTileC(props: PlayerTileProps) {
         }
       />
 
-      {gameMaster && (
-        <Tooltip
-          className={clsx(classes.masterGame, player.connected ? classes.title : classes.titleDisable)}
-          title={'Game Master'}
+      {(player.gameMaster || onEdit) && (
+        <Grid
+          container
+          direction="row"
+          justify="flex-end"
+          alignItems="center"
+          spacing={0}
+          className={classes.actionGrid}
         >
-          <IconButton aria-label={`star ${player.displayName}`}>
-            <GavelIcon />
-          </IconButton>
-        </Tooltip>
+          {player.gameMaster && (
+            <Grid item>
+              <Tooltip className={clsx(player.connected ? classes.title : classes.titleDisable)} title={'Game Master'}>
+                <IconButton aria-label={''}>
+                  <GavelIcon />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+          )}
+          {onEdit && (
+            <Grid item>
+              <Tooltip
+                className={clsx(player.connected ? classes.title : classes.titleDisable)}
+                title={'Edit character'}
+              >
+                <IconButton onClick={() => onEdit(player.uid)} aria-label={`edit character`}>
+                  <AccountBoxIcon />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+          )}
+        </Grid>
       )}
     </GridListTile>
   );

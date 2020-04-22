@@ -1,9 +1,8 @@
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import { Dialog, DialogTitle, useMediaQuery } from '@material-ui/core';
 import { RoomCreateForm } from './components/RoomCreateForm';
 
 import { IRoomCreateForm } from '../../models/rooms.model';
+import { FormDialog } from '../../components/FormDialog';
 
 export interface RoomCreateProps {
   open: boolean;
@@ -12,16 +11,14 @@ export interface RoomCreateProps {
   initialValues?: IRoomCreateForm;
 }
 
-export function RoomCreate(props: RoomCreateProps) {
+export function RoomCreateC(props: RoomCreateProps) {
   const { open, onClose, onSubmit, initialValues } = props;
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
-
   return (
-    <Dialog fullScreen={fullScreen} open={open} onClose={onClose} aria-labelledby="responsive-dialog-title">
-      <DialogTitle>Create new Room</DialogTitle>
-      <RoomCreateForm handleClose={onClose} onSubmit={onSubmit} initialValues={initialValues} />
-    </Dialog>
+    <FormDialog open={open} onClose={onClose} title="Create new room">
+      <RoomCreateForm onClose={onClose} onSubmit={onSubmit} initialValues={initialValues} />
+    </FormDialog>
   );
 }
+
+export const RoomCreate = React.memo(RoomCreateC);

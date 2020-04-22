@@ -26,16 +26,19 @@ export function RoomCreateInRoomList() {
   function createNewRoom(formValues: IRoomCreateForm): Promise<void> {
     const newRoom: IRoom = {
       createdAt: Date.now().toString(),
-      gameMaster: {
-        uid: userProfile.uid,
-        avatarUrl: userProfile.avatarUrl || userProfile.photoURL,
-        displayName: userProfile.displayName,
-        email: userProfile.email,
-        photoURL: (userProfile.photoURL || userProfile.avatarUrl) as string,
-      },
+      gameMasterUid: userProfile.uid,
       logs: [],
       playersUid: [],
-      players: {},
+      players: {
+        [userProfile.uid]: {
+          uid: userProfile.uid,
+          avatarUrl: userProfile.avatarUrl || userProfile.photoURL,
+          displayName: userProfile.displayName,
+          email: userProfile.email,
+          photoURL: userProfile.photoURL || userProfile.avatarUrl,
+          gameMaster: true,
+        },
+      },
       ...formValues,
     };
     return firestore

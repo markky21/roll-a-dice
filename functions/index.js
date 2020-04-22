@@ -21,7 +21,7 @@ exports.onRoomCreateCreateChat = functions.firestore.document('rooms/{roomId}').
     createdAt: Date.now().toString(),
     messages: [],
     roomUid: roomSnapshot.id,
-    players: [data.gameMaster.uid],
+    players: [data.gameMasterUid],
   };
   return db
     .collection('chats')
@@ -56,7 +56,7 @@ exports.onRoomUpdatePlayersUpdateChat = functions.firestore
 
       return chatRef.get().then(chatSnapshot => {
         return chatSnapshot.exists
-          ? chatRef.update({ players: [roomAfter.gameMaster.uid, ...Object.keys(roomSnapshot.after.data().players)] })
+          ? chatRef.update({ players: [roomAfter.gameMasterUid, ...Object.keys(roomSnapshot.after.data().players)] })
           : null;
       });
     }

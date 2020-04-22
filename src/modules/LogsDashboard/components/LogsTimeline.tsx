@@ -3,7 +3,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import { Dictionary } from 'react-redux-firebase';
 import { Divider, List } from '@material-ui/core';
 
-import { IProfile, IRoomLog, Log } from '../../../models/rooms.model';
+import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
 import { LogsListItem } from './LogsListItem';
 import { LogDiceThrow } from './LogDiceThrow';
 import { LogNewPlayer } from './LogNewPlayer';
@@ -18,7 +18,7 @@ const styles = (theme: Theme) =>
   });
 
 export interface LogsTimelineProps extends WithStyles<typeof styles> {
-  profiles: Dictionary<IProfile>;
+  profiles: Dictionary<IPlayerProfile>;
   logs: IRoomLog[];
 }
 

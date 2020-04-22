@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, DialogActions, DialogContent } from '@material-ui/core';
 import { InjectedFormProps, reduxForm } from 'redux-form';
+import { useSelector } from 'react-redux';
 
 import { createRoomFormModel } from '../../../models/rooms.model';
 import { FormFieldCheckboxGroup, FormFieldText } from '../../../components/FormComponents';
-import { RoomCreateImage } from './RoomCreateImage';
+import { ImageWrapper } from '../../../components/ImageWrapper';
+import { mainSelectors } from '../../../store/main.selectors';
 
 const validate = (values: any) => {
   const errors: any = {};
@@ -22,15 +24,17 @@ const validate = (values: any) => {
 };
 
 interface RoomCreateFormProps extends InjectedFormProps {
-  handleClose: () => void;
+  onClose: () => void;
 }
 
 function RoomCreateFormC(props: RoomCreateFormProps) {
-  const { handleSubmit, pristine, submitting, handleClose, invalid } = props;
+  const { handleSubmit, pristine, submitting, onClose, invalid } = props;
+  const form = useSelector(mainSelectors.getFormCreateRoom);
 
   return (
     <form onSubmit={handleSubmit}>
-      <RoomCreateImage />
+      <ImageWrapper src={form?.roomImage} title="Room image" />
+
       <DialogContent dividers>
         <FormFieldText {...createRoomFormModel.roomName} />
         <FormFieldText {...createRoomFormModel.roomImage} />
@@ -46,7 +50,7 @@ function RoomCreateFormC(props: RoomCreateFormProps) {
         <Button type="submit" color="primary" disabled={invalid || pristine || submitting}>
           Submit
         </Button>
-        <Button type="button" onClick={handleClose} color="primary">
+        <Button type="button" onClick={onClose} color="primary">
           Cancel
         </Button>
       </DialogActions>

@@ -54,7 +54,7 @@ export function RoomC(props: RoomListProps) {
       // TODO toast message
       return;
     }
-    if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMaster.uid === userProfile.uid) return;
+    if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMasterUid === userProfile.uid) return;
     if (selectedRoomData.players[userProfile.uid]) return;
 
     const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);

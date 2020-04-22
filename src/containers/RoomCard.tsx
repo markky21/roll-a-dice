@@ -49,7 +49,7 @@ function RoomCardC(props: RoomCardProps) {
           </Typography>
           <br />
           <Typography variant="subtitle1" color="textSecondary" component="span">
-            {room.gameMaster.displayName}
+            {Object.values(room.players).find(player => !!player.gameMaster)?.displayName}
           </Typography>
         </p>
       </CardContent>

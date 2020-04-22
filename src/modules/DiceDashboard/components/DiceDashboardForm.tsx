@@ -2,7 +2,7 @@ import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { createRoomFormModel } from '../../../models/rooms.model';
+import { diceDashboardFormModel } from '../../../models/rooms.model';
 import { Dice } from '../../../models/dice.model';
 import { FormFieldSlider } from '../../../components/FormComponents';
 
@@ -30,7 +30,7 @@ function DiceDashboardFormC(props: DiceDashboardFormProps) {
 
       <div className={classes.inputSlider}>
         {diceType?.map(dice => (
-          <FormFieldSlider key={dice} {...(createRoomFormModel[dice] as any)} />
+          <FormFieldSlider key={dice} {...(diceDashboardFormModel[dice] as any)} />
         ))}
       </div>
     </form>

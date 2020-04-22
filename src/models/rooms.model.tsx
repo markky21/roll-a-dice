@@ -21,6 +21,7 @@ export interface IPlayerProfile extends IProfile {
   characterAvatarUrl?: string;
   characterDescription?: string;
   notes?: string;
+  gameMaster?: boolean;
 }
 
 export interface IRoomLog {
@@ -32,7 +33,7 @@ export interface IRoomLog {
 
 export interface IRoom extends IRoomCreateForm {
   createdAt: string;
-  gameMaster: IPlayerProfile;
+  gameMasterUid: string;
   players: Dictionary<IPlayerProfile>;
   playersUid: string[];
   logs: IRoomLog[];
@@ -49,12 +50,14 @@ export interface IRoomCreateForm {
   maxPlayers: number;
 }
 
+export interface IRoomPlayerProfileForm extends IPlayerProfile {}
+
 export const createRoomFormModel = {
   roomName: { name: 'roomName', label: 'Name of the Room *', fullWidth: true },
   description: { name: 'description', label: 'Room description', multiline: true, fullWidth: true },
-  campaignTitle: { name: 'campaignTitle', label: 'Current campaign tittle', multiline: false, fullWidth: true },
-  roomImage: { name: 'roomImage', label: 'Room image URL', multiline: false, fullWidth: true },
-  gameMasterAvatar: { name: 'gameMasterAvatar', label: 'Game master avatar URL', multiline: false, fullWidth: true },
+  campaignTitle: { name: 'campaignTitle', label: 'Current campaign tittle', fullWidth: true },
+  roomImage: { name: 'roomImage', label: 'Room image URL', fullWidth: true },
+  gameMasterAvatar: { name: 'gameMasterAvatar', label: 'Game master avatar URL', fullWidth: true },
   maxPlayers: {
     name: 'maxPlayers',
     label: 'Maximum players *',
@@ -76,6 +79,9 @@ export const createRoomFormModel = {
       { label: Dice.D100, value: Dice.D100 },
     ],
   },
+};
+
+export const diceDashboardFormModel = {
   d4: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D4}</span>, name: Dice.D4 },
   d6: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D6}</span>, name: Dice.D6 },
   d8: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D8}</span>, name: Dice.D8 },
@@ -85,16 +91,21 @@ export const createRoomFormModel = {
   d100: { label: <span style={{ width: '48px', display: 'inline-block' }}>{Dice.D100}</span>, name: Dice.D100 },
 };
 
-export const diceSetFormModel = {
-  diceD4: { name: Dice.D4, label: Dice.D4, defaultValue: 1 },
-  diceD6: { name: Dice.D6, label: Dice.D6, defaultValue: 1 },
-  diceD8: { name: Dice.D8, label: Dice.D8, defaultValue: 1 },
-  diceD10: { name: Dice.D10, label: Dice.D10, defaultValue: 1 },
-  diceD12: { name: Dice.D12, label: Dice.D12, defaultValue: 1 },
-  diceD20: { name: Dice.D20, label: Dice.D20, defaultValue: 1 },
-  diceD100: { name: Dice.D100, label: Dice.D100, defaultValue: 1 },
+export const playersCharacterFormModel = {
+  characterName: { name: 'characterName', label: 'Name of character', fullWidth: true, maxLength: 80 },
+  characterAvatarUrl: { name: 'characterAvatarUrl', label: 'Character avatar URL', fullWidth: true, maxLength: 256 },
+  characterDescription: {
+    name: 'characterDescription',
+    label: 'Character description',
+    multiline: true,
+    fullWidth: true,
+    maxLength: 1024,
+  },
+  notes: {
+    name: 'notes',
+    label: 'Notes (not visible for other players)',
+    multiline: true,
+    fullWidth: true,
+    maxLength: 2024,
+  },
 };
-
-export interface IDiceDashboardForm {
-  [key: string]: number;
-}

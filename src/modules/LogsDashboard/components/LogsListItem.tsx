@@ -3,7 +3,7 @@ import { Avatar, Grid, ListItem, ListItemAvatar, ListItemText, Typography } from
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { dateUtils } from '../../../utils/date.utils';
-import { IProfile, IRoomLog } from '../../../models/rooms.model';
+import { IPlayerProfile, IRoomLog } from '../../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -19,26 +19,26 @@ const styles = (theme: Theme) =>
   });
 
 export interface LogListItemProps extends WithStyles<typeof styles> {
-  profile: IProfile;
+  profile: IPlayerProfile;
   log: IRoomLog;
   children?: any;
 }
 
 function LogListItemC(props: LogListItemProps) {
   const { profile, log, classes, children } = props;
-  const { displayName, photoURL, avatarUrl } = profile || {};
+  const { displayName, photoURL, avatarUrl, characterAvatarUrl, characterName } = profile || {};
 
   return (
     <ListItem alignItems="flex-start">
       <div className={classes.itemHeader}>
         <ListItemAvatar>
-          <Avatar alt={displayName} src={avatarUrl || photoURL} />
+          <Avatar alt={displayName} src={characterAvatarUrl || avatarUrl || photoURL} />
         </ListItemAvatar>
         <ListItemText
           primary={
             <Grid container direction="row" justify="space-between" alignItems="flex-start">
               <Typography component={'span'} variant={'body1'}>
-                {displayName}
+                {characterName || displayName}
               </Typography>
               <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
                 {dateUtils.timeStampToDetailedTime(log.timestamp)}

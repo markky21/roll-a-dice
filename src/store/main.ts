@@ -10,7 +10,7 @@ import {
   FirestoreQuerySchema,
   FirestoreSchema,
 } from './firebase/firebase.types';
-import { IProfile, IRoomCreateForm } from '../models/rooms.model';
+import { IProfile, IRoomCreateForm, IRoomPlayerProfileForm } from '../models/rooms.model';
 import { chatsReducer } from './chats/chats.reducer';
 import { ChatsState } from './chats/chats.model';
 import { locationReducer } from './location/location.reducer';
@@ -69,6 +69,10 @@ export interface AppState extends ReturnType<typeof rootReducer> {
   chats: ChatsState;
   rooms: RoomsState;
   location: LocationState;
-  form: FormReducer & { diceSetForm: IDiceSetForm; createRoom: { values: IRoomCreateForm } };
+  form: FormReducer & {
+    diceSetForm: IDiceSetForm;
+    createRoom: { values: IRoomCreateForm };
+    playerProfile: { values: IRoomPlayerProfileForm };
+  };
   ui: UiState;
 }
