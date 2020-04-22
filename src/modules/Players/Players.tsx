@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { PlayerTile } from './components/PlayerTile';
+import { IPlayerProfile } from '../../models/rooms.model';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -32,24 +33,28 @@ function PlayersC(props: PlayersProps) {
 
   const players = useSelector(firestoreSelectors.selectedRoomPlayers);
   const gameMaster = useSelector(firestoreSelectors.selectedRoomGameMasterProfile);
+  const usersProfiles = useSelector(firestoreSelectors.usersProfiles);
 
-  console.log({ gameMaster });
+  const renderPlayers = () =>
+    Object.keys(players).map((playerUid, id) => {
+      const player: IPlayerProfile = { ...players[playerUid], connected: usersProfiles[playerUid]?.connected };
+
+      return (
+        <Grow in key={playerUid} timeout={1000 * id + 1300}>
+          <PlayerTile player={player} />
+        </Grow>
+      );
+    });
 
   return (
     <Slide direction="up" in={visible}>
       <GridList className={classes.gridList} cols={2.5}>
         {gameMaster && (
           <Grow in timeout={300}>
-            <PlayerTile player={gameMaster} gameMaster />
+            <PlayerTile player={{ ...gameMaster, connected: usersProfiles[gameMaster.uid]?.connected }} gameMaster />
           </Grow>
         )}
-
-        {players &&
-          Object.keys(players).map((playerUid, id) => (
-            <Grow in key={playerUid} timeout={1000 * id + 1300}>
-              <PlayerTile player={players[playerUid]} />
-            </Grow>
-          ))}
+        {players && renderPlayers()}
       </GridList>
     </Slide>
   );

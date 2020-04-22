@@ -39,7 +39,7 @@ export const firestoreSelectors = {
 
   selectedRoomPlayers: (state: AppState): Dictionary<IPlayerProfile> => state.firestore.data.selectedRoom?.players,
 
-  selectedRoomGameMasterProfile: (state: AppState): IProfile => state.firestore.data.selectedRoom?.gameMaster,
+  selectedRoomGameMasterProfile: (state: AppState): IPlayerProfile => state.firestore.data.selectedRoom?.gameMaster,
 
   selectedRoomLogs: (state: AppState) => state.firestore.data.selectedRoom?.logs,
 };

@@ -10,7 +10,7 @@ export const roomsQuery = {
 
          getUserRoomsAsPlayer: (uid: string): ReduxFirestoreQuerySetting => ({
            collection: FirestoreCollection.ROOMS,
-           where: [['players', 'array-contains', uid]],
+           where: [['playersUid', 'array-contains', uid]],
            storeAs: 'userRoomsAsPlayer',
          }),
 

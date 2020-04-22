@@ -56,7 +56,7 @@ exports.onRoomUpdatePlayersUpdateChat = functions.firestore
 
       return chatRef.get().then(chatSnapshot => {
         return chatSnapshot.exists
-          ? chatRef.update({ players: [roomAfter.gameMaster.uid, ...roomSnapshot.after.data().players] })
+          ? chatRef.update({ players: [roomAfter.gameMaster.uid, ...Object.keys(roomSnapshot.after.data().players)] })
           : null;
       });
     }
@@ -96,7 +96,6 @@ exports.onUserCreateCopyUid = functions.firestore.document('users/{userId}').onC
     return userRef.update({ uid: userSnapshot.id });
   });
 });
-
 
 exports.onUserCreateUpdateAppStats = functions.firestore.document('users/{userId}').onCreate(userSnapshot => {
   const applicationStatsRef = dbFirebase.ref('applicationStats');

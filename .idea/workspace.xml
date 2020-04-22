@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsExpansion.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/RoomCreateInRoomList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/RoomCreateInRoomList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/rooms.model.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/rooms.model.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/LogsDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/LogsDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogDiceThrow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogDiceThrow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsByPlayers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsByPlayers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTimeline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTimeline.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Players/Players.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Players/Players.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/rooms.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/rooms.query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/RoomPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/firebase/firestore.selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/main.selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/main.selectors.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +202,7 @@
       <workItem from="1587364892840" duration="39000" />
       <workItem from="1587364944964" duration="20079000" />
       <workItem from="1587393425399" duration="3026000" />
-      <workItem from="1587537420553" duration="9688000" />
+      <workItem from="1587537420553" duration="15252000" />
     </task>
     <task id="LOCAL-00001" summary="Fix firestore reducer settings">
       <created>1585813204255</created>
@@ -510,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587547477900</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Fix players profile displaying">
+      <created>1587548770372</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1587548770372</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,7 +544,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Add LazyLoad modules pages" />
     <MESSAGE value="Fix issue with not displaying messages" />
     <MESSAGE value="Changes in package.json" />
     <MESSAGE value="Fix base url in assets" />
@@ -553,7 +568,8 @@
     <MESSAGE value="Changes in nodejs.yml file" />
     <MESSAGE value="Added logger, changed layout, improved styles" />
     <MESSAGE value="Major change: Room.players is not string[] but Dictionary&lt;IPlayerProfile&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major change: Room.players is not string[] but Dictionary&lt;IPlayerProfile&gt;" />
+    <MESSAGE value="Fix players profile displaying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix players profile displaying" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2493" y="-486" key="#ESLint" timestamp="1586954437395">
@@ -595,50 +611,50 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587547477277">
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587548770115">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977743385" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587547477277" />
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587548770115" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
     <state x="-2469" y="-563" key="DiffContextDialog" timestamp="1587546974845">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2469" y="-563" key="DiffContextDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546974845" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587546782821">
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587554825100">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546782821" />
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587554825100" />
     <state width="3724" height="358" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121192" />
     <state width="1572" height="124" key="GridCell.Tab.0.bottom/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.bottom/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587546782820">
+    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587554825099">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319901" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546782820" />
+    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587554825099" />
     <state width="3724" height="358" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.center/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.center/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587546782819">
+    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587554825098">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319900" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546782819" />
+    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587554825098" />
     <state width="3724" height="358" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.left/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.left/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587546782820">
+    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587554825100">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546782820" />
+    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587554825100" />
     <state width="3724" height="358" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.right/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.right/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
@@ -714,12 +730,12 @@
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3686" y="-1170" width="3586" height="1937" key="VCS.FileHistoryDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587119123400" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587547537157">
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2" timestamp="1587548772476">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2393" y="-317" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977746086" />
     <state x="440" y="244" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812661051" />
-    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587547537157" />
+    <state x="-2393" y="-530" key="Vcs.Push.Dialog.v2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587548772476" />
     <state x="652" y="379" key="Vcs.Push.Dialog.v2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792828941" />
     <state x="-3686" y="-1170" width="3586" height="1937" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587543709771">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
@@ -739,12 +755,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3242" y="-525" width="1683" height="1814" key="dock-window-2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586862999597" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587481899116">
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587553067330">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2302" y="-318" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586938923107" />
     <state x="511" y="194" width="929" height="706" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586842218164" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587481899116" />
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587553067330" />
     <state x="690" y="378" width="613" height="504" key="find.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586066829048" />
     <state x="690" y="344" width="930" height="706" key="find.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587300003198" />
     <state x="691" y="344" width="929" height="706" key="find.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587237390035" />
@@ -752,12 +768,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587548398103">
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587554325925">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586955427327" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586814157100" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587548398103" />
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587554325925" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
     <state x="686" y="262" width="839" height="496" key="search.everywhere.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587297719486" />
     <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587238237721" />

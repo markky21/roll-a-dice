@@ -71,7 +71,8 @@ export function RoomC(props: RoomListProps) {
             uid: userProfile.uid,
           };
           const players = { ...doc.data().players, [userProfile.uid]: player };
-          return t.update(documentRef, { logs, players });
+          const playersUid = [...doc.data().playersUid, userProfile.uid];
+          return t.update(documentRef, { logs, players, playersUid });
         })
         .catch((err: any) => {
           // TODO: add toast message

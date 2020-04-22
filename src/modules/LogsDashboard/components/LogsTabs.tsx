@@ -29,7 +29,7 @@ const styles = (theme: Theme) =>
       overflowY: 'scroll',
     },
     tabContent: {
-      margin: theme.spacing(-3),
+      margin: theme.spacing(-2),
     },
   });
 

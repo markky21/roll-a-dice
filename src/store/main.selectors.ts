@@ -6,8 +6,11 @@ import { IRoomCreateForm } from '../models/rooms.model';
 export const mainSelectors = {
   getAllNeededPlayersUid: (state: AppState): string[] => {
     const selectedRoomPlayers = firestoreSelectors.selectedRoom(state)?.players || {};
+    const selectedRoomGM = firestoreSelectors.selectedRoom(state)?.gameMaster.uid;
     const selectedChatPlayers = chatsSelectors.profilesUidFromSelectedChat(state) || [];
-    return [...selectedChatPlayers, ...Object.keys(selectedRoomPlayers)].filter((v, i, a) => a.indexOf(v) === i);
+    return [...selectedChatPlayers, ...Object.keys(selectedRoomPlayers), selectedRoomGM].filter(
+      (v, i, a) => !!v && a.indexOf(v) === i
+    );
   },
 
   isGameMasterOfSelectedRoom: (state: AppState): boolean => {

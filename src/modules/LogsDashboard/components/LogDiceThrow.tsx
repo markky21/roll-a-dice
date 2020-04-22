@@ -16,35 +16,33 @@ function LogDiceThrowC(props: LogDiceThrowProps) {
 
   const resultSorted = diceUtils.sortObjectWithDiceKey(log.payload?.result || []);
   return (
-    <React.Fragment>
-      <Grid container spacing={0}>
-        <Grid item xs={6}>
-          <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
-            log type:
-          </Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography component={'span'} variant={'overline'} color={'secondary'}>
-            {log.type}
-          </Typography>
-        </Grid>
-
-        {Object.keys(resultSorted).map(diceKey => (
-          <React.Fragment key={diceKey}>
-            <Grid item xs={3}>
-              <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
-                {diceKey}
-              </Typography>
-            </Grid>
-            <Grid item xs={9}>
-              <Typography component={'span'} variant={'body1'} color={'secondary'}>
-                {resultSorted[diceKey] && resultSorted[diceKey].join(', ')}
-              </Typography>
-            </Grid>
-          </React.Fragment>
-        ))}
+    <Grid container spacing={0}>
+      <Grid item xs={6}>
+        <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
+          log type:
+        </Typography>
       </Grid>
-    </React.Fragment>
+      <Grid item xs={6}>
+        <Typography component={'span'} variant={'overline'} color={'secondary'}>
+          {log.type}
+        </Typography>
+      </Grid>
+
+      {Object.keys(resultSorted).map(diceKey => (
+        <React.Fragment key={diceKey}>
+          <Grid item xs={3}>
+            <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
+              {diceKey}
+            </Typography>
+          </Grid>
+          <Grid item xs={9}>
+            <Typography component={'span'} variant={'body1'} color={'secondary'}>
+              {resultSorted[diceKey] && resultSorted[diceKey].join(', ')}
+            </Typography>
+          </Grid>
+        </React.Fragment>
+      ))}
+    </Grid>
   );
 }
 

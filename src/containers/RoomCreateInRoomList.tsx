@@ -34,6 +34,7 @@ export function RoomCreateInRoomList() {
         photoURL: (userProfile.photoURL || userProfile.avatarUrl) as string,
       },
       logs: [],
+      playersUid: [],
       players: {},
       ...formValues,
     };

@@ -4,7 +4,7 @@ import { Dictionary } from 'react-redux-firebase';
 import { Divider, List } from '@material-ui/core';
 
 import { IProfile, IRoomLog, Log } from '../../../models/rooms.model';
-import { LogListItem } from './LogListItem';
+import { LogsListItem } from './LogsListItem';
 import { LogDiceThrow } from './LogDiceThrow';
 import { LogNewPlayer } from './LogNewPlayer';
 
@@ -30,10 +30,10 @@ function LogsTimelineC(props: LogsTimelineProps) {
     return [...logs].reverse().map((log, id) => (
       <React.Fragment key={log.timestamp}>
         {!!id && <Divider variant="inset" component="li" light={true} />}
-        <LogListItem profile={profiles[log.authorUid]} log={log}>
+        <LogsListItem profile={profiles[log.authorUid]} log={log}>
           {log.type === Log.DICE_ROLL && log.payload && <LogDiceThrow log={log} />}
           {log.type === Log.NEW_PLAYER && <LogNewPlayer log={log} />}
-        </LogListItem>
+        </LogsListItem>
       </React.Fragment>
     ));
   };
