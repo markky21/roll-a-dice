@@ -1,6 +1,6 @@
 import { from, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
-import { concatMap, delay, delayWhen, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { concatMap, delay, delayWhen, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
 import { IDiceAfterThrow, IDiceBeforeThrow, IDiceSet, IDiceThrow, IDiceThrowConfig } from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
@@ -45,12 +45,12 @@ export class DiceService {
   }
 
   private createSubscriptions(): void {
-    this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+    this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(() => {
       this.setDiceRolling(true);
       this.setIsPending(false);
     });
 
-    this.diceAfterThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
+    this.diceAfterThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(() => {
       this.setDiceRolling(false);
       this.setIsPending(false);
     });
@@ -81,6 +81,20 @@ export class DiceService {
         this.setIsPending(true);
       }),
       withLatestFrom(this.storeService.getDiceSetFormValues()),
+      filter(([, setDice]) => {
+        const isEveryZero = Object.values(setDice).every(v => v === 0);
+        if (isEveryZero) {
+          this.setDiceRolling(false);
+          this.setIsPending(false);
+
+          this.toast.setSnackbarConfig({
+            type: SnackbarType.WARNING,
+            open: true,
+            text: 'Set at least one dice',
+          });
+        }
+        return !isEveryZero;
+      }),
       map(([diceThrowConfig, diceSet]: [IDiceThrowConfig, IDiceSet]) => {
         const diceThrow: IDiceThrow = {
           diceThrowConfig,

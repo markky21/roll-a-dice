@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
 import { LogDiceThrow } from './LogDiceThrow';
 import { LogNewPlayer } from './LogNewPlayer';
+import { dateUtils } from '../../../utils/date.utils';
 
 export interface LogsExpansionProps {
   profile: IPlayerProfile;
@@ -25,6 +26,9 @@ function LogsExpansionC(props: LogsExpansionProps) {
     return [...logs].reverse().map((log, id) => (
       <ul key={log.timestamp}>
         {!!id && <Divider component="div" light={true} />}
+        <Typography component={'span'} variant={'caption'} color={'textSecondary'}>
+          {dateUtils.timeStampToDetailedTime(log.timestamp)}
+        </Typography>
         {log.type === Log.DICE_ROLL && log.payload && <LogDiceThrow log={log} />}
         {log.type === Log.NEW_PLAYER && <LogNewPlayer log={log} />}
       </ul>
