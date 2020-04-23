@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!ui-core)/\" --env=jsdom",
+    "test": "react-scripts test --testPathIgnorePatterns=src/modules/DiceVisualization/dice-three --transformIgnorePatterns \"node_modules/(?!ui-core)/\" --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "npm run lint -- --fix",
@@ -23,6 +23,8 @@
     "@types/recompose": "^0.30.7",
     "@types/redux-auth-wrapper": "^2.0.9",
     "@types/redux-form": "^8.2.3",
+    "@types/three": "^0.103.2",
+    "cannon": "^v0.4.0 ",
     "dayjs": "^1.8.23",
     "firebase": "^7.13.1",
     "firebase-admin": "^8.10.0",
@@ -42,6 +44,7 @@
     "redux-thunk": "^2.3.0",
     "rpg-dice-roller": "^4.0.2",
     "rxjs": "^6.5.5",
+    "three": "^0.115.0",
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
