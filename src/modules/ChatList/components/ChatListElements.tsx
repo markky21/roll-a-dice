@@ -6,6 +6,7 @@ import { Dictionary } from 'react-redux-firebase';
 import { firstLettersJoined } from '../../../utils/text.utils';
 import { IChat } from '../../../models/chats.model';
 import { dateUtils } from '../../../utils/date.utils';
+import { equal } from '../../../utils/object.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -54,4 +55,6 @@ function ChatListElementC(props: ChatListElementProps) {
   return <List className={classes.root}>{renderElement()}</List>;
 }
 
-export const ChatListElements = React.memo(withStyles(styles)(ChatListElementC));
+export const ChatListElements = React.memo(withStyles(styles)(ChatListElementC), (prev, next) =>
+  equal(Object.keys(prev.chats), Object.keys(next.chats) && prev.selectedChat === next.selectedChat)
+);

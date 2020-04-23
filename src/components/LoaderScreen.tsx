@@ -36,4 +36,4 @@ export const LoaderScreenC = (props: LoaderScreenProps) => {
   );
 };
 
-export const LoaderScreen = React.memo(withStyles(styles)(LoaderScreenC));
+export const LoaderScreen = withStyles(styles)(LoaderScreenC);

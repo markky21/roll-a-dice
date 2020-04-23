@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58a369a3-ec2f-48d3-bfe2-456e1f856d61" name="Default Changelist" comment="Fix issue: possibility to throw zero dices">
+      <change afterPath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElement.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormComponents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoaderScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoaderScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SpeedDial.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SpeedDial.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/Navigator/components/NavigatorItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Navigator/components/NavigatorItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ChatList/components/ChatListElements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogNewPlayer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogNewPlayer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsByPlayers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsByPlayers.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsExpansion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsExpansion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Room/RoomPage/components/RoomPageView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTimeline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LogsDashboard/components/LogsTimeline.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Players/components/PlayerTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Players/components/PlayerTile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomCreate/RoomCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RoomList/components/RoomListElements.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/dice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dice.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +77,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/DiceVisualization" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/RoomList/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -88,11 +103,11 @@
       <recent name="$PROJECT_DIR$/src/modules/DiceCard" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/RoomList/components" />
       <recent name="$PROJECT_DIR$/src/modules/DiceVisualization" />
       <recent name="$PROJECT_DIR$/src/libs" />
       <recent name="$PROJECT_DIR$/src/contexts" />
       <recent name="$PROJECT_DIR$/src/modules/Players/components" />
-      <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.lint">
@@ -148,10 +163,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.test" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
@@ -197,13 +212,6 @@
       <workItem from="1587393425399" duration="3026000" />
       <workItem from="1587537420553" duration="29134000" />
       <workItem from="1587623686694" duration="9100000" />
-    </task>
-    <task id="LOCAL-00004" summary="WIP Chatter implementation in Navbar">
-      <created>1585990352148</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1585990352148</updated>
     </task>
     <task id="LOCAL-00005" summary="Adjust components and theme">
       <created>1586022988804</created>
@@ -541,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587642378320</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Fix issue: possibility to throw zero dices">
+      <created>1587643324993</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1587643324993</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,50 +642,50 @@
       <screen x="54" y="23" width="1626" height="1027" />
     </state>
     <state x="569" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/54.23.1626.1027@54.23.1626.1027" timestamp="1586776476665" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587643293474">
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2" timestamp="1587652590788">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-3786" y="-1057" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586977743385" />
     <state x="0" y="23" width="1337" height="877" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586812656680" />
-    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587643293474" />
+    <state x="-3786" y="-1270" width="3786" height="2137" key="CommitChangelistDialog2/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652590788" />
     <state x="54" y="23" width="1509" height="1027" key="CommitChangelistDialog2/54.23.1626.1027@54.23.1626.1027" timestamp="1586792826860" />
-    <state x="-2469" y="-563" key="DiffContextDialog" timestamp="1587546974845">
+    <state x="-2470" y="-564" key="DiffContextDialog" timestamp="1587652574144">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
-    <state x="-2469" y="-563" key="DiffContextDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587546974845" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587642325237">
+    <state x="-2470" y="-564" key="DiffContextDialog/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652574144" />
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom" timestamp="1587652598352">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587642325237" />
+    <state width="3712" height="314" key="GridCell.Tab.0.bottom/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652598352" />
     <state width="3724" height="358" key="GridCell.Tab.0.bottom/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121192" />
     <state width="1572" height="124" key="GridCell.Tab.0.bottom/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.bottom/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587642325236">
+    <state width="3712" height="314" key="GridCell.Tab.0.center" timestamp="1587652598351">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319901" />
-    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587642325236" />
+    <state width="3712" height="314" key="GridCell.Tab.0.center/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652598351" />
     <state width="3724" height="358" key="GridCell.Tab.0.center/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.center/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.center/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587642325236">
+    <state width="3712" height="314" key="GridCell.Tab.0.left" timestamp="1587652598350">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471483" />
     <state width="1382" height="646" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319900" />
-    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587642325236" />
+    <state width="3712" height="314" key="GridCell.Tab.0.left/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652598350" />
     <state width="3724" height="358" key="GridCell.Tab.0.left/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.left/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.left/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115533" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587642325237">
+    <state width="3712" height="314" key="GridCell.Tab.0.right" timestamp="1587652598351">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state width="3724" height="344" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1587037471484" />
     <state width="1382" height="646" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586855319902" />
-    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587642325237" />
+    <state width="3712" height="314" key="GridCell.Tab.0.right/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652598351" />
     <state width="3724" height="358" key="GridCell.Tab.0.right/51.23.1629.1027@51.23.1629.1027" timestamp="1586775121191" />
     <state width="1572" height="124" key="GridCell.Tab.0.right/53.23.1627.1027@53.23.1627.1027" timestamp="1587304187248" />
     <state width="1572" height="90" key="GridCell.Tab.0.right/54.23.1626.1027@54.23.1626.1027" timestamp="1587237115534" />
@@ -742,6 +757,10 @@
     <state x="-3367" y="-1270" key="SettingsEditor/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587365030489" />
     <state x="234" y="23" key="SettingsEditor/51.23.1629.1027@51.23.1629.1027" timestamp="1586775111621" />
     <state x="234" y="23" key="SettingsEditor/54.23.1626.1027@54.23.1626.1027" timestamp="1587236276114" />
+    <state width="875" height="700" key="SwitcherDM" timestamp="1587646548255">
+      <screen x="-3786" y="-1270" width="3786" height="2137" />
+    </state>
+    <state width="875" height="700" key="SwitcherDM/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587646548255" />
     <state x="-3686" y="-1170" width="3586" height="1937" key="VCS.FileHistoryDialog" timestamp="1587119123400">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
@@ -771,12 +790,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-3242" y="-525" width="1683" height="1814" key="dock-window-2/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586862999597" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587632508971">
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup" timestamp="1587652490847">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2302" y="-318" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586938923107" />
     <state x="511" y="194" width="929" height="706" key="find.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586842218164" />
-    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587632508971" />
+    <state x="-2302" y="-531" width="1119" height="1179" key="find.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587652490847" />
     <state x="690" y="378" width="613" height="504" key="find.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586066829048" />
     <state x="690" y="344" width="930" height="706" key="find.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587300003198" />
     <state x="691" y="344" width="929" height="706" key="find.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587237390035" />
@@ -784,12 +803,12 @@
       <screen x="-3786" y="-1057" width="3786" height="2137" />
     </state>
     <state x="-2021" y="-65" width="438" height="375" key="org.angular.cli.generate/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586024500997" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587643133069">
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup" timestamp="1587645631199">
       <screen x="-3786" y="-1270" width="3786" height="2137" />
     </state>
     <state x="-2312" y="-559" width="1005" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@-3786.-1057.3786.2137" timestamp="1586955427327" />
     <state x="561" y="227" width="838" height="424" key="search.everywhere.popup/0.23.1440.877/-3786.-1057.3786.2137@0.23.1440.877" timestamp="1586814157100" />
-    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587643133069" />
+    <state x="-2312" y="-772" width="1173" height="1032" key="search.everywhere.popup/0.23.1440.877/-3786.-1270.3786.2137@-3786.-1270.3786.2137" timestamp="1587645631199" />
     <state x="685" y="262" width="670" height="496" key="search.everywhere.popup/51.23.1629.1027@51.23.1629.1027" timestamp="1586064981942" />
     <state x="686" y="262" width="839" height="496" key="search.everywhere.popup/53.23.1627.1027@53.23.1627.1027" timestamp="1587297719486" />
     <state x="687" y="262" width="838" height="496" key="search.everywhere.popup/54.23.1626.1027@54.23.1626.1027" timestamp="1587238237721" />

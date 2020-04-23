@@ -9,7 +9,7 @@ export interface FormDialogProps<T> {
   children: any;
 }
 
-export function FormDialogC<T = any>(props: FormDialogProps<T>) {
+export function FormDialog<T = any>(props: FormDialogProps<T>) {
   const { open, onClose, children = [], title } = props;
 
   const theme = useTheme();
@@ -22,5 +22,3 @@ export function FormDialogC<T = any>(props: FormDialogProps<T>) {
     </Dialog>
   );
 }
-
-export const FormDialog = React.memo(FormDialogC);

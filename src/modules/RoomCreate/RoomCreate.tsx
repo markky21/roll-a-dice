@@ -3,6 +3,7 @@ import { RoomCreateForm } from './components/RoomCreateForm';
 
 import { IRoomCreateForm } from '../../models/rooms.model';
 import { FormDialog } from '../../components/FormDialog';
+import { equal } from '../../utils/object.utils';
 
 export interface RoomCreateProps {
   open: boolean;
@@ -21,4 +22,7 @@ export function RoomCreateC(props: RoomCreateProps) {
   );
 }
 
-export const RoomCreate = React.memo(RoomCreateC);
+export const RoomCreate = React.memo(
+  RoomCreateC,
+  (prev, next) => equal(prev.initialValues, next.initialValues) && prev.open === next.open
+);

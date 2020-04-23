@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { Field } from 'redux-form';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { equal } from '../utils/object.utils';
 
 /*
  * Model
@@ -76,7 +77,7 @@ export const FormFieldText = React.memo((props: FormFieldGenericProps) => {
   );
 
   return <Field {...props} component={formField} className={classes.formField} />;
-});
+}, equal);
 
 export const FormFieldSelect = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
@@ -103,7 +104,7 @@ export const FormFieldSelect = React.memo((props: FormFieldGenericProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-});
+}, equal);
 
 export const FormFieldCheckbox = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
@@ -113,7 +114,7 @@ export const FormFieldCheckbox = React.memo((props: FormFieldGenericProps) => {
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-});
+}, equal);
 
 export const FormFieldCheckboxGroup = React.memo((props: FormFieldWithOptionsProps) => {
   const classes = useStyles();
@@ -153,7 +154,7 @@ export const FormFieldCheckboxGroup = React.memo((props: FormFieldWithOptionsPro
   };
 
   return <Field {...props} type="checkbox" component={field} className={classes.formField} />;
-});
+}, equal);
 
 export const FormFieldSlider = React.memo((props: FormFieldGenericProps) => {
   const classes = useStyles();
@@ -197,4 +198,4 @@ export const FormFieldSlider = React.memo((props: FormFieldGenericProps) => {
   };
 
   return <Field {...props} component={formField} className={classes.formField} />;
-});
+}, equal);

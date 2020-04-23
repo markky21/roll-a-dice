@@ -52,4 +52,4 @@ function LogListItemC(props: LogListItemProps) {
   );
 }
 
-export const LogsListItem = React.memo(withStyles(styles)(LogListItemC));
+export const LogsListItem = withStyles(styles)(LogListItemC);

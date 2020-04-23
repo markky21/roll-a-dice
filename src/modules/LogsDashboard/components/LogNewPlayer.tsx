@@ -3,6 +3,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import { Grid, Typography } from '@material-ui/core';
 
 import { IRoomLog } from '../../../models/rooms.model';
+import { equal } from '../../../utils/object.utils';
 
 const styles = (theme: Theme) => createStyles({});
 
@@ -31,4 +32,4 @@ function LogNewPlayerC(props: LogNewPlayerProps) {
   );
 }
 
-export const LogNewPlayer = React.memo(withStyles(styles)(LogNewPlayerC));
+export const LogNewPlayer = React.memo(withStyles(styles)(LogNewPlayerC), equal);

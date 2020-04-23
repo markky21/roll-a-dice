@@ -7,6 +7,7 @@ import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
 import { LogsListItem } from './LogsListItem';
 import { LogDiceThrow } from './LogDiceThrow';
 import { LogNewPlayer } from './LogNewPlayer';
+import { equal } from '../../../utils/object.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -41,4 +42,4 @@ function LogsTimelineC(props: LogsTimelineProps) {
   return <List className={classes.root}>{renderElement()}</List>;
 }
 
-export const LogsTimeline = React.memo(withStyles(styles)(LogsTimelineC));
+export const LogsTimeline = React.memo(withStyles(styles)(LogsTimelineC), equal);

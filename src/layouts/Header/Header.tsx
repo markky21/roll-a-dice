@@ -51,36 +51,34 @@ function HeaderC(props: HeaderProps) {
   const { classes, onDrawerToggle } = props;
 
   return (
-    <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={2}>
-        <Toolbar>
-          <Grid container spacing={1} alignItems="center">
-            <Hidden smUp>
-              <Grid item>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={onDrawerToggle}
-                  className={classes.menuButton}
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Grid>
-            </Hidden>
-            <Grid item xs />
+    <AppBar color="primary" position="sticky" elevation={2}>
+      <Toolbar>
+        <Grid container spacing={1} alignItems="center">
+          <Hidden smUp>
             <Grid item>
-              <div className={classes.avatar}>
-                <ProfileAvatar />
-              </div>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={onDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
             </Grid>
+          </Hidden>
+          <Grid item xs />
+          <Grid item>
+            <div className={classes.avatar}>
+              <ProfileAvatar />
+            </div>
           </Grid>
-        </Toolbar>
-        <div className={classes.ornament}>
-          <Ornament />
-        </div>
-      </AppBar>
-    </React.Fragment>
+        </Grid>
+      </Toolbar>
+      <div className={classes.ornament}>
+        <Ornament />
+      </div>
+    </AppBar>
   );
 }
 
-export const Header = React.memo(withStyles(styles)(HeaderC));
+export const Header = React.memo(withStyles(styles)(HeaderC), () => true);

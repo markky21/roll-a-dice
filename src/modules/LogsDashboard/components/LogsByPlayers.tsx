@@ -5,6 +5,7 @@ import { List } from '@material-ui/core';
 
 import { IPlayerProfile, IRoomLog } from '../../../models/rooms.model';
 import { LogsExpansion } from './LogsExpansion';
+import { equal } from '../../../utils/object.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -40,4 +41,4 @@ function LogsByPlayersC(props: LogsByPlayersProps) {
   return <List className={classes.root}>{renderElement()}</List>;
 }
 
-export const LogsByPlayers = React.memo(withStyles(styles)(LogsByPlayersC));
+export const LogsByPlayers = React.memo(withStyles(styles)(LogsByPlayersC), equal);

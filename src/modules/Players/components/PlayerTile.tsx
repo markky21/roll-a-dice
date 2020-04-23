@@ -8,6 +8,7 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import { Grid, GridListTile, GridListTileBar, IconButton, Tooltip } from '@material-ui/core';
 
 import { IPlayerProfile } from '../../../models/rooms.model';
+import { equal } from '../../../utils/object.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -102,4 +103,4 @@ function PlayerTileC(props: PlayerTileProps) {
   );
 }
 
-export const PlayerTile = React.memo(withStyles(styles)(PlayerTileC));
+export const PlayerTile = React.memo(withStyles(styles)(PlayerTileC), (prev, next) => equal(prev.player, next.player));

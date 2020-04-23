@@ -1,11 +1,11 @@
 import React from 'react';
-import { Avatar, Divider, Grow, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { Divider, Grow, List } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Dictionary } from 'react-redux-firebase';
 
-import { firstLettersJoined } from '../../../utils/text.utils';
-import { dateUtils } from '../../../utils/date.utils';
 import { IRoom } from '../../../models/rooms.model';
+import { equal } from '../../../utils/object.utils';
+import { RoomListElement } from './RoomListElement';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,28 +28,13 @@ interface RoomListElementProps extends WithStyles<typeof styles> {
   onRoomClick: (roomId: string) => void;
 }
 
-function RoomListElementC(props: RoomListElementProps) {
+function RoomListElementsC(props: RoomListElementProps) {
   const { classes, roomsAsGameMaster, roomsAsPlayer, onRoomClick, selectedRoom } = props;
 
   const renderElement = (rooms: Dictionary<IRoom>, timeout: number = 300) =>
     Object.keys(rooms).map((roomId, id) => (
       <Grow key={roomId} in timeout={1000 * id + timeout}>
-        <ListItem
-          onClick={() => onRoomClick(roomId)}
-          selected={roomId === selectedRoom}
-          className={classes.item}
-          button
-          dense
-          alignItems="flex-start"
-        >
-          <ListItemAvatar>
-            <Avatar>{firstLettersJoined(rooms[roomId].roomName || 'No name')}</Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={rooms[roomId].roomName || 'No name'}
-            secondary={dateUtils.timeStampToFormattedDate(rooms[roomId].createdAt)}
-          />
-        </ListItem>
+        <RoomListElement room={rooms[roomId]} selectedRoom={selectedRoom} roomId={roomId} onRoomClick={onRoomClick} />
       </Grow>
     ));
 
@@ -64,4 +49,10 @@ function RoomListElementC(props: RoomListElementProps) {
   );
 }
 
-export const RoomListElements = React.memo(withStyles(styles)(RoomListElementC));
+export const RoomListElements = React.memo(
+  withStyles(styles)(RoomListElementsC),
+  (prev, next) =>
+    equal(prev.roomsAsGameMaster, next.roomsAsGameMaster) &&
+    equal(prev.roomsAsPlayer, next.roomsAsPlayer) &&
+    prev.selectedRoom === next.selectedRoom
+);

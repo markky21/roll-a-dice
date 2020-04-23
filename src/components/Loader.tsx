@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { equal } from '../utils/object.utils';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -48,4 +49,4 @@ function LoaderC(props: LoaderProps) {
   );
 }
 
-export const Loader = React.memo(withStyles(styles)(LoaderC));
+export const Loader = React.memo(withStyles(styles)(LoaderC), equal);

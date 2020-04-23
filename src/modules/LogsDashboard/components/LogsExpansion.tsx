@@ -14,6 +14,7 @@ import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
 import { LogDiceThrow } from './LogDiceThrow';
 import { LogNewPlayer } from './LogNewPlayer';
 import { dateUtils } from '../../../utils/date.utils';
+import { equal } from '../../../utils/object.utils';
 
 export interface LogsExpansionProps {
   profile: IPlayerProfile;
@@ -57,4 +58,4 @@ function LogsExpansionC(props: LogsExpansionProps) {
   );
 }
 
-export const LogsExpansion = React.memo(LogsExpansionC);
+export const LogsExpansion = React.memo(LogsExpansionC, equal);

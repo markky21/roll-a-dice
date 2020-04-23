@@ -2,14 +2,14 @@ import { from, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
 import { concatMap, delay, delayWhen, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
-import { IDiceAfterThrow, IDiceBeforeThrow, IDiceSet, IDiceThrow, IDiceThrowConfig } from '../models/dice.model';
-import { roomsActions } from '../store/rooms/rooms.actions';
-import { uiActions } from '../store/ui/ui.actions';
-import { FirestoreCollection } from '../models/firebase.model';
-import { IProfile, IRoomLog, Log } from '../models/rooms.model';
-import { StoreService } from './store.service';
 import { diceUtils } from '../utils/dice.utils';
+import { FirestoreCollection } from '../models/firebase.model';
+import { IDiceAfterThrow, IDiceBeforeThrow, IDiceSet, IDiceThrow, IDiceThrowConfig } from '../models/dice.model';
+import { IProfile, IRoomLog, Log } from '../models/rooms.model';
+import { roomsActions } from '../store/rooms/rooms.actions';
 import { SnackbarType, ToastContextProviderValue } from '../contexts/Toast.context';
+import { StoreService } from './store.service';
+import { uiActions } from '../store/ui/ui.actions';
 
 export class DiceService {
   private static instance: DiceService | null;
