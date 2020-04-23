@@ -2,10 +2,11 @@ import clsx from 'clsx';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Paper, Grow } from '@material-ui/core';
+import { timer } from 'rxjs';
 
 import { diceDefaultConfig } from '../../config/dice.config';
 import { DiceServiceContext } from '../../contexts/DiceService.context';
-import { timer } from 'rxjs';
+import { dice_initialize } from '../DiceVisualization/dice-main';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -42,7 +43,7 @@ function DiceCardC(props: DiceCardProps) {
   useEffect(() => {
     if (!!diceService && !diceInitialized && canvasWidth !== 0) {
       timer(300).subscribe(() => {
-        (window as any).dice_initialize(diceContainerEl.current, {
+        dice_initialize(diceContainerEl.current, {
           ...diceDefaultConfig,
           diceThrow$: diceService.diceThrow$,
           diceBeforeThrow$: diceService.diceBeforeThrow$,

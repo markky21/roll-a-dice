@@ -1,4 +1,229 @@
-'use strict';
+/* eslint-disable */
+/* tslint-disable */
+
+import * as THREE from 'three';
+import CANNON from 'cannon';
+
+('use strict');
+
+/************************************************************************************
+ * TEAL
+ ************************************************************************************/
+
+const teal = {};
+const $t = teal;
+
+teal.copyto = function(obj, res) {
+  if (obj == null || typeof obj !== 'object') return obj;
+  if (obj instanceof Array) {
+    for (var i = obj.length - 1; i >= 0; --i) res[i] = $t.copy(obj[i]);
+  } else {
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) res[i] = $t.copy(obj[i]);
+    }
+  }
+  return res;
+};
+
+teal.copy = function(obj) {
+  if (!obj) return obj;
+  return teal.copyto(obj, new obj.constructor());
+};
+
+teal.element = function(name, props, place, content) {
+  var dom = document.createElement(name);
+  if (props) for (var i in props) dom.setAttribute(i, props[i]);
+  if (place) place.appendChild(dom);
+  if (content !== undefined) $t.inner(content, dom);
+  return dom;
+};
+
+teal.inner = function(obj, sel) {
+  sel.appendChild(obj.nodeName != undefined ? obj : document.createTextNode(obj));
+  return sel;
+};
+
+teal.id = function(id) {
+  return document.getElementById(id);
+};
+
+teal.set = function(sel, props) {
+  for (var i in props) sel.setAttribute(i, props[i]);
+  return sel;
+};
+
+teal.clas = function(sel, oldclass, newclass) {
+  var oc = oldclass ? oldclass.split(/\s+/) : [],
+    nc = newclass ? newclass.split(/\s+/) : [],
+    classes = (sel.getAttribute('class') || '').split(/\s+/);
+  if (!classes[0]) classes = [];
+  for (var i in oc) {
+    var ind = classes.indexOf(oc[i]);
+    if (ind >= 0) classes.splice(ind, 1);
+  }
+  for (var i in nc) {
+    if (nc[i] && classes.indexOf(nc[i]) < 0) classes.push(nc[i]);
+  }
+  sel.setAttribute('class', classes.join(' '));
+};
+
+teal.empty = function(sel) {
+  if (sel.childNodes) while (sel.childNodes.length) sel.removeChild(sel.firstChild);
+};
+
+teal.remove = function(sel) {
+  if (sel) {
+    if (sel.parentNode) sel.parentNode.removeChild(sel);
+    else for (var i = sel.length - 1; i >= 0; --i) sel[i].parentNode.removeChild(sel[i]);
+  }
+};
+
+teal.bind = function(sel, eventname, func, bubble) {
+  if (!sel) return;
+  if (eventname.constructor === Array) {
+    for (var i in eventname) sel.addEventListener(eventname[i], func, bubble ? bubble : false);
+  } else sel.addEventListener(eventname, func, bubble ? bubble : false);
+};
+
+teal.unbind = function(sel, eventname, func, bubble) {
+  if (eventname.constructor === Array) {
+    for (var i in eventname) sel.removeEventListener(eventname[i], func, bubble ? bubble : false);
+  } else sel.removeEventListener(eventname, func, bubble ? bubble : false);
+};
+
+teal.one = function(sel, eventname, func, bubble) {
+  var one_func = function(e) {
+    func.call(this, e);
+    teal.unbind(sel, eventname, one_func, bubble);
+  };
+  teal.bind(sel, eventname, one_func, bubble);
+};
+
+teal.raise_event = function(sel, eventname, bubble, cancelable) {
+  var evt = document.createEvent('UIEvents');
+  evt.initEvent(eventname, bubble == undefined ? true : bubble, cancelable == undefined ? true : cancelable);
+  sel.dispatchEvent(evt);
+};
+
+teal.raise = function(sel, eventname, params, bubble, cancelable) {
+  var ev = document.createEvent('CustomEvent');
+  ev.initCustomEvent(eventname, bubble, cancelable, params);
+  sel.dispatchEvent(ev);
+};
+
+if (!document.getElementsByClassName) {
+  teal.get_elements_by_class = function(classes, node) {
+    var node = node || document,
+      list = node.getElementsByTagName('*'),
+      cl = classes.split(/\s+/),
+      result = [];
+
+    for (var i = list.length - 1; i >= 0; --i) {
+      for (var j = cl.length - 1; j >= 0; --j) {
+        var clas = list[i].getAttribute('class');
+        if (clas && clas.search('\\b' + cl[j] + '\\b') != -1) {
+          result.push(list[i]);
+          break;
+        }
+      }
+    }
+    return result;
+  };
+} else {
+  teal.get_elements_by_class = function(classes, node) {
+    return (node || document).getElementsByClassName(classes);
+  };
+}
+
+teal.rpc = function(params, callback, noparse) {
+  var ajax = new XMLHttpRequest();
+  ajax.open('post', 'f', true);
+  ajax.onreadystatechange = function() {
+    if (ajax.readyState == 4) callback.call(ajax, noparse ? ajax.responseText : JSON.parse(ajax.responseText));
+  };
+  ajax.send(JSON.stringify(params));
+};
+
+teal.uuid = function() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
+teal.get_url_params = function() {
+  var params = window.location.search.substring(1).split('&');
+  var res = {};
+  for (var i in params) {
+    var keyvalue = params[i].split('=');
+    res[keyvalue[0]] = decodeURI(keyvalue[1]);
+  }
+  return res;
+};
+
+teal.get_mouse_coords = function(ev) {
+  var touches = ev.changedTouches;
+  if (touches) return { x: touches[0].clientX, y: touches[0].clientY };
+  return { x: ev.clientX, y: ev.clientY };
+};
+
+teal.deferred = function() {
+  var solved = false,
+    callbacks = [],
+    args = [];
+  function solve() {
+    while (callbacks.length) {
+      callbacks.shift().apply(this, args);
+    }
+  }
+  return {
+    promise: function() {
+      return {
+        then: function(callback) {
+          var deferred = teal.deferred(),
+            promise = deferred.promise();
+          callbacks.push(function() {
+            var res = callback.apply(this, arguments);
+            if (res && 'done' in res) res.done(deferred.resolve);
+            else deferred.resolve.apply(this, arguments);
+          });
+          return promise;
+        },
+        done: function(callback) {
+          callbacks.push(callback);
+          if (solved) solve();
+          return this;
+        },
+        cancel: function() {
+          callbacks = [];
+        },
+      };
+    },
+    resolve: function() {
+      solved = true;
+      args = Array.prototype.slice.call(arguments, 0);
+      solve();
+    },
+  };
+};
+
+teal.when = function(promises) {
+  var deferred = teal.deferred();
+  var count = promises.length,
+    ind = 0;
+  if (count == 0) deferred.resolve();
+  for (var i = 0; i < count; ++i) {
+    promises[i].done(function() {
+      if (++ind == count) deferred.resolve();
+    });
+  }
+  return deferred.promise();
+};
+
+/************************************************************************************
+ * DICE
+ ************************************************************************************/
 
 (function(dice) {
   var random_storage = [];
@@ -443,7 +668,7 @@
     specular: 0x172022,
     color: 0xf0f0f0,
     shininess: 40,
-    shading: THREE.FlatShading,
+    flatShading: THREE.FlatShading,
   };
   this.label_color = '#aaaaaa';
   this.dice_color = '#202020';
@@ -462,64 +687,55 @@
 
   this.create_d4 = function() {
     if (!this.d4_geometry) this.d4_geometry = this.create_d4_geometry(this.scale * 1.2);
-    if (!this.d4_material)
-      this.d4_material = new THREE.MeshFaceMaterial(
-        this.create_d4_materials(this.scale / 2, this.scale * 2, d4_labels[0])
-      );
+    if (!this.d4_material) this.d4_material = [this.create_d4_materials(this.scale / 2, this.scale * 2, d4_labels[0])];
     return new THREE.Mesh(this.d4_geometry, this.d4_material);
   };
 
   this.create_d6 = function() {
     if (!this.d6_geometry) this.d6_geometry = this.create_d6_geometry(this.scale * 0.9);
     if (!this.dice_material)
-      this.dice_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0)
-      );
+      this.dice_material = this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0);
+
     return new THREE.Mesh(this.d6_geometry, this.dice_material);
   };
 
   this.create_d8 = function() {
     if (!this.d8_geometry) this.d8_geometry = this.create_d8_geometry(this.scale);
     if (!this.dice_material)
-      this.dice_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.2)
-      );
+      this.dice_material = this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.2);
+
     return new THREE.Mesh(this.d8_geometry, this.dice_material);
   };
 
   this.create_d10 = function() {
     if (!this.d10_geometry) this.d10_geometry = this.create_d10_geometry(this.scale * 0.9);
     if (!this.dice_material)
-      this.dice_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0)
-      );
+      this.dice_material = this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0);
+
     return new THREE.Mesh(this.d10_geometry, this.dice_material);
   };
 
   this.create_d12 = function() {
     if (!this.d12_geometry) this.d12_geometry = this.create_d12_geometry(this.scale * 0.9);
     if (!this.dice_material)
-      this.dice_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0)
-      );
+      this.dice_material = this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0);
+
     return new THREE.Mesh(this.d12_geometry, this.dice_material);
   };
 
   this.create_d20 = function() {
     if (!this.d20_geometry) this.d20_geometry = this.create_d20_geometry(this.scale);
     if (!this.dice_material)
-      this.dice_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0)
-      );
+      this.dice_material = this.create_dice_materials(this.standart_d20_dice_face_labels, this.scale / 2, 1.0);
+
     return new THREE.Mesh(this.d20_geometry, this.dice_material);
   };
 
   this.create_d100 = function() {
     if (!this.d10_geometry) this.d10_geometry = this.create_d10_geometry(this.scale * 0.9);
     if (!this.d100_material)
-      this.d100_material = new THREE.MeshFaceMaterial(
-        this.create_dice_materials(this.standart_d100_dice_face_labels, this.scale / 2, 1.5)
-      );
+      this.d100_material = this.create_dice_materials(this.standart_d100_dice_face_labels, this.scale / 2, 1.5);
+
     return new THREE.Mesh(this.d10_geometry, this.d100_material);
   };
 
@@ -601,28 +817,34 @@
     this.dice_body_material = new CANNON.Material();
     var desk_body_material = new CANNON.Material();
     var barrier_body_material = new CANNON.Material();
-    this.world.addContactMaterial(new CANNON.ContactMaterial(desk_body_material, this.dice_body_material, 0.01, 0.5));
-    this.world.addContactMaterial(new CANNON.ContactMaterial(barrier_body_material, this.dice_body_material, 0, 1.0));
-    this.world.addContactMaterial(new CANNON.ContactMaterial(this.dice_body_material, this.dice_body_material, 0, 0.5));
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(desk_body_material, this.dice_body_material, { friction: 0.01, restitution: 0.5 })
+    );
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(barrier_body_material, this.dice_body_material, { friction: 0, restitution: 1.0 })
+    );
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(this.dice_body_material, this.dice_body_material, { friction: 0, restitution: 0.5 })
+    );
 
-    this.world.add(new CANNON.RigidBody(0, new CANNON.Plane(), desk_body_material));
+    this.world.add(new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: desk_body_material }));
     var barrier;
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), Math.PI / 2);
     barrier.position.set(0, this.h * 0.93, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
     barrier.position.set(0, -this.h * 0.93, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2);
     barrier.position.set(this.w * 0.93, 0, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI / 2);
     barrier.position.set(-this.w * 0.93, 0, 0);
     this.world.add(barrier);
@@ -661,13 +883,12 @@
     this.light.target.position.set(0, 0, 0);
     this.light.distance = mw * 5;
     this.light.castShadow = true;
-    this.light.shadowCameraNear = mw / 10;
-    this.light.shadowCameraFar = mw * 5;
-    this.light.shadowCameraFov = 50;
-    this.light.shadowBias = 0.001;
-    this.light.shadowDarkness = 1.1;
-    this.light.shadowMapWidth = 1024;
-    this.light.shadowMapHeight = 1024;
+    this.light.shadow.camera.near = mw / 10;
+    this.light.shadow.camera.far = mw * 5;
+    this.light.shadow.camera.fov = 50;
+    this.light.shadow.bias = 0.001;
+    this.light.shadow.mapSize.width = 1024;
+    this.light.shadow.mapSize.height = 1024;
     this.scene.add(this.light);
 
     if (this.desk) this.scene.remove(this.desk);
@@ -722,7 +943,11 @@
     var dice = that['create_' + type]();
     dice.castShadow = true;
     dice.dice_type = type;
-    dice.body = new CANNON.RigidBody(that.dice_mass[type], dice.geometry.cannon_shape, this.dice_body_material);
+    dice.body = new CANNON.Body({
+      mass: that.dice_mass[type],
+      shape: dice.geometry.cannon_shape,
+      material: this.dice_body_material,
+    });
     dice.body.position.set(pos.x, pos.y, pos.z);
     dice.body.quaternion.setFromAxisAngle(new CANNON.Vec3(axis.x, axis.y, axis.z), axis.a * Math.PI * 2);
     dice.body.angularVelocity.set(angle.x, angle.y, angle.z);
@@ -892,9 +1117,7 @@
     }
     if (dice.dice_type == 'd4' && num != 0) {
       if (num < 0) num += 4;
-      dice.material = new THREE.MeshFaceMaterial(
-        that.create_d4_materials(that.scale / 2, that.scale * 2, d4_labels[num])
-      );
+      dice.material = that.create_d4_materials(that.scale / 2, that.scale * 2, d4_labels[num]);
     }
     dice.geometry = geom;
   }
@@ -996,31 +1219,6 @@
     else roll();
   }
 
-  /*  this.dice_box.prototype.bind_mouse = function(container, notation_getter, before_roll, after_roll, preventDefault) {
-    var box = this;
-    $t.bind(container, ['mousedown', 'touchstart'], function(ev) {
-      preventDefault && ev.preventDefault();
-      box.mouse_time = new Date().getTime();
-      box.mouse_start = $t.get_mouse_coords(ev);
-    });
-    $t.bind(container, ['mouseup', 'touchend'], function(ev) {
-      if (box.rolling) return;
-      if (box.mouse_start == undefined) return;
-      preventDefault && ev.stopPropagation();
-      var m = $t.get_mouse_coords(ev);
-      var vector = { x: m.x - box.mouse_start.x, y: -(m.y - box.mouse_start.y) };
-      box.mouse_start = undefined;
-      var dist = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
-      if (dist < Math.sqrt(box.w * box.h * 0.01)) return;
-      var time_int = new Date().getTime() - box.mouse_time;
-      if (time_int > 2000) time_int = 2000;
-      var boost = Math.sqrt((2500 - time_int) / 2500) * dist * 2;
-      prepare_rnd(function() {
-        throw_dices(box, vector, boost, dist, notation_getter, before_roll, after_roll);
-      });
-    });
-  };*/
-
   this.dice_box.prototype.bind_mouse_listener = function(container, callback) {
     var box = this;
     $t.bind(container, ['mousedown', 'touchstart'], function(ev) {
@@ -1043,14 +1241,6 @@
     });
   };
 
-  /*  this.dice_box.prototype.bind_throw = function(button, notation_getter, before_roll, after_roll) {
-    var box = this;
-    $t.bind(button, ['mouseup', 'touchend'], function(ev) {
-      ev.stopPropagation();
-      box.start_throw(notation_getter, before_roll, after_roll);
-    });
-  };*/
-
   this.dice_box.prototype.start_throw = function(
     notation_getter,
     before_roll,
@@ -1070,3 +1260,5 @@
     });
   };
 }.apply((teal.dice = teal.dice || {})));
+
+export const $teal = $t;
