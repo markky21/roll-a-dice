@@ -1,7 +1,7 @@
 import { AppState } from './main';
 import { firestoreSelectors } from './firebase/firestore.selectors';
 import { chatsSelectors } from './chats/chats.selectors';
-import {IRoomCreateForm, IRoomPlayerProfileForm} from '../models/rooms.model';
+import { IRoomCreateForm, IRoomPlayerProfileForm } from '../models/rooms.model';
 
 export const mainSelectors = {
   getAllNeededPlayersUid: (state: AppState): string[] => {

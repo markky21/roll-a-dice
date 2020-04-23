@@ -48,7 +48,11 @@ function DiceNavC(props: DiceNavProps) {
         </CardContent>
         <div className={classes.controls}>Some text here</div>
       </div>
-      <CardMedia className={classes.cover} image={`${process.env.PUBLIC_URL}/assets/images/avatar-1.jpg`} title="Live from space album cover" />
+      <CardMedia
+        className={classes.cover}
+        image={`${process.env.PUBLIC_URL}/assets/images/avatar-1.jpg`}
+        title="Live from space album cover"
+      />
     </Card>
   );
 }

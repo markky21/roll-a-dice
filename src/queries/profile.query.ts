@@ -6,5 +6,5 @@ export const profileQuery = {
     where: [['uid', 'in', uids]],
     storeAs: 'usersProfiles',
   }),
-  connected: { path: '.info/connected',  storeAs: 'connected' },
+  connected: { path: '.info/connected', storeAs: 'connected' },
 };

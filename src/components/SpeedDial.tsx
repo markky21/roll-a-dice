@@ -46,4 +46,4 @@ function SpeedDialC(props: SpeedDialCProps) {
   );
 }
 
-export const SpeedDialWrapper =  React.memo(withStyles(styles)(SpeedDialC));
+export const SpeedDialWrapper = React.memo(withStyles(styles)(SpeedDialC));

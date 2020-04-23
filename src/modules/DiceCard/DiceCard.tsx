@@ -47,7 +47,7 @@ function DiceCardC(props: DiceCardProps) {
           diceThrow$: diceService.diceThrow$,
           diceBeforeThrow$: diceService.diceBeforeThrow$,
           diceAfterThrow$: diceService.diceAfterThrow$,
-          requestNewThrow$: diceService.requestNewThrow$
+          requestNewThrow$: diceService.requestNewThrow$,
         });
         setDiceInitialized(true);
       });

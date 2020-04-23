@@ -16,4 +16,3 @@ export const uiReducer: Reducer<UiState> = (state = initialState, action) => {
     }
   }
 };
-

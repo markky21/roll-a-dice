@@ -1,6 +1,6 @@
 import { from, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { firestore } from 'firebase/app';
-import { concatMap, delayWhen, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { concatMap, delay, delayWhen, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
 import { IDiceAfterThrow, IDiceBeforeThrow, IDiceSet, IDiceThrow, IDiceThrowConfig } from '../models/dice.model';
 import { roomsActions } from '../store/rooms/rooms.actions';
@@ -9,6 +9,7 @@ import { FirestoreCollection } from '../models/firebase.model';
 import { IProfile, IRoomLog, Log } from '../models/rooms.model';
 import { StoreService } from './store.service';
 import { diceUtils } from '../utils/dice.utils';
+import { SnackbarType, ToastContextProviderValue } from '../contexts/Toast.context';
 
 export class DiceService {
   private static instance: DiceService | null;
@@ -25,7 +26,7 @@ export class DiceService {
   private readonly takeUntil$ = new Subject();
   private readonly storeService: StoreService = StoreService.getInstance();
 
-  private constructor(private firestore: firestore.Firestore) {
+  private constructor(private firestore: firestore.Firestore, private toast: ToastContextProviderValue) {
     this.createSubscriptions();
   }
 
@@ -35,19 +36,15 @@ export class DiceService {
     this.setDiceRolling(false);
   }
 
-  static getInstance(firestore: firestore.Firestore): DiceService {
+  static getInstance(firestore: firestore.Firestore, toast: ToastContextProviderValue): DiceService {
     if (!DiceService.instance) {
-      DiceService.instance = new DiceService(firestore);
+      DiceService.instance = new DiceService(firestore, toast);
     }
 
     return DiceService.instance;
   }
 
   private createSubscriptions(): void {
-    // this.diceThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
-    //   console.log('diceThrow$: ', diceThrow);
-    // });
-
     this.diceBeforeThrow$.pipe(takeUntil(this.takeUntil$)).subscribe(diceThrow => {
       this.setDiceRolling(true);
       this.setIsPending(false);
@@ -106,9 +103,22 @@ export class DiceService {
   }
 
   private createNewThrowLogInRoomLogs$(diceThrow: IDiceThrow): Observable<IDiceThrow> {
-    if (!this.roomUid) return of(null);
+    if (!this.roomUid)
+      return of(null).pipe(
+        tap(() =>
+          this.toast.setSnackbarConfig({
+            type: SnackbarType.ERROR,
+            open: true,
+            text: 'Upss.. there was an error set new throw',
+          })
+        ),
+        delay(1000),
+        tap(() => {
+          this.setDiceRolling(false);
+          this.setIsPending(false);
+        })
+      );
 
-    // TODO: catch error and show toastBar
     const documentRef = this.firestore.doc(`${FirestoreCollection.ROOMS}/${this.roomUid}`);
     return from(
       this.firestore.runTransaction((t: firestore.Transaction) => {

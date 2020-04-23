@@ -4,12 +4,6 @@ import { IProfile, IRoom } from '../../models/rooms.model';
 import { IChat } from '../../models/chats.model';
 import { IApplicationStats } from '../../models/firebase.model';
 
-// TODO: to remove
-export interface TodoValue {
-  text: string;
-  done: boolean;
-}
-
 export interface FirestoreSchema {
   readonly chats: Dictionary<IChat>;
   readonly rooms: Dictionary<IRoom>;

@@ -4,11 +4,12 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
-import { HashRouter} from 'react-router-dom';
 import { Core } from './containers/Core';
 import { CreateRoutes } from './routes';
+import { HashRouter } from 'react-router-dom';
 import { reactReduxFirebaseProps } from './config/firebase.config';
 import { store } from './config/store.config';
+import { ToastContextC } from './contexts/Toast.context';
 
 export interface AppProps {}
 
@@ -32,11 +33,13 @@ export default function App(props: AppProps) {
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
         <ThemeProvider theme={theme}>
-          <Core>
-            <HashRouter>
-              <CreateRoutes />
-            </HashRouter>
-          </Core>
+          <ToastContextC>
+            <Core>
+              <HashRouter>
+                <CreateRoutes />
+              </HashRouter>
+            </Core>
+          </ToastContextC>
         </ThemeProvider>
       </ReactReduxFirebaseProvider>
     </Provider>

@@ -2,24 +2,24 @@ import { ReduxFirestoreQuerySetting } from 'react-redux-firebase';
 import { FirestoreCollection } from '../models/firebase.model';
 
 export const roomsQuery = {
-         getUserRoomsAsGameMaster: (uid: string): ReduxFirestoreQuerySetting => ({
-           collection: FirestoreCollection.ROOMS,
-           where: [['gameMasterUid', '==', uid]],
-           storeAs: 'userRoomsAsGameMaster',
-         }),
+  getUserRoomsAsGameMaster: (uid: string): ReduxFirestoreQuerySetting => ({
+    collection: FirestoreCollection.ROOMS,
+    where: [['gameMasterUid', '==', uid]],
+    storeAs: 'userRoomsAsGameMaster',
+  }),
 
-         getUserRoomsAsPlayer: (uid: string): ReduxFirestoreQuerySetting => ({
-           collection: FirestoreCollection.ROOMS,
-           where: [['playersUid', 'array-contains', uid]],
-           storeAs: 'userRoomsAsPlayer',
-         }),
+  getUserRoomsAsPlayer: (uid: string): ReduxFirestoreQuerySetting => ({
+    collection: FirestoreCollection.ROOMS,
+    where: [['playersUid', 'array-contains', uid]],
+    storeAs: 'userRoomsAsPlayer',
+  }),
 
-         getRoom: (DocUid: string): ReduxFirestoreQuerySetting => {
-           const doc = DocUid.length ? DocUid : 'unknown';
-           return {
-             collection: FirestoreCollection.ROOMS,
-             doc,
-             storeAs: 'selectedRoom',
-           };
-         },
-       };
+  getRoom: (DocUid: string): ReduxFirestoreQuerySetting => {
+    const doc = DocUid.length ? DocUid : 'unknown';
+    return {
+      collection: FirestoreCollection.ROOMS,
+      doc,
+      storeAs: 'selectedRoom',
+    };
+  },
+};

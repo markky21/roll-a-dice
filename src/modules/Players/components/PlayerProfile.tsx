@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Dictionary, useFirestore } from 'react-redux-firebase';
 import { FirestoreCollection } from '../../../models/firebase.model';
@@ -8,6 +8,7 @@ import { IPlayerProfile, IRoomPlayerProfileForm } from '../../../models/rooms.mo
 import { PlayerProfileForm } from './PlayerProfileForm';
 import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
 import { useSelector } from 'react-redux';
+import { SnackbarType, ToastContext } from '../../../contexts/Toast.context';
 
 export interface PlayerProfileProps {
   open: boolean;
@@ -21,6 +22,7 @@ export function PlayerProfile(props: PlayerProfileProps) {
   const firestore = useFirestore();
   const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
   const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
+  const Toast = useContext(ToastContext);
 
   const onSubmit = (formValues: IRoomPlayerProfileForm) => {
     Object.keys(formValues).forEach(key => (formValues as any)[key] === undefined && delete (formValues as any)[key]);
@@ -33,8 +35,11 @@ export function PlayerProfile(props: PlayerProfileProps) {
         onClose();
       })
       .catch((e: boolean) => {
-        // TODO implement error message
-        console.log({ e });
+        Toast.setSnackbarConfig({
+          type: SnackbarType.ERROR,
+          open: true,
+          text: 'Upss.. there was an error updating the player form',
+        });
       });
   };
 

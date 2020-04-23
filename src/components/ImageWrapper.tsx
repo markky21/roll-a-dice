@@ -1,6 +1,6 @@
 import React from 'react';
-import {CardMedia, Collapse, createStyles} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import { CardMedia, Collapse, createStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
   image: {

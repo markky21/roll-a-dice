@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFirestore } from 'react-redux-firebase';
 
@@ -14,6 +14,7 @@ import { roomsSelectors } from '../../../store/rooms/rooms.selectors';
 import { DiceServiceContextC } from '../../../contexts/DiceService.context';
 import { RoomView } from './components/RoomPageView';
 import { IPlayerProfile, IRoomLog, Log } from '../../../models/rooms.model';
+import { SnackbarType, ToastContext } from '../../../contexts/Toast.context';
 
 //
 
@@ -26,6 +27,7 @@ export function RoomC(props: RoomListProps) {
 
   const dispatch = useDispatch();
   const firestore = useFirestore();
+  const Toast = useContext(ToastContext);
 
   const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
   const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
@@ -50,12 +52,16 @@ export function RoomC(props: RoomListProps) {
   function onEnterTheRoomAddUserToPlayers(): void {
     if (!selectedRoomData) return;
 
-    if (selectedRoomData?.maxPlayers <= Object.keys(selectedRoomData.players).length) {
-      // TODO toast message
-      return;
-    }
     if (!selectedRoomData?.players || !userProfile.uid || selectedRoomData.gameMasterUid === userProfile.uid) return;
     if (selectedRoomData.players[userProfile.uid]) return;
+    if (selectedRoomData?.maxPlayers <= Object.keys(selectedRoomData.players).length) {
+      Toast.setSnackbarConfig({
+        type: SnackbarType.WARNING,
+        open: true,
+        text: 'I could not sit at the table because the maximum number of players is reached',
+      });
+      return;
+    }
 
     const documentRef = firestore.doc(`${FirestoreCollection.ROOMS}/${selectedRoomUid}`);
     firestore.runTransaction(t => {
@@ -75,9 +81,11 @@ export function RoomC(props: RoomListProps) {
           return t.update(documentRef, { logs, players, playersUid });
         })
         .catch((err: any) => {
-          // TODO: add toast message
-          // TRANSACTION_FAILURE action dispatched
-          console.log('Transaction failure:', err);
+          Toast.setSnackbarConfig({
+            type: SnackbarType.ERROR,
+            open: true,
+            text: 'Upss.. there was an error updating the room',
+          });
         });
     });
   }

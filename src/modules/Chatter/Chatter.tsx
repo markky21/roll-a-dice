@@ -1,6 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
-import React from 'react';
+import React, { useContext } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Dictionary, useFirestore } from 'react-redux-firebase';
 import { Grid, Slide } from '@material-ui/core';
@@ -14,6 +14,7 @@ import { firestoreSelectors } from '../../store/firebase/firestore.selectors';
 import { IChat, IChatMessage } from '../../models/chats.model';
 import { IProfile } from '../../models/rooms.model';
 import { FirestoreCollection } from '../../models/firebase.model';
+import { SnackbarType, ToastContext } from '../../contexts/Toast.context';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -38,12 +39,13 @@ interface ChatProps extends WithStyles<typeof styles> {
 
 function ChatC(props: ChatProps) {
   const { classes, height = '40vh', visible = true } = props;
+
   const firestore = useFirestore();
   const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
   const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;
-
   const userProfile: IProfile = useSelector(firebaseSelectors.userProfile);
   const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
+  const Toast = useContext(ToastContext);
 
   const onNewMessage = (message: string) => {
     let documentRef = firestore.doc(`${FirestoreCollection.CHATS}/${selectedChatUid}`);
@@ -62,9 +64,11 @@ function ChatC(props: ChatProps) {
           return t.update(documentRef, { messages });
         })
         .catch((err: any) => {
-          // TODO: add toast message
-          // TRANSACTION_FAILURE action dispatched
-          console.log('Transaction failure:', err);
+          Toast.setSnackbarConfig({
+            type: SnackbarType.ERROR,
+            open: true,
+            text: 'Upss.. there was an error sending the message',
+          });
         });
     });
   };

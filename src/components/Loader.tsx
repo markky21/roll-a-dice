@@ -38,10 +38,14 @@ function LoaderC(props: LoaderProps) {
   return (
     <div className={classes.root} style={style}>
       <div className={classes.progress}>
-        <img className={classes.svg} src={`${process.env.PUBLIC_URL}/assets/svg/loader-knot.svg`} alt="Roll a Dice..." />
+        <img
+          className={classes.svg}
+          src={`${process.env.PUBLIC_URL}/assets/svg/loader-knot.svg`}
+          alt="Roll a Dice..."
+        />
       </div>
     </div>
   );
 }
 
-export const Loader =  React.memo(withStyles(styles)(LoaderC));
+export const Loader = React.memo(withStyles(styles)(LoaderC));
