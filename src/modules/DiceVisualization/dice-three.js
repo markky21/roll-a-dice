@@ -2,8 +2,7 @@
 /* tslint-disable */
 
 import * as THREE from 'three';
-// import CANNON from '../../libs/cannon.min';
-// import CANNON from 'cannon';
+import CANNON from 'cannon';
 
 ('use strict');
 
@@ -11,8 +10,8 @@ import * as THREE from 'three';
  * TEAL
  ************************************************************************************/
 
-window.teal = {};
-window.$t = window.teal;
+const teal = {};
+const $t = teal;
 
 teal.copyto = function(obj, res) {
   if (obj == null || typeof obj !== 'object') return obj;
@@ -827,28 +826,34 @@ teal.when = function(promises) {
     this.dice_body_material = new CANNON.Material();
     var desk_body_material = new CANNON.Material();
     var barrier_body_material = new CANNON.Material();
-    this.world.addContactMaterial(new CANNON.ContactMaterial(desk_body_material, this.dice_body_material, 0.01, 0.5));
-    this.world.addContactMaterial(new CANNON.ContactMaterial(barrier_body_material, this.dice_body_material, 0, 1.0));
-    this.world.addContactMaterial(new CANNON.ContactMaterial(this.dice_body_material, this.dice_body_material, 0, 0.5));
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(desk_body_material, this.dice_body_material, { friction: 0.01, restitution: 0.5 })
+    );
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(barrier_body_material, this.dice_body_material, { friction: 0, restitution: 1.0 })
+    );
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(this.dice_body_material, this.dice_body_material, { friction: 0, restitution: 0.5 })
+    );
 
-    this.world.add(new CANNON.RigidBody(0, new CANNON.Plane(), desk_body_material));
+    this.world.add(new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: desk_body_material }));
     var barrier;
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), Math.PI / 2);
     barrier.position.set(0, this.h * 0.93, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
     barrier.position.set(0, -this.h * 0.93, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2);
     barrier.position.set(this.w * 0.93, 0, 0);
     this.world.add(barrier);
 
-    barrier = new CANNON.RigidBody(0, new CANNON.Plane(), barrier_body_material);
+    barrier = new CANNON.Body({ mass: 0, shape: new CANNON.Plane(), material: barrier_body_material });
     barrier.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI / 2);
     barrier.position.set(-this.w * 0.93, 0, 0);
     this.world.add(barrier);
@@ -948,7 +953,11 @@ teal.when = function(promises) {
     var dice = that['create_' + type]();
     dice.castShadow = true;
     dice.dice_type = type;
-    dice.body = new CANNON.RigidBody(that.dice_mass[type], dice.geometry.cannon_shape, this.dice_body_material);
+    dice.body = new CANNON.Body({
+      mass: that.dice_mass[type],
+      shape: dice.geometry.cannon_shape,
+      material: this.dice_body_material,
+    });
     dice.body.position.set(pos.x, pos.y, pos.z);
     dice.body.quaternion.setFromAxisAngle(new CANNON.Vec3(axis.x, axis.y, axis.z), axis.a * Math.PI * 2);
     dice.body.angularVelocity.set(angle.x, angle.y, angle.z);
@@ -1264,134 +1273,5 @@ teal.when = function(promises) {
   };
 }.apply((teal.dice = teal.dice || {})));
 
-/************************************************************************************
- * MAIN
- ************************************************************************************/
 
-export function dice_initialize(container, config) {
-  var defaultConfig = {
-    idCanvas: 'canvas',
-    idLabel: 'label',
-    idSet: 'set',
-    idSelectorDiv: 'selector_div',
-    idControlPanel: 'control_panel',
-    idInfoDiv: 'info_div',
-    useTrueRandom: false,
-    chromakey: false,
-    useShadows: true,
-    whiteDice: false,
-    noresult: false,
-    roll: false,
-    diceThrow$: null,
-    diceBeforeThrow$: null,
-    diceAfterThrow$: null,
-    requestNewThrow$: null,
-  };
-
-  var _config = Object.assign({}, defaultConfig, config);
-  var containerBox = container.getBoundingClientRect();
-
-  var canvas = $t.id(_config.idCanvas);
-  canvas.style.width = containerBox.width - 1 + 'px';
-  canvas.style.height = containerBox.height - 1 + 'px';
-
-  $t.dice.use_true_random = _config.useTrueRandom;
-  if (_config.chromakey) {
-    $t.dice.desk_color = 0x00ff00;
-  }
-  $t.dice.use_shadows = _config.useShadows;
-  if (_config.whiteDice) {
-    $t.dice.dice_color = '#808080';
-    $t.dice.label_color = '#202020';
-  }
-
-  var box = new $t.dice.dice_box(canvas, { w: containerBox.width, h: containerBox.height });
-  box.animate_selector = false;
-
-  $t.bind(window, 'resize', function() {
-    canvas.style.width = container.innerWidth - 1 + 'px';
-    canvas.style.height = container.innerHeight - 1 + 'px';
-    box.reinit(canvas, { w: 500, h: 300 });
-  });
-
-  function show_selector() {
-    box.draw_selector();
-  }
-
-  show_selector();
-
-  box.bind_mouse_listener(container, function(vector, boost, dist) {
-    _config.requestNewThrow$.next({ vectors: vector, boost: boost, dist: dist });
-  });
-
-  _config.diceThrow$.subscribe(function(throwConfig) {
-    function notation_getter() {
-      return $t.dice.parse_notation(prepareDiceSetToString(throwConfig.diceSet));
-    }
-
-    function before_roll(vectors, notation, callback) {
-      _config.diceBeforeThrow$.next({ throwConfig: throwConfig });
-      callback(prepareThrowResultToString(throwConfig.result));
-    }
-
-    function after_roll(notation, result) {
-      _config.diceAfterThrow$.next({ throwConfig: throwConfig, result: result });
-    }
-
-    box.start_throw(
-      notation_getter,
-      before_roll,
-      after_roll,
-      throwConfig.diceThrowConfig.vectors,
-      throwConfig.diceThrowConfig.boost,
-      throwConfig.diceThrowConfig.dist
-    );
-  });
-
-  return _config;
-}
-
-function prepareDiceSetToString(diceSet) {
-  diceSet = objectSortByKeys(diceSet);
-  var requestDiceSet = '';
-
-  Object.keys(diceSet)
-    .sort(compareDiceKey)
-    .forEach(function(diceKey) {
-      var amount = diceSet[diceKey];
-      if (!amount) return;
-      requestDiceSet = requestDiceSet + amount + diceKey + '+';
-    });
-  requestDiceSet = requestDiceSet.slice(0, -1);
-
-  return requestDiceSet;
-}
-
-function prepareThrowResultToString(result) {
-  result = objectSortByKeys(result);
-  var requestResult = [];
-
-  Object.keys(result)
-    .sort(compareDiceKey)
-    .forEach(function(diceKey) {
-      requestResult = [...requestResult, ...result[diceKey]];
-    });
-
-  return requestResult;
-}
-
-function objectSortByKeys(obj) {
-  const ordered = {};
-
-  Object.keys(obj)
-    .sort(compareDiceKey)
-    .forEach(function(key) {
-      ordered[key] = obj[key];
-    });
-
-  return ordered;
-}
-
-function compareDiceKey(a, b) {
-  return parseInt(a.slice(1)) - parseInt(b.slice(1));
-}
+export const $teal = $t;

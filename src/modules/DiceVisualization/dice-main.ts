@@ -1,7 +1,7 @@
-'use strict';
+import { $teal as $t } from './dice-three';
 
-function dice_initialize(container, config) {
-  var defaultConfig = {
+export function dice_initialize(container, config) {
+  const defaultConfig = {
     idCanvas: 'canvas',
     idLabel: 'label',
     idSet: 'set',
@@ -20,10 +20,10 @@ function dice_initialize(container, config) {
     requestNewThrow$: null,
   };
 
-  var _config = Object.assign({}, defaultConfig, config);
-  var containerBox = container.getBoundingClientRect();
+  const _config = Object.assign({}, defaultConfig, config);
+  const containerBox = container.getBoundingClientRect();
 
-  var canvas = $t.id(_config.idCanvas);
+  const canvas = $t.id(_config.idCanvas);
   canvas.style.width = containerBox.width - 1 + 'px';
   canvas.style.height = containerBox.height - 1 + 'px';
 
@@ -37,7 +37,7 @@ function dice_initialize(container, config) {
     $t.dice.label_color = '#202020';
   }
 
-  var box = new $t.dice.dice_box(canvas, { w: containerBox.width, h: containerBox.height });
+  const box = new $t.dice.dice_box(canvas, { w: containerBox.width, h: containerBox.height });
   box.animate_selector = false;
 
   $t.bind(window, 'resize', function() {
@@ -85,12 +85,12 @@ function dice_initialize(container, config) {
 
 function prepareDiceSetToString(diceSet) {
   diceSet = objectSortByKeys(diceSet);
-  var requestDiceSet = '';
+  let requestDiceSet = '';
 
   Object.keys(diceSet)
     .sort(compareDiceKey)
     .forEach(function(diceKey) {
-      var amount = diceSet[diceKey];
+      const amount = diceSet[diceKey];
       if (!amount) return;
       requestDiceSet = requestDiceSet + amount + diceKey + '+';
     });
@@ -101,7 +101,7 @@ function prepareDiceSetToString(diceSet) {
 
 function prepareThrowResultToString(result) {
   result = objectSortByKeys(result);
-  var requestResult = [];
+  let requestResult = [];
 
   Object.keys(result)
     .sort(compareDiceKey)
