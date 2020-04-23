@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Paper, Grow } from '@material-ui/core';
-import { timer } from 'rxjs';
+import { Grow, Paper } from '@material-ui/core';
+import { interval, Subject } from 'rxjs';
+import { delay, filter, map, takeUntil } from 'rxjs/operators';
 
 import { diceDefaultConfig } from '../../config/dice.config';
 import { DiceServiceContext } from '../../contexts/DiceService.context';
@@ -29,6 +30,21 @@ interface DiceCardProps extends WithStyles<typeof styles> {
   visible?: boolean;
 }
 
+function setStateWhenCanvasHasDimensions(ref: MutableRefObject<any>, setState: Dispatch<SetStateAction<any>>) {
+  const takeUntil$ = new Subject();
+  interval(300)
+    .pipe(
+      map(() => (ref?.current as HTMLElement)?.getBoundingClientRect()),
+      filter(elementRect => !(elementRect?.width && elementRect?.height)),
+      delay(300),
+      takeUntil(takeUntil$)
+    )
+    .subscribe(() => {
+      takeUntil$.next();
+      setState(true);
+    });
+}
+
 function DiceCardC(props: DiceCardProps) {
   const { classes, visible = true } = props;
 
@@ -37,24 +53,26 @@ function DiceCardC(props: DiceCardProps) {
 
   const [diceInitialized, setDiceInitialized] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
+  const [canvasHasDimensions, setCanvasHasDimensions] = useState(false);
   const diceService = useContext(DiceServiceContext);
-  const canvasWidth: number = (canvasRef.current && (canvasRef.current as any).getBoundingClientRect().width) || 0;
+
+  useEffect(() => setStateWhenCanvasHasDimensions(canvasRef, setCanvasHasDimensions), []);
 
   useEffect(() => {
-    if (!!diceService && !diceInitialized && canvasWidth !== 0) {
-      timer(300).subscribe(() => {
-        dice_initialize(diceContainerEl.current, {
-          ...diceDefaultConfig,
-          diceThrow$: diceService.diceThrow$,
-          diceBeforeThrow$: diceService.diceBeforeThrow$,
-          diceAfterThrow$: diceService.diceAfterThrow$,
-          requestNewThrow$: diceService.requestNewThrow$,
-        });
-        setDiceInitialized(true);
+    if (!!diceService && !diceInitialized && canvasHasDimensions) {
+      const resizeSensor = dice_initialize(diceContainerEl.current, {
+        ...diceDefaultConfig,
+        diceThrow$: diceService.diceThrow$,
+        diceBeforeThrow$: diceService.diceBeforeThrow$,
+        diceAfterThrow$: diceService.diceAfterThrow$,
+        requestNewThrow$: diceService.requestNewThrow$,
       });
+      setDiceInitialized(true);
+
+      return () => resizeSensor.detach();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!!canvasWidth, !!diceService]);
+  }, [canvasHasDimensions, !!diceService]);
 
   const onMouseDown = (isDown: boolean): void => {
     setMouseDown(isDown);

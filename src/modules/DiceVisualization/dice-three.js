@@ -858,7 +858,6 @@ teal.when = function(promises) {
   this.dice_box.prototype.reinit = function(container, dimentions) {
     this.cw = container.clientWidth / 2;
     this.ch = container.clientHeight / 2;
-    this.ch = container.clientHeight / 2;
     if (dimentions) {
       this.w = dimentions.w;
       this.h = dimentions.h;
@@ -866,6 +865,7 @@ teal.when = function(promises) {
       this.w = this.cw;
       this.h = this.ch;
     }
+
     this.aspect = Math.min(this.cw / this.w, this.ch / this.h);
     that.scale = Math.sqrt(this.w * this.w + this.h * this.h) / 13;
 

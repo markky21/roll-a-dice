@@ -1,6 +1,7 @@
+import { ResizeSensor } from 'css-element-queries';
 import { $teal as $t } from './dice-three';
 
-export function dice_initialize(container, config) {
+export function dice_initialize(container, config): ResizeSensor {
   const defaultConfig = {
     idCanvas: 'canvas',
     idLabel: 'label',
@@ -21,7 +22,7 @@ export function dice_initialize(container, config) {
   };
 
   const _config = Object.assign({}, defaultConfig, config);
-  const containerBox = container.getBoundingClientRect();
+  let containerBox = container.getBoundingClientRect();
 
   const canvas = $t.id(_config.idCanvas);
   canvas.style.width = containerBox.width - 1 + 'px';
@@ -40,12 +41,6 @@ export function dice_initialize(container, config) {
   const box = new $t.dice.dice_box(canvas, { w: containerBox.width, h: containerBox.height });
   box.animate_selector = false;
 
-  $t.bind(window, 'resize', function() {
-    canvas.style.width = container.innerWidth - 1 + 'px';
-    canvas.style.height = container.innerHeight - 1 + 'px';
-    box.reinit(canvas, { w: 500, h: 300 });
-  });
-
   function show_selector() {
     box.draw_selector();
   }
@@ -53,7 +48,7 @@ export function dice_initialize(container, config) {
   show_selector();
 
   box.bind_mouse_listener(container, function(vector, boost, dist) {
-    _config.requestNewThrow$.next({ vectors: vector, boost: boost, dist: dist });
+    _config.requestNewThrow$.next({ vectors: vector, boost, dist });
   });
 
   _config.diceThrow$.subscribe(function(throwConfig) {
@@ -62,12 +57,12 @@ export function dice_initialize(container, config) {
     }
 
     function before_roll(vectors, notation, callback) {
-      _config.diceBeforeThrow$.next({ throwConfig: throwConfig });
+      _config.diceBeforeThrow$.next({ throwConfig });
       callback(prepareThrowResultToString(throwConfig.result));
     }
 
     function after_roll(notation, result) {
-      _config.diceAfterThrow$.next({ throwConfig: throwConfig, result: result });
+      _config.diceAfterThrow$.next({ throwConfig, result });
     }
 
     box.start_throw(
@@ -80,7 +75,12 @@ export function dice_initialize(container, config) {
     );
   });
 
-  return _config;
+  return new ResizeSensor(container, () => {
+    containerBox = container.getBoundingClientRect();
+    canvas.style.width = containerBox.width.toFixed() - 1 + 'px';
+    canvas.style.height = containerBox.height.toFixed() - 1 + 'px';
+    box.reinit(canvas, { w: containerBox.width.toFixed(), h: containerBox.height.toFixed() });
+  });
 }
 
 function prepareDiceSetToString(diceSet) {
