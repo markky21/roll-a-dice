@@ -9,7 +9,7 @@ interface CoreProps {
 }
 
 export function Core(props: CoreProps) {
-  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated);
+  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated$);
 
   return (
     <React.Fragment>

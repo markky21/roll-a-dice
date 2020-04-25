@@ -16,7 +16,7 @@ export interface HomeProps {
 export function HomeC(props: HomeProps) {
   const { match } = props;
   const dispatch = useDispatch();
-  const storeLocationMatch = useSelector(locationSelectors.match);
+  const storeLocationMatch = useSelector(locationSelectors.match$);
 
   useFirebaseConnect([appQuery.applicationStats]);
 

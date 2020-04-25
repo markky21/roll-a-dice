@@ -3,5 +3,5 @@ export enum ChatsAction {
 }
 
 export interface ChatsState {
-  readonly selectedChat: string | null;
+  readonly selectedChat: string;
 }

@@ -24,8 +24,8 @@ export const UserIsAuthenticated = connectedRouterRedirect({
   AuthenticatingComponent: Loader,
   wrapperDisplayName: 'UserIsAuthenticated',
   // Want to redirect the user when they are done loading and authenticated
-  authenticatedSelector: firebaseSelectors.isAuthenticated,
-  authenticatingSelector: firebaseSelectors.authenticatingSelector,
+  authenticatedSelector: firebaseSelectors.isAuthenticated$,
+  authenticatingSelector: firebaseSelectors.authenticatingSelector$,
   redirectAction: ((newLoc: any) => (dispatch: any) => {
     // Use push, replace, and go to navigate around.
     history.push(newLoc);

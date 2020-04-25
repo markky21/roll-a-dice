@@ -38,7 +38,8 @@ interface RoomCreateFormProps extends InjectedFormProps {
 
 function RoomCreateFormC(props: RoomCreateFormProps) {
   const { handleSubmit, pristine, submitting, onClose, invalid } = props;
-  const form = useSelector(mainSelectors.getFormCreateRoom);
+  const form = useSelector(mainSelectors.getFormCreateRoom$);
+  console.log({ form });
 
   return (
     <form onSubmit={handleSubmit}>

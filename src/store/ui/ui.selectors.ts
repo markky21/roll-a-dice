@@ -1,5 +1,9 @@
 import { AppState } from '../main';
+import { createSelector } from 'reselect';
 
 export const uiSelectors = {
-  isPending: (state: AppState): boolean => state.ui.isPending,
+  isPending$: createSelector(
+    (state: AppState) => state.ui.isPending,
+    isPending => isPending
+  ),
 };

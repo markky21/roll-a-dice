@@ -1,11 +1,17 @@
 import { AppState } from '../main';
+import { createSelector } from 'reselect';
 
 export const chatsSelectors = {
-  selectedChat: (state: AppState): string | null => state.chats.selectedChat,
+  selectedChat$: createSelector(
+    (state: AppState) => state.chats.selectedChat,
+    selectedChat => selectedChat
+  ),
 
-  profilesUidFromSelectedChat: (state: AppState): string[] => {
-    if (!state.chats.selectedChat) return [];
-
-    return state.firestore.data?.userChats?.[state.chats.selectedChat]?.players || [];
-  },
+  profilesUidFromSelectedChat$: createSelector(
+    [(state: AppState) => state.firestore.data?.userChats, (state: AppState) => state.chats.selectedChat],
+    (userChats, selectedChat) => {
+      if (!selectedChat) return [];
+      return userChats?.[selectedChat]?.players || [];
+    }
+  ),
 };

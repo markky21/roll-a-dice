@@ -33,10 +33,10 @@ interface PlayersProps extends WithStyles<typeof styles> {
 function PlayersC(props: PlayersProps) {
   const { classes, visible } = props;
 
-  const players = useSelector(firestoreSelectors.selectedRoomPlayers);
-  const usersProfiles = useSelector(firestoreSelectors.usersProfiles);
-  const userProfile = useSelector(firebaseSelectors.userProfile);
-  const gameMasterUid = useSelector(firestoreSelectors.selectedRoomGameMasterUid);
+  const players = useSelector(firestoreSelectors.selectedRoomPlayers$);
+  const usersProfiles = useSelector(firestoreSelectors.usersProfiles$);
+  const userProfile = useSelector(firebaseSelectors.userProfile$);
+  const gameMasterUid = useSelector(firestoreSelectors.selectedRoomGameMasterUid$);
   const [editProfile, setEditProfile] = useState<string>(null);
 
   const renderPlayers = () =>

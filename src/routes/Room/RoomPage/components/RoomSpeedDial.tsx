@@ -22,10 +22,10 @@ function RoomSpeedDialC(props: RoomSpeedDialCProps) {
   const dispatch = useDispatch();
 
   const Toast = useContext(ToastContext);
-  const isGameMasterOfSelectedRoom = useSelector(mainSelectors.isGameMasterOfSelectedRoom);
-  const drawerOpened = useSelector(roomsSelectors.drawerOpened);
-  const chatOpened = useSelector(roomsSelectors.chatOpened);
-  const playersOpened = useSelector(roomsSelectors.playersOpened);
+  const isGameMasterOfSelectedRoom = useSelector(mainSelectors.isGameMasterOfSelectedRoom$);
+  const drawerOpened = useSelector(roomsSelectors.drawerOpened$);
+  const chatOpened = useSelector(roomsSelectors.chatOpened$);
+  const playersOpened = useSelector(roomsSelectors.playersOpened$);
   const [showRoomForm, setShowRoomForm] = useState(false);
 
   function copyRoomUrlToClipboard(): void {

@@ -25,7 +25,7 @@ interface ChatListProps {
 export function ChatListPageC(props: ChatListProps) {
   const { match } = props;
   const dispatch = useDispatch();
-  const storeLocationMatch = useSelector(locationSelectors.match);
+  const storeLocationMatch = useSelector(locationSelectors.match$);
 
   useEffect(() => {
     if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {
@@ -34,7 +34,7 @@ export function ChatListPageC(props: ChatListProps) {
   });
 
   const classes = useStyles();
-  const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
+  const selectedChat: string | null = useSelector(chatsSelectors.selectedChat$);
 
   return (
     <React.Fragment>

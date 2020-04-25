@@ -76,12 +76,12 @@ const useStyles = makeStyles(styles);
 export function RoomView() {
   const classes = useStyles();
 
-  const playersOpened = useSelector(roomsSelectors.playersOpened);
-  const chatOpened = useSelector(roomsSelectors.chatOpened);
-  const diceRolling = useSelector(roomsSelectors.diceRolling);
-  const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
+  const playersOpened = useSelector(roomsSelectors.playersOpened$);
+  const chatOpened = useSelector(roomsSelectors.chatOpened$);
+  const diceRolling = useSelector(roomsSelectors.diceRolling$);
+  const selectedRoom = useSelector(firestoreSelectors.selectedRoom$);
 
-  const isUserARoomPlayerOrGameMaster = useSelector(mainSelectors.isUserARoomPlayerOrGameMaster);
+  const isUserARoomPlayerOrGameMaster = useSelector(mainSelectors.isUserARoomPlayerOrGameMaster$);
 
   const diceCardFullHeight = !playersOpened || !selectedRoom;
 

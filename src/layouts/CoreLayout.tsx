@@ -69,10 +69,10 @@ export interface PaperbaseProps extends WithStyles<typeof styles> {
 function CoreLayoutC(props: PaperbaseProps) {
   const { classes, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated);
-  const isAuthenticating = useSelector(firebaseSelectors.authenticatingSelector);
-  const isRequesting = useSelector(firebaseSelectors.isRequesting);
-  const isPending = useSelector(uiSelectors.isPending);
+  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated$);
+  const isAuthenticating = useSelector(firebaseSelectors.authenticatingSelector$);
+  const isRequesting = useSelector(firebaseSelectors.isRequesting$);
+  const isPending = useSelector(uiSelectors.isPending$);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

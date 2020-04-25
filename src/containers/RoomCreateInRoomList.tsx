@@ -12,12 +12,12 @@ import { RouterPath } from '../models/paths';
 import { SnackbarType, ToastContext } from '../contexts/Toast.context';
 
 export function RoomCreateInRoomList() {
-  const { path: locationPath } = useSelector(locationSelectors.match);
+  const { path: locationPath } = useSelector(locationSelectors.match$);
 
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const firestore = useFirestore();
-  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile);
+  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile$);
   const Toast = useContext(ToastContext);
 
   const handleClose = () => {

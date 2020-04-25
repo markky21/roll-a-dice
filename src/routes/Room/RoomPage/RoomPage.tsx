@@ -29,10 +29,10 @@ export function RoomC(props: RoomListProps) {
   const firestore = useFirestore();
   const Toast = useContext(ToastContext);
 
-  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
-  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
-  const storeLocationMatch = useSelector(locationSelectors.match);
-  const userProfile = useSelector(firebaseSelectors.userProfile);
+  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom$);
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid$);
+  const storeLocationMatch = useSelector(locationSelectors.match$);
+  const userProfile = useSelector(firebaseSelectors.userProfile$);
 
   /**
    * Effects logic

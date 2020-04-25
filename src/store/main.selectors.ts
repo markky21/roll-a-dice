@@ -1,35 +1,53 @@
 import { AppState } from './main';
-import { firestoreSelectors } from './firebase/firestore.selectors';
 import { chatsSelectors } from './chats/chats.selectors';
 import { IRoomCreateForm, IRoomPlayerProfileForm } from '../models/rooms.model';
+import { createSelector } from 'reselect';
 
 export const mainSelectors = {
-  getAllNeededPlayersUid: (state: AppState): string[] => {
-    const selectedRoomPlayers = firestoreSelectors.selectedRoom(state)?.players || {};
-    const selectedRoomGM = firestoreSelectors.selectedRoom(state)?.gameMasterUid;
-    const selectedChatPlayers = chatsSelectors.profilesUidFromSelectedChat(state) || [];
-    return [...selectedChatPlayers, ...Object.keys(selectedRoomPlayers), selectedRoomGM].filter(
-      (v, i, a) => !!v && a.indexOf(v) === i
-    );
-  },
+  getAllNeededPlayersUid$: createSelector(
+    [(state: AppState) => state.firestore.data.selectedRoom, chatsSelectors.profilesUidFromSelectedChat$],
+    (selectedRoom, profilesUidFromSelectedChat) => {
+      const selectedRoomPlayers = selectedRoom?.players || {};
+      const selectedRoomGM = selectedRoom?.gameMasterUid;
+      const selectedChatPlayers = profilesUidFromSelectedChat || [];
 
-  isGameMasterOfSelectedRoom: (state: AppState): boolean => {
-    const selectedRoomGameMaster = state.firestore.data.selectedRoom
-      ? state.firestore.data.selectedRoom.gameMasterUid
-      : 'unknown';
+      return [...selectedChatPlayers, ...Object.keys(selectedRoomPlayers), selectedRoomGM].filter(
+        (v, i, a) => !!v && a.indexOf(v) === i
+      );
+    }
+  ),
 
-    return selectedRoomGameMaster === state.firebase.profile.uid;
-  },
+  isGameMasterOfSelectedRoom$: createSelector(
+    [
+      (state: AppState) => state.firestore.data.selectedRoom,
+      (state: AppState) => state.firestore.data.selectedRoom?.gameMasterUid,
+      (state: AppState) => state.firebase.profile.uid,
+    ],
+    (selectedRoom, gameMasterUid, uid): boolean => {
+      return uid === (selectedRoom ? gameMasterUid : 'unknown');
+    }
+  ),
 
-  getFormCreateRoom: (state: AppState): IRoomCreateForm => state.form.createRoom.values,
+  getFormCreateRoom$: createSelector(
+    (state: AppState): IRoomCreateForm => state.form.createRoom.values,
+    form => form
+  ),
 
-  getFormPlayerProfile: (state: AppState): IRoomPlayerProfileForm => state.form.playerProfile.values,
+  getFormPlayerProfile$: createSelector(
+    (state: AppState): IRoomPlayerProfileForm => state.form.playerProfile.values,
+    form => form
+  ),
 
-  isUserARoomPlayerOrGameMaster: (state: AppState): boolean => {
-    if (!state.firestore.data.selectedRoom || !state.firebase.profile.uid) return false;
-    return (
-      !!state.firestore.data.selectedRoom?.players[state.firebase.profile.uid] ||
-      state.firestore.data.selectedRoom?.gameMasterUid === state.firebase.profile.uid
-    );
-  },
+  isUserARoomPlayerOrGameMaster$: createSelector(
+    [
+      (state: AppState) => state.firestore.data.selectedRoom,
+      (state: AppState) => state.firebase.profile.uid,
+      (state: AppState) => state.firestore.data.selectedRoom?.gameMasterUid,
+      (state: AppState) => state.firestore.data.selectedRoom?.players,
+    ],
+    (selectedRoom, uid, gameMasterUid, players) => {
+      if (!selectedRoom || !uid) return false;
+      return !!players[uid] || gameMasterUid === uid;
+    }
+  ),
 };

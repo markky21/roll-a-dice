@@ -14,10 +14,10 @@ export function WhenAuthenticated() {
   const firestore = useFirestore();
   const firebase = useFirebase();
 
-  const profile = useSelector(firebaseSelectors.userProfile);
-  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
-  const uniqProfilesUid: string[] = [...useSelector(mainSelectors.getAllNeededPlayersUid)];
-  const userConnected = useSelector(firebaseSelectors.userConnected);
+  const profile = useSelector(firebaseSelectors.userProfile$);
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid$);
+  const uniqProfilesUid: string[] = useSelector(mainSelectors.getAllNeededPlayersUid$);
+  const userConnected = useSelector(firebaseSelectors.userConnected$);
 
   function updateUserStatus(connected: boolean): void {
     const docUserRef = firestore.doc(`${FirestoreCollection.USERS}/${profile.uid}`);

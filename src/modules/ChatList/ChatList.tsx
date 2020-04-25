@@ -52,8 +52,8 @@ export interface ChatListProps extends WithStyles<typeof styles> {
 
 function ChatListC(props: ChatListProps) {
   const { classes, showSearchBar = true, viewType = ChatListType.CARD } = props;
-  const userChats: Dictionary<IChat> = useSelector(firestoreSelectors.userChats) || {};
-  const selectedChat: string | null = useSelector(chatsSelectors.selectedChat);
+  const userChats: Dictionary<IChat> = useSelector(firestoreSelectors.userChats$) || {};
+  const selectedChat: string | null = useSelector(chatsSelectors.selectedChat$);
   const dispatch = useDispatch();
 
   useEffect(() => {

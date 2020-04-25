@@ -27,8 +27,8 @@ interface ProfileAvatarProps extends WithStyles<typeof styles> {}
 function ProfileAvatarC(props: ProfileAvatarProps) {
   const firebase = useFirebase();
   const history = useHistory();
-  const profile = useSelector(firebaseSelectors.userProfile);
-  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated);
+  const profile = useSelector(firebaseSelectors.userProfile$);
+  const isAuthenticated = useSelector(firebaseSelectors.isAuthenticated$);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

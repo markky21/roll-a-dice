@@ -41,10 +41,10 @@ function ChatC(props: ChatProps) {
   const { classes, height = '40vh', visible = true } = props;
 
   const firestore = useFirestore();
-  const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat);
-  const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat(selectedChatUid)) || null;
-  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile);
-  const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles);
+  const selectedChatUid: string | null = useSelector(chatsSelectors.selectedChat$);
+  const selectedChat: IChat | null = useSelector(firestoreSelectors.getChat$) || null;
+  const userProfile: IProfile = useSelector(firebaseSelectors.userProfile$);
+  const usersProfiles: Dictionary<IProfile> = useSelector(firestoreSelectors.usersProfiles$);
   const Toast = useContext(ToastContext);
 
   const onNewMessage = (message: string) => {

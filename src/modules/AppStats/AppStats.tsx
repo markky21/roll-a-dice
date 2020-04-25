@@ -26,7 +26,7 @@ interface AppStatsProps extends WithStyles<typeof styles> {}
 function AppStatsC(props: AppStatsProps) {
   const { classes } = props;
 
-  const appStats = useSelector(firebaseSelectors.applicationStats);
+  const appStats = useSelector(firebaseSelectors.applicationStats$);
   const statsView = [
     { label: 'Players:', value: appStats?.players || 0 },
     { label: 'Rooms created:', value: appStats?.rooms || 0 },

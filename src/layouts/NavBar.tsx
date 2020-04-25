@@ -27,7 +27,7 @@ interface NavBarProps extends WithStyles<typeof styles> {
 
 export function NavBarC(props: NavBarProps) {
   const { classes, mobileOpen } = props;
-  const drawerOpened = useSelector(roomsSelectors.drawerOpened);
+  const drawerOpened = useSelector(roomsSelectors.drawerOpened$);
 
   return (
     <nav className={classes.drawer} style={{ maxWidth: drawerOpened ? drawerWidth : 0 }}>

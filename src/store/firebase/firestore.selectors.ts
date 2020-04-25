@@ -1,45 +1,60 @@
 import { AppState } from '../main';
-import { Dictionary } from 'react-redux-firebase';
-import { IChat } from '../../models/chats.model';
-import { IPlayerProfile, IProfile, IRoom, IRoomCreateForm } from '../../models/rooms.model';
+import { createSelector } from 'reselect';
 
 export const firestoreSelectors = {
-  userChats: (state: AppState): Dictionary<IChat> | undefined => state.firestore.data.userChats,
+  userChats$: createSelector(
+    (state: AppState) => state.firestore.data.userChats,
+    userChats => userChats
+  ),
 
-  getChat: (chatId: string | null) => (state: AppState): IChat | null =>
-    !!chatId && state.firestore.data.userChats ? state.firestore.data.userChats[chatId] : null,
+  getChat$: createSelector(
+    [(state: AppState) => state.firestore.data.userChats, (state: AppState) => state.chats.selectedChat],
+    (userChats, chatId) => {
+      return userChats?.[chatId];
+    }
+  ),
 
-  selectedRoom: (state: AppState): IRoom | undefined => state.firestore.data.selectedRoom,
+  selectedRoom$: createSelector(
+    (state: AppState) => state.firestore.data.selectedRoom,
+    selectedRoom => selectedRoom
+  ),
 
-  selectedRoomFormData: (state: AppState): IRoomCreateForm | undefined => {
-    if (!state.firestore.data.selectedRoom) return;
-    const {
-      roomName,
-      diceType,
-      description,
-      roomImage,
-      gameMasterAvatar,
-      campaignTitle,
-      maxPlayers,
-    } = state.firestore.data.selectedRoom;
-    return { roomName, diceType, description, roomImage, gameMasterAvatar, campaignTitle, maxPlayers };
-  },
+  selectedRoomFormData$: createSelector(
+    (state: AppState) => state.firestore.data.selectedRoom,
+    selectedRoom => {
+      if (!selectedRoom) return;
+      const { roomName, diceType, description, roomImage, gameMasterAvatar, campaignTitle, maxPlayers } = selectedRoom;
+      return { roomName, diceType, description, roomImage, gameMasterAvatar, campaignTitle, maxPlayers };
+    }
+  ),
 
-  userRoomsAsGameMaster: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsGameMaster,
+  userRoomsAsGameMaster$: createSelector(
+    (state: AppState) => state.firestore.data.userRoomsAsGameMaster,
+    userRoomsAsGameMaster => userRoomsAsGameMaster
+  ),
 
-  userRoomsAsPlayer: (state: AppState): Dictionary<IRoom> | undefined => state.firestore.data.userRoomsAsPlayer,
+  userRoomsAsPlayer$: createSelector(
+    (state: AppState) => state.firestore.data.userRoomsAsPlayer,
+    userRoomsAsPlayer => userRoomsAsPlayer
+  ),
 
-  allUserRoomsUid: (state: AppState): string[] =>
-    Object.keys({
-      ...state.firestore.data.userRoomsAsGameMaster,
-      ...state.firestore.data.userRoomsAsPlayer,
-    }),
+  usersProfiles$: createSelector(
+    (state: AppState) => state.firestore.data.usersProfiles,
+    usersProfiles => usersProfiles || {}
+  ),
 
-  usersProfiles: (state: AppState): Dictionary<IProfile> => state.firestore.data.usersProfiles || {},
+  selectedRoomPlayers$: createSelector(
+    (state: AppState) => state.firestore.data.selectedRoom?.players,
+    players => players || {}
+  ),
 
-  selectedRoomPlayers: (state: AppState): Dictionary<IPlayerProfile> => state.firestore.data.selectedRoom?.players,
+  selectedRoomGameMasterUid$: createSelector(
+    (state: AppState) => state.firestore.data.selectedRoom?.gameMasterUid,
+    gameMasterUid => gameMasterUid
+  ),
 
-  selectedRoomGameMasterUid: (state: AppState): string => state.firestore.data.selectedRoom?.gameMasterUid,
-
-  selectedRoomLogs: (state: AppState) => state.firestore.data.selectedRoom?.logs,
+  selectedRoomLogs$: createSelector(
+    (state: AppState) => state.firestore.data.selectedRoom?.logs,
+    logs => logs
+  ),
 };

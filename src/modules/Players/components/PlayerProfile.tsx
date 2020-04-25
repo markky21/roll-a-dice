@@ -20,8 +20,8 @@ export function PlayerProfile(props: PlayerProfileProps) {
   const { open, onClose, profileUid } = props;
 
   const firestore = useFirestore();
-  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid);
-  const selectedRoom = useSelector(firestoreSelectors.selectedRoom);
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid$);
+  const selectedRoom = useSelector(firestoreSelectors.selectedRoom$);
   const Toast = useContext(ToastContext);
 
   const onSubmit = (formValues: IRoomPlayerProfileForm) => {

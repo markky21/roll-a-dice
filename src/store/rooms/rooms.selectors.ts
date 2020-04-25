@@ -1,9 +1,25 @@
 import { AppState } from '../main';
+import { createSelector } from 'reselect';
 
 export const roomsSelectors = {
-  selectedRoomUid: (state: AppState): string | null => state.rooms.selectedRoom || null,
-  drawerOpened: (state: AppState): boolean => state.rooms.drawerOpened,
-  chatOpened: (state: AppState): boolean => state.rooms.chatOpened,
-  playersOpened: (state: AppState): boolean => state.rooms.playersOpened,
-  diceRolling: (state: AppState): boolean => state.rooms.diceRolling,
+  selectedRoomUid$: createSelector(
+    (state: AppState) => state.rooms.selectedRoom,
+    selectedRoom => selectedRoom
+  ),
+  drawerOpened$: createSelector(
+    (state: AppState) => state.rooms.drawerOpened,
+    createSelector => createSelector
+  ),
+  chatOpened$: createSelector(
+    (state: AppState) => state.rooms.chatOpened,
+    chatOpened => chatOpened
+  ),
+  playersOpened$: createSelector(
+    (state: AppState) => state.rooms.playersOpened,
+    playersOpened => playersOpened
+  ),
+  diceRolling$: createSelector(
+    (state: AppState) => state.rooms.diceRolling,
+    diceRolling => diceRolling
+  ),
 };

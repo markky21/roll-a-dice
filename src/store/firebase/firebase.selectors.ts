@@ -1,26 +1,35 @@
 import { AppState } from '../main';
 import { IApplicationStats } from '../../models/firebase.model';
+import { createSelector } from 'reselect';
 
 export const firebaseSelectors = {
-  isRequesting: (state: AppState): boolean => !Object.values(state.firestore.status.requesting).every(v => !v),
+  isRequesting$: createSelector(
+    (state: AppState) => state.firestore.status.requesting,
+    requesting => !Object.values(requesting).every(v => !v)
+  ),
 
-  userProfile: (state: AppState) => state.firebase.auth,
+  userProfile$: createSelector(
+    (state: AppState) => state.firebase.auth,
+    auth => auth
+  ),
 
-  authenticatingSelector: (state: AppState) => {
-    const {
-      firebase: { auth, isInitializing },
-    } = state;
-    return !auth.isLoaded || isInitializing;
-  },
+  authenticatingSelector$: createSelector(
+    [(state: AppState) => state.firebase.auth, (state: AppState) => state.firebase.isInitializing],
+    (auth, isInitializing) => !auth.isLoaded || isInitializing
+  ),
 
-  isAuthenticated: (state: AppState) => {
-    const {
-      firebase: { auth },
-    } = state;
-    return !auth.isEmpty && !!auth.uid;
-  },
+  isAuthenticated$: createSelector(
+    (state: AppState) => state.firebase.auth,
+    auth => !auth.isEmpty && !!auth.uid
+  ),
 
-  userConnected: (state: AppState): boolean => state.firebase.data.connected,
+  userConnected$: createSelector(
+    (state: AppState) => state.firebase.data.connected,
+    connected => connected
+  ),
 
-  applicationStats: (state: AppState): IApplicationStats => state.firebase.data.applicationStats,
+  applicationStats$: createSelector(
+    (state: AppState) => state.firebase.data.applicationStats,
+    applicationStats => applicationStats
+  ),
 };

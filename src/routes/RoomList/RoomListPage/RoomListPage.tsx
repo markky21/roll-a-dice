@@ -35,9 +35,9 @@ export function RoomListsC(props: RoomListProps) {
   const { match } = props;
 
   const dispatch = useDispatch();
-  const storeLocationMatch = useSelector(locationSelectors.match);
-  const userRoomsAsGameMaster: Dictionary<IRoom> = useSelector(firestoreSelectors.userRoomsAsGameMaster) || {};
-  const userRoomsAsPlayer: Dictionary<IRoom> = useSelector(firestoreSelectors.userRoomsAsPlayer) || {};
+  const storeLocationMatch = useSelector(locationSelectors.match$);
+  const userRoomsAsGameMaster: Dictionary<IRoom> = useSelector(firestoreSelectors.userRoomsAsGameMaster$) || {};
+  const userRoomsAsPlayer: Dictionary<IRoom> = useSelector(firestoreSelectors.userRoomsAsPlayer$) || {};
 
   useEffect(() => {
     if (JSON.stringify(match) !== JSON.stringify(storeLocationMatch)) {

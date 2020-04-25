@@ -7,7 +7,7 @@ export enum RoomsAction {
 }
 
 export interface RoomsState {
-  readonly selectedRoom: string | null;
+  readonly selectedRoom: string;
   readonly drawerOpened: boolean;
   readonly chatOpened: boolean;
   readonly playersOpened: boolean;

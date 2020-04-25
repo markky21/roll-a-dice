@@ -37,9 +37,9 @@ export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles
 function NavigatorC(props: NavigatorProps) {
   const { classes, ...other } = props;
 
-  const { path: locationPath } = useSelector(locationSelectors.match);
-  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom);
-  const drawerOpened = useSelector(roomsSelectors.drawerOpened);
+  const { path: locationPath } = useSelector(locationSelectors.match$);
+  const selectedRoomData = useSelector(firestoreSelectors.selectedRoom$);
+  const drawerOpened = useSelector(roomsSelectors.drawerOpened$);
 
   return (
     <Drawer

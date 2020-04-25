@@ -16,8 +16,8 @@ export const DiceServiceContextC: React.FC<DiceServiceContextProps> = ({ childre
   const Toast = useContext(ToastContext);
 
   const diceService = DiceService.getInstance(firestore, Toast);
-  const profile = useSelector(firebaseSelectors.userProfile);
-  const roomUid = useSelector(roomsSelectors.selectedRoomUid);
+  const profile = useSelector(firebaseSelectors.userProfile$);
+  const roomUid = useSelector(roomsSelectors.selectedRoomUid$);
 
   useEffect(() => {
     diceService.profile = profile;

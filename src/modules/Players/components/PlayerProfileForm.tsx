@@ -29,7 +29,7 @@ interface PlayerProfileFormProps extends InjectedFormProps {
 
 function PlayerProfileFormC(props: PlayerProfileFormProps) {
   const { handleSubmit, pristine, submitting, onClose, invalid } = props;
-  const form = useSelector(mainSelectors.getFormPlayerProfile);
+  const form = useSelector(mainSelectors.getFormPlayerProfile$);
 
   return (
     <form onSubmit={handleSubmit}>

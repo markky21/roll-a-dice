@@ -17,8 +17,8 @@ interface RoomCreateInRoomProps {
 export function RoomCreateInRoom(props: RoomCreateInRoomProps) {
   const { open, onClose } = props;
   const firestore = useFirestore();
-  const selectedRoomFormData = useSelector(firestoreSelectors.selectedRoomFormData) as IRoomCreateForm;
-  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid) as string;
+  const selectedRoomFormData = useSelector(firestoreSelectors.selectedRoomFormData$) as IRoomCreateForm;
+  const selectedRoomUid = useSelector(roomsSelectors.selectedRoomUid$) as string;
   const Toast = useContext(ToastContext);
 
   const handleSubmit = (formValues: IRoomCreateForm) => {

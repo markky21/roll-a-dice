@@ -1,6 +1,9 @@
 import { AppState } from '../main';
-import { LocationMatch } from './location.model';
+import { createSelector } from 'reselect';
 
 export const locationSelectors = {
-  match: (state: AppState): LocationMatch => state.location.match,
+  match$: createSelector(
+    (state: AppState) => state.location.match,
+    match => match
+  ),
 };

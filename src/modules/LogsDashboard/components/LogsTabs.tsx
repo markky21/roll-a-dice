@@ -42,8 +42,8 @@ function LogsTabsC(props: LogsTabsProps) {
 
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const profiles = useSelector(firestoreSelectors.selectedRoomPlayers);
-  const logs = useSelector(firestoreSelectors.selectedRoomLogs);
+  const profiles = useSelector(firestoreSelectors.selectedRoomPlayers$);
+  const logs = useSelector(firestoreSelectors.selectedRoomLogs$);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

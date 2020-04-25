@@ -54,7 +54,7 @@ const room: Partial<IRoom> = {
 
 export function HomeWrapper(props: HomeWrapperProps) {
   const classes = useStyles();
-  const diceRolling = useSelector(roomsSelectors.diceRolling);
+  const diceRolling = useSelector(roomsSelectors.diceRolling$);
 
   const [showDiceCard, setShowDiceCard] = useState(false);
   useEffect(() => {
